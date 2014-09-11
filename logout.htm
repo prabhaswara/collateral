@@ -1,0 +1,10 @@
+<?
+session_start();
+if (session_is_registered("user"))
+{
+session_destroy();
+}
+echo "Terima kasih atas kunjungan anda<br>";
+echo "<BR><a href=login.HTM>Re Login</a><br>";
+
+?>

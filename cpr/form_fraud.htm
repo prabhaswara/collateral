@@ -1,0 +1,126 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="id">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>FORM INPUT FRAUD</title>
+<style type="text/css">
+<!--
+.style2 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+</head>
+<body>
+
+
+<form name="biodata" Method="post" Action="insertfraud.php">
+
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Verdana" size="1"><a href="summary_bso.php">MENU UTAMA</a>&nbsp;&nbsp;&nbsp;
+<a href="bso_menu.htm">BSO MENU</a> </font></b></p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p align="center" style="margin-top: 0; margin-bottom: 0"><b><font face="Verdana" size="5">
+FORM INPUT FRAUD APLIKASI </font></b></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Arial Black">&nbsp;</font></b></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<tr>
+    <td width="19%" style="border-style: none; border-width: medium" height="24">
+    <b>
+    <font face="Arial">Nama LNC</font></b></td>
+    <td width="19%" style="border-style: none; border-width: medium" height="24">
+    <font face="Arial">
+    <span class="style2">
+    <select size="1" name="LNC">
+      <option>PLL</option>
+    </select>
+    </span></font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="27">
+      <p><b><font face="Arial">No. Aplikasi </font></b></p>    </td>
+    <td width="19%" style="border-style: none; border-width: medium" height="27">
+    <font face="Arial">    
+    <input type="text" name="no_aplikasi" size="40" ></font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <p><b><font face="Arial">Nama Debitur </font></b></p>    </td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="nama_debitur" size="40" >
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">Sales</font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="sales" size="40" >
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">Tempat Lahir</font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="tempat_lahir" size="40" >
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">Tgl. Lahir </font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial" style="font-size: 9pt">
+      <input type="text" id="tgl_lahir" name="tgl_lahir" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_lahir);return false;">
+    </font><font face="Arial">&nbsp;    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">Alamat</font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="alamat" size="40" >
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">No. Telp</font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="no_telp" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">No. HP </font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="no_hp" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">Max Kredit </font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <font face="Arial">
+      <input type="text" name="max_kredit" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <strong><b><font face="Arial">Permasalahan</font></b></strong></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <font face="Arial">
+      <textarea name="permasalahan" size="40" style="text-transform:uppercase"></textarea>
+      </font><font size="2">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <b> <font face="Arial">Upload File </font></b></td>
+    <td style="border-style: none; border-width: medium" height="27"> <form name="form1" enctype="multipart/form-data" method="post" action="">
+      <input type="file" name="file">
+    </form>      <font face="Arial">&nbsp;
+    </font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="17"></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="17"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <input type="submit" value="Submit"><input type="reset" value="Reset"></p>
+<!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
+<iframe width=174 height=189 name="gToday:normal:./calender/agenda.js" id="gToday:normal:./calender/agenda.js" src="./calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe>
+
+</body>
+
+</html>

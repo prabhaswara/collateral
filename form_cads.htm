@@ -1,0 +1,1155 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="id">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FORM INPUT DATA COLLATERAL</title>
+ <script>
+            function validasi(){
+                return true;
+            }
+
+            function harusDiisi(att, msg){
+              
+                return true;
+            }
+</script>
+
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script>
+//jkw_kredit
+//tgl_pk
+
+$(document).ready(function () {
+       
+$("#jkw_kredit").blur(function() {
+	hitungBulan();
+});
+
+	$("#tgl_pk").blur(function() {
+	hitungBulan();
+});	  
+
+function hitungBulan()
+{
+
+	var date1= new Date($("#tgl_pk").val());
+	
+	nambah=parseInt($("#jkw_kredit").val());	
+	date1.setMonth(date1.getMonth() + nambah);	
+	
+// script penambahan untuk mengurangi 1 hari
+	date1.setDate(date1.getDate() - 1);
+	
+	var dateStr = date1.getFullYear().toString() + "-"+
+                  padStr(1 + parseInt(date1.getMonth().toString())) + "-"+
+                  padStr(date1.getDate().toString()) ;
+				             
+	$("#tgl_jt_pk").val(dateStr);
+	
+} 
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
+}
+		   
+            });
+
+</script>
+
+<script>
+//fixed_rate
+//tgl_pk
+//tgl_jt_fixed_rate
+
+
+$(document).ready(function () {
+       
+$("#fixed_rate").blur(function() {
+	hitungBulan();
+});
+	$("#tgl_pk").blur(function() {
+	hitungBulan();
+});	  
+
+function hitungBulan()
+{
+
+	var date2= new Date($("#tgl_pk").val());
+	
+	nambah1=parseInt($("#fixed_rate").val());	
+	date2.setMonth(date2.getMonth() + nambah1);	
+
+// script penambahan untuk mengurangi 1 hari
+	date2.setDate(date2.getDate() - 1);
+	
+	var dateStr1 = date2.getFullYear().toString() + "-"+
+                  padStr(1 + parseInt(date2.getMonth().toString())) + "-"+
+                  padStr(date2.getDate().toString()) ;
+               
+	$("#tgl_jt_fixed_rate").val(dateStr1);			  
+	
+} 
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
+}
+		   
+            });
+</script>
+
+<script>
+//fixed_rate            //jkw_covernote
+//tgl_pk                //tgl_covernote
+//tgl_jt_fixed_rate     //tgl_jt_covernote
+
+
+$(document).ready(function () {
+       
+$("#jkw_covernote").blur(function() {
+	hitungBulan();
+});
+	$("#tgl_covernote").blur(function() {
+	hitungBulan();
+});	  
+
+function hitungBulan()
+{
+
+	var date3= new Date($("#tgl_covernote").val());
+	
+	nambah2=parseInt($("#jkw_covernote").val());	
+	date3.setMonth(date3.getMonth() + nambah2);	
+
+// script penambahan untuk mengurangi 1 hari
+	date3.setDate(date3.getDate() - 1);
+	
+	var dateStr2 = date3.getFullYear().toString() + "-"+
+                  padStr(1 + parseInt(date3.getMonth().toString())) + "-"+
+                  padStr(date3.getDate().toString()) ;
+               
+	$("#tgl_jt_covernote").val(dateStr2);			  
+	
+} 
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
+}
+		   
+            });
+</script>
+
+
+<style type="text/css">
+<!--
+.style4 {color: #FFFFFF}
+-->
+</style>
+<form id="postform" name="biodata" onsubmit="return validasi()" Method="post" Action="insertcadsx.php">
+
+<script language="javascript" src="ri33-fungsi.js"></script>
+
+</head>
+<body>
+
+
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Verdana" size="2"><a href="summary.php">MENU UTAMA</a>&nbsp;&nbsp;&nbsp;</font></b></p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p align="center" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Verdana" size="4">
+<span style="font-family:Verdana,sans-serif;text-decoration: blink; color:#000000"> FORM INPUT DATA CADS </span></font></b></p>
+<p align="center" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Arial Black">&nbsp;</font></b></p>
+<div align="center">
+  <table border="1" cellpadding="0" cellspacing="0" style="border-width:0; border-collapse: collapse; " bordercolor="#111111" width="902" height="202">
+    <tr>
+      <td colspan="5" height="20" style="height: 15.0pt; width: 902; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; color: black; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: #FFCC00">
+      <font size="2">INFORMASI DEBITUR</font></td>
+    </tr>
+  
+  <tr>
+      <td width="145" style="border-style:none; border-width:medium; " height="22">
+      <font face="Arial" style="font-size: 9pt">Nama LNC</font></td>
+      <td width="213" style="border-style: none; border-width: medium" height="22">
+      <font face="Arial" style="font-size: 9pt">
+      <select size="1" name="LNC" id="LNC" style="font-size: 8pt ; " >
+            <option>BAL</option>
+        </select></font></td>
+      <td width="13" style="border-style: none; border-width: medium" height="22">&nbsp;</td>
+      <td width="262" style="border-style: none; border-width: medium" height="22">
+      <font face="Arial" style="font-size: 9pt">No. Aplikasi </font></td>
+      <td width="181" style="border-style:none; border-width:medium; " height="22">
+      <font face="Arial" style="font-size: 9pt">
+    <input name=NOAPLIKASI id="NOAPLIKASI" size="40" style="font-size: 8pt; "></font></td>
+    </tr>
+    <tr>
+      <td width="195" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" style="font-size: 9pt">Nama Debitur</font></td>
+      <td width="230" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="NAMADEBITUR" id="NAMADEBITUR" size="40" style="font-size: 8pt; "></font></td>
+      <td width="13" style="border-style: none; border-width: medium" height="27">&nbsp;</td>
+      <td width="262" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" style="font-size: 9pt">Tempat Lahir</font></td>
+      <td width="181" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="TEMPATLAHIR" size="40" style="font-size: 8pt; text-transform:uppercase "></font></td>
+    </tr>
+    <tr>
+      <td width="195" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Tgl. Lahir</font></td>
+      <td width="230" style="border-style: none; border-width: medium" height="29"><input type="text" name="TGLLAHIR" size="10" style="font-size: 8pt;  text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.TGLLAHIR);return false;">
+      <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.TGLLAHIR);return false;" >      </a>&nbsp;</td>
+  
+    <td width="13" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+      <td width="262" style="border-style: none; border-width: medium" height="29">
+      <p align="left">
+      <font face="Arial" style="font-size: 9pt">CIF</font></td>
+      <td width="181" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="CIF"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="40" style="font-size: 8pt; text-transform:uppercase "></font></td>
+    </tr>
+    <tr>
+      <td width="171" style="border-style: none; border-width: medium" height="21">
+      <font style="font-size: 9pt" face="Arial">No. Rekg. Pinjaman</font></td>
+      <td width="226" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="no_rekg_pinjaman"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="40" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="13" style="border-style:none; border-width:medium; " height="21">&nbsp;</td>
+      <td width="276" style="border-style:none; border-width:medium; " height="21">
+      <font face="Arial" style="font-size: 9pt">No. Rekg. Afiliasi/Taplus </font></td>
+      <td width="255" style="border-style:none; border-width:medium; " height="21">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="afiliasi"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  size="40" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td style="border-style: none; border-width: medium" height="26"><font style="font-size: 9pt" face="Arial">Nama Tempat Kerja/Usaha</font></td>
+      <td style="border-style: none; border-width: medium" height="26"><font face="Arial" style="font-size: 9pt">
+        <input type="text" name="instansi" size="40" style="font-size: 8pt; ">
+      </font> </td>
+      <td style="border-style:none; border-width:medium; " height="26"></td>
+      <td style="border-style:none; border-width:medium; " height="26"><font face="Arial" style="font-size: 9pt">Agama</font></td>
+      <td style="border-style:none; border-width:medium; " height="26"><font face="Arial" style="font-size: 9pt">&nbsp; </font><font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="agama" style="position: relative;font-size: 8pt">
+          <option>= Agama =</option>
+          <option>ISLAM</option>
+          <option>KATHOLIK</option>
+          <option>PROTESTAN</option>
+          <option>HINDU</option>
+          <option>BUDHA</option>
+          <option>KONGHUCHU</option>
+        </select>
+      </span></font><font face="Arial" style="font-size: 9pt">&nbsp; </font></td>
+    </tr>
+    <tr>
+      <td width="195" style="border-style: none; border-width: medium" height="26"><font style="font-size: 9pt" face="Arial">Jenis Kelamin </font></td>
+      <td width="230" style="border-style: none; border-width: medium" height="26"><font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="kelamin" style="position: relative;font-size: 8pt">
+          <option>= Jenis Kelamin =</option>
+          <option>M - Laki - Laki</option>
+          <option>F - Perempuan</option>
+        </select>
+      </span></font><font face="Arial" style="font-size: 9pt">&nbsp;
+      </font>      </td>
+      <td width="13" style="border-style:none; border-width:medium; " height="26"></td>
+      <td height="29" style="border-style: none; border-width: medium">
+        <p align="left"> <font face="Arial" style="font-size: 9pt">Alamat Tempat Tinggal </font></td>
+      <td height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="tinggal" size="50" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+	<tr>
+      <td width="195" style="border-style: none; border-width: medium" height="19"><font face="Arial" style="font-size: 9pt">Kode Cabang</font></td>
+      <td width="230" style="border-style: none; border-width: medium" height="19"><font face="Arial" style="font-size: 9pt">
+        <input type="text" name="cabang"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="5" style="font-size: 8pt; text-transform:uppercase ">
+      </font>
+      </td>
+      <td width="13" style="border-style:none; border-width:medium; " height="19"></td>
+      <td width="276" style="border-style:none; border-width:medium; " height="19"></td>
+      <td width="255" style="border-style:none; border-width:medium; " height="19"></td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 901" bgcolor="#FF3300">
+    <colgroup>
+      <col width="64" span="5" style="width:48pt">
+    </colgroup>
+    <tr height="20" style="height:15.0pt">
+      <td colspan="5" height="20" style="height: 15.0pt; width: 901; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: #006600; ">
+      <font size="2">INFORMASI PINJAMAN</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="902" height="7">
+    <tr>
+      <td width="165" style="border-style: none; border-width: medium" height="17">
+      <font face="Arial" style="font-size: 9pt">Nama Produk</font></td>
+      <td width="229" style="border-style: none; border-width: medium" height="17">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="produk" style="position: relative;font-size: 8pt">
+        <option>= SELECT =</option>
+         <option>1970 0701 - BNI GRIYA MULTIGUNA</option>
+ <option>3010 0101 - BNI GRIYA IND FLAT IDR</option>
+ <option>3010 0201 - BNI GRIYA IND IDR</option>
+ <option>3020 0201 - BNI KPR PLUS IDR</option>
+ <option>3030 0201 - BNI GRIYA KEM-INS IDR</option>
+ <option>3040 0101 - BNI GRIYA KEM-DE FLAT IDR</option>
+ <option>3040 0201 - BNI GRIYA KEM- DEV IDR</option>
+ <option>3050 0101 - BNI KPR FLAT AGEN PRO IDR</option>
+ <option>3050 0201 - BNI GRIYA KEM-AGEN PR IDR</option>
+ <option>3210 0101 - BNI OTO IND FLAT IDR</option>
+ <option>3210 0101 - BNI OTO IND FLAT IDR</option>
+ <option>3210 0101 - BNI OTO IND FLAT IDR</option>
+ <option>3210 0201 - BNI OTO IND IDR</option>
+ <option>3210 0201 - BNI OTO IND IDR</option>
+ <option>3210 0201 - BNI OTO IND IDR</option>
+ <option>3220 0201 - BNI AUTO PLUS IDR</option>
+ <option>3230 0001 - BNI AUTO KEM - INS IDR</option>
+ <option>3230 0201 - BNI OTO KEM - INS IDR</option>
+ <option>3230 0201 - BNI OTO KEM - INS IDR</option>
+ <option>3230 0201 - BNI OTO KEM - INS IDR</option>
+ <option>3250 0201 - BNI OTO KEM - DEALER IDR</option>
+ <option>3250 0201 - BNI OTO KEM - DEALER IDR</option>
+ <option>3250 0201 - BNI OTO KEM - DEALER IDR</option>
+ <option>3260 0201 - BNI OTO ANNIVERSARY IDR</option>
+ <option>3260 0201 - BNI OTO ANNIVERSARY IDR</option>
+ <option>3260 0201 - BNI OTO ANNIVERSARY IDR</option>
+ <option>3410 0101 - BNI MULTIGUN IND FLAT IDR</option>
+ <option>3410 0201 - BNI MULTIGUNA IND IDR</option>
+ <option>3410 0301 - BNI MULTIGUNA IND ECH IDR</option>
+ <option>3420 0201 - BNI KMG PLUS IDR</option>
+ <option>3430 0201 - BNI MULTIGUNA KEM-INS IDR</option>
+ <option>3440 0201 - BNI MULTIGUNA KEM-DEV IDR</option>
+ <option>3610 0101 - BNI FLEKSI IND FLAT IDR</option>
+ <option>3610 0101 - BNI FLEKSI IND FLAT IDR</option>
+ <option>3630 0101 - BNI FLEKSI KEM-INS FLAT</option>
+ <option>3940 0401 - BNI UMG IDR</option>
+ <option>3940 1401 - BNI PINJAMAN PEGAWAI IDR</option>
+ <option>3960 0101 - BNI PRODUKTIF FLAT IDR</option>
+ <option>3960 0201 - BNI PRODUKTIF ANUITAS IDR</option>
+     </select>
+      </span></font></td>
+      <td width="8" style="border-style: none; border-width: medium" height="17"></td>
+  <td width="248" style="border-style: none; border-width: medium" height="17">
+  <font style="font-size: 9pt" face="Arial">Maksimum Kredit</font></td>
+  <td width="242" style="border-style: none; border-width: medium" height="17">
+  <font face="Arial" style="font-size: 9pt">    
+
+  <body onLoad="document.postform.elements['maksimum_kredit'].focus();"> 
+
+  <input type="text" name="maksimum_kredit" onKeyup="ri33();" style="font-size: 8pt;text-transform:uppercase" size="20"></font></td>
+    </tr>
+    <tr>
+  <td width="165" style="border-style: none; border-width: medium" height="29">
+  <font style="font-size: 9pt" face="Arial">No. Perjanjian Kredit</font></td>
+  <td width="229" style="border-style: none; border-width: medium" height="29">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="no_pk" size="40" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="8" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+  <td width="248" style="border-style: none; border-width: medium" height="29">
+  <font style="font-size: 9pt" face="Arial">Tgl. Perjanjian Kredit</font></td>
+  <td width="242" style="border-style: none; border-width: medium" height="29">  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" id="tgl_pk" name="tgl_pk" size="10" style="font-size: 8pt; text-transform:uppercase ; " onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_pk);return false;">
+  <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_pk);return false;" >  </a></font></td>
+    </tr>
+    <tr>
+  <td width="165" style="border-style: none; border-width: medium" height="1">
+  <font style="font-size: 9pt" face="Arial">Jangka Waktu Kredit</font></td>
+  <td width="229" style="border-style: none; border-width: medium" height="1">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="jkw_kredit" id="jkw_kredit"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="5" style="font-size: 8pt; text-transform:uppercase ; "> Bulan</font></td>
+      <td width="8" style="border-style: none; border-width: medium" height="1"></td>
+  <td width="248" style="border-style: none; border-width: medium" height="1">
+  <font style="font-size: 9pt" face="Arial">Tgl. Jatuh Tempo PK</font></td>
+  <td width="242" style="border-style: none; border-width: medium" height="1">  <font face="Arial" style="font-size: 9pt">    
+  <input name="tgl_jt_pk" id="tgl_jt_pk" type="text" style="font-size: 8pt; text-transform:uppercase;" size="10" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_pk);return false;">
+  <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_pk);return false;" >  </a></font></td>
+    </tr>
+    <tr>
+      <td width="165" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Masa Fix Rate</font></td>
+      <td width="229" style="border-style: none; border-width: medium" height="29">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="fixed_rate" id="fixed_rate"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="5" style="font-size: 8pt; text-transform:uppercase ; "> Bulan</font></td>
+      <td width="8" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+      <td width="248" style="border-style: none; border-width: medium" height="29">
+  <font style="font-size: 9pt" face="Arial">Tgl. Berakhir Masa Fixed Rate</font></td>
+      <td width="242" height="29" bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="border-style: none; border-width: medium">  <span class="style4"><font face="Arial" style="font-size: 9pt">
+      <input name="tgl_jt_fixed_rate" type="text" id="tgl_jt_fixed_rate" style="font-size: 8pt; text-transform:uppercase; " onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_fixed_rate);return false;" value="" size="10" bordercolor="#EEEEEE">
+      </font></span></td>
+    </tr>
+    <tr>
+      <td width="165" style="border-style: none; border-width: medium" height="17"><font face="Arial" style="font-size: 9pt">Rate Bunga</font></td>
+      <td width="229" style="border-style: none; border-width: medium" height="17">
+  <font face="Arial" style="font-size: 9pt">
+  <input type="text" name="bunga" id="bunga"  size="5" style="font-size: 8pt; text-transform:uppercase ; "> 
+  %     
+  </font></td>
+      <td width="8" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="248" style="border-style: none; border-width: medium" height="17"><font style="font-size: 9pt" face="Arial">Program</font></td>
+      <td width="242" style="border-style: none; border-width: medium" height="17"><font face="Arial" style="font-size: 9pt">
+        <input type="text" name="program" id="program" size="40" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+	<tr>
+      <td width="165" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="229" style="border-style: none; border-width: medium" height="17">
+  <font face="Arial" style="font-size: 9pt">&nbsp;    
+  </font></td>
+      <td width="8" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="248" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="242" style="border-style: none; border-width: medium" height="17"></td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 901">
+    <colgroup>
+      <col width="64" span="5" style="width:48pt">
+    </colgroup>
+    <tr height="20" style="height:15.0pt">
+      <td colspan="5" height="20" style="height: 15.0pt; width: 901; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: #632523">
+      <font size="2">INFORMASI COLLATERAL</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="901" height="445">
+    <tr>
+  <td width="169" style="border-style: none; border-width: medium" height="24" bgcolor="#FFFFFF">
+  <font style="font-size: 9pt" face="Arial">Status Sertifikat </font></td>
+  <td width="227" style="border-style: none; border-width: medium" height="24" bgcolor="#FFFFFF">
+  <font face="Arial" size="1"><span style="font-size: 9pt">
+  <select size="1" name="jaminan" style="position: relative; font-size: 8pt ; layer-background-color:  #0099FF; ">
+            <option>= SELECT =</option>
+            <option>INDUK</option>
+            <option>SATUAN</option>
+      </select></span></font></td>
+      <td width="13" height="24" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">&nbsp;</td>
+  <td width="196" style="border-style: none; border-width: medium" height="24" bgcolor="#FFFFFF">
+  <font face="Arial" style="font-size: 9pt">No. Sertifikat Tanah</font></td>
+  <td width="241" style="border-style: none; border-width: medium" height="24" bgcolor="#FFFFFF">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="no_surat_tanah" size="40" style="font-size: 8pt; ">
+  </font></td>
+    </tr>
+    <tr>
+  <td width="169" style="border-style: none; border-width: medium" height="24">
+  <font style="font-size: 9pt" face="Arial">Jenis Jaminan </font></td>
+  <td width="227" style="border-style: none; border-width: medium" height="24">
+  <font face="Arial" size="1"><span style="font-size: 9pt">
+  <select size="1" name="jenis_surat_tanah" style="position: relative; layer-background-color:  #0099FF; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+            <option>AJB - AJB</option>
+ <option>BPKB - BUKTI KEPEMILIKAN KENDARAAN BERMOTOR</option>
+ <option>HGB - HAK GUNA BANGUNAN</option>
+ <option>IMB - IZIN MENDIRIKAN BANGUNAN</option>
+ <option>OTHER - SERTIFIKAT LAINNYA</option>
+ <option>SHGB - SHGB</option>
+ <option>SHM - SERTIFIKAT HAK MILIK</option>
+
+		    
+      </select></span></font></td>
+      <td width="13" height="24" style="border-style: none; border-width: medium">&nbsp;</td>
+  <td width="196" style="border-style: none; border-width: medium" height="24"><font face="Arial" style="font-size: 9pt">No. GS/SU </font></td>
+  <td width="241" style="border-style: none; border-width: medium" height="24">
+  <font face="Arial" style="font-size: 9pt">
+  <input type="text" name="jml_jaminan" size="40" style="font-size: 8pt; ">
+</font></td>
+    </tr>
+    <tr>
+      <td width="168" height="21" style="border-style: none; border-width: medium">
+      <font face="Arial" style="font-size: 9pt">Alamat Collateral</font></td>
+      <td width="227" height="21" style="border-style: none; border-width: medium">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="alamat_collateral" size="50" style="font-size: 8pt; "></font></td>
+      <td width="13" height="21" style="border-style: none; border-width: medium">&nbsp;</td>
+      <td width="299" height="21" style="border-style: none; border-width: medium">
+      <font face="Arial" style="font-size: 9pt">Kode Pos Jaminan</font></td>
+      <td width="188" height="21" style="border-style: none; border-width: medium">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="collateral_zipcode"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="10" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td width="168" height="24" style="border-style: none; border-width: medium">
+      <font face="Arial" style="font-size: 9pt">Luas Tanah</font></td>
+      <td width="227" height="24" style="border-style: none; border-width: medium">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="luas_tanah"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="5" style="font-size: 8pt; text-transform:uppercase"> 
+      m<sup>2</sup></font></td>
+      <td width="13" height="24" style="border-style: none; border-width: medium">&nbsp;</td>
+      <td width="299" height="24" style="border-style: none; border-width: medium">
+      <font face="Arial" style="font-size: 9pt">Luas Bangunan</font></td>
+      <td width="188" height="24" style="border-style: none; border-width: medium">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" name="luas_bangunan"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="5" style="font-size: 8pt; text-transform:uppercase"> 
+      m<sup>2</sup></font></td>
+    </tr>
+    <tr>
+      <td height="25" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Nama Pemilik Dokumen </font></td>
+      <td height="25" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt"> </span></font><font face="Arial" style="font-size: 9pt">
+        <input name="appraisal" type="text" id="appraisal" style="font-size: 8pt "size="40">
+      </font></td>
+      <td width="13" height="29" style="border-style: none; border-width: medium">&nbsp;</td>
+      <td width="299" height="29" style="border-style: none; border-width: medium">
+  <font style="font-size: 9pt" face="Arial">Tgl. Sertifikat </font></td>
+      <td width="188" height="29" style="border-style: none; border-width: medium">
+  <font face="Arial" style="font-size: 9pt">    
+  <input type="text" id="nilai_taksasi" name="nilai taksasi" size="10" style="font-size: 8pt; text-transform:uppercase ; " onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.nilai_taksasi);return false;">
+  </font></td>
+    </tr>
+    <tr>
+      <td width="205" style="border-style: none; border-width: medium" height="25" bgcolor="#FFFFFF">
+      <font face="Arial" style="font-size: 9pt">Total Taksasi Tanah</font></td>
+      <td width="214" style="border-style: none; border-width: medium" height="25" bgcolor="#FFFFFF">
+  <font face="Arial" style="font-size: 9pt">    
+      <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+	  <body onLoad="document.postform.elements['harga_tanah'].focus();"> 
+	  <input type="text" name="harga_tanah"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="13" height="25" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">&nbsp;</td>
+      <td width="299" height="25" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">
+      <font face="Arial" style="font-size: 9pt">Total Taksasi Bangunan</font></td>
+      <td width="188" height="25" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">
+  <font face="Arial" style="font-size: 9pt">    
+  <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+  <body onLoad="document.postform.elements['harga_bangunan'].focus();"> 
+  <input type="text" name="harga_bangunan"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td width="205" style="border-style: none; border-width: medium" height="25" bgcolor="#FFFFFF">
+      <font face="Arial" style="font-size: 9pt">NJOP Tanah per m²</font></td>
+      <td width="214" style="border-style: none; border-width: medium" height="25" bgcolor="#FFFFFF">
+  <font face="Arial" style="font-size: 9pt">    
+      <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+	  <body onLoad="document.postform.elements['harga_tanah_imb'].focus();"> 
+	  <input type="text" name="harga_tanah_imb"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="13" height="25" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">&nbsp;</td>
+      <td width="299" height="25" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">
+      <font face="Arial" style="font-size: 9pt">NJOP Bangunan per m²</font></td>
+      <td width="188" height="25" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">
+  <font face="Arial" style="font-size: 9pt">    
+  <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+  <body onLoad="document.postform.elements['harga_bangunan_imb'].focus();">
+  <input type="text" name="harga_bangunan_imb"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td height="29" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Tgl. Taksasi </font></td>
+      <td height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="tgl_taksasi" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_taksasi);return false;">
+        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_surat_tanah);return false;" > </a></font></td>
+      <td width="13" height="25" style="border-style: none; border-width: medium">&nbsp;</td>
+      <td height="29" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Penilai Taksasi </font></td>
+      <td height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_surat_tanah);return false;" > </a>
+        <input type="text" name="penilai" size="40" style="font-size: 8pt; text-transform:uppercase">
+      </font></td>
+    </tr>
+    <tr>
+      <td height="29" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Tgl. Jatuh Tempo Surat Tanah</font></td>
+      <td height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="tgl_jt_surat_tanah" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_surat_tanah);return false;">
+        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_surat_tanah);return false;" > </a></font></td>
+  <td width="13" height="32" style="border-style: none; border-width: medium">&nbsp;</td>
+      <td width="299" height="25" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">No. AJB</font></td>
+      <td width="188" height="25" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="no_ajb" style="position: relative; font-size: 8pt">
+          <option>= SELECT =</option>
+          <option>PENDING</option>
+          <option>ADA</option>
+        </select>
+      </span></font></td>
+    </tr>
+    <tr>
+      <td width="168" height="32" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Jenis Pengikatan</font></td>
+      <td width="234" height="32" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="jenis_pengikatan" style="position: relative; font-size: 8pt">
+          <option>= SELECT =</option>
+          <option>10 - BORGTOCHT - PERUSAHAAN</option>
+          <option>09 - BORGTOCHT - PRIBADI</option>
+          <option>05 - CESSIE</option>
+          <option>12 - CREDIET VERBAND</option>
+          <option>07 - FEO (Fiducia Eigendom Overdracht) &amp; SKJ (Surat Kuasa Jual)</option>
+          <option>03 - FIDUSIA</option>
+          <option>04 - GADAI</option>
+          <option>02 - SHT</option>
+          <option>11 - HIPOTEK</option>
+          <option>16 - LAINNYA</option>
+          <option>06 - PPJPK</option>
+          <option>15 - SKJ (Surat Kuasa Jual)</option>
+          <option>14 - SKMCV (Surat Kuasa Memasang Credit Verband)</option>
+          <option>13 - SKMH (Surat Kuasa Memasang Hipotek)</option>
+          <option>08 - SKMHT</option>
+          <option>01 - SKMHT (Surat Kuasa Memasang Hak Tanggungan)</option>
+          <option>17 - APHT</option>
+        
+		</select>
+      </span></font></td>
+  <td width="13" height="29" style="border-style: none; border-width: medium">
+      </td>
+      <td width="185" height="32" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">No. Pengikatan</font></td>
+      <td width="259" height="32" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="no_pengikatan" style="position: relative; font-size: 8pt ; ">
+          <option>= SELECT =</option>
+          <option>PENDING</option>
+          <option>ADA</option>
+        </select>
+      </span></font></td>
+    </tr>
+    <tr>
+      <td width="193" height="29" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Nilai Pengikatan</font></td>
+      <td width="211" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="nilai_ht"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="20" style="font-size: 8pt; text-transform:uppercase">
+      </font></td>
+      <td width="13" height="29" style="border-style: none; border-width: medium">&nbsp;</td>
+      <td width="299" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Tgl. Covernote/Pengikatan</font></td>
+      <td width="188" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" id="tgl_covernote" name="tgl_covernote" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_covernote);return false;">
+        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_covernote);return false;" > </a></font></td>
+    </tr>
+    <tr>
+      <td width="168" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Jangka Waktu Covernote</font></td>
+      <td width="227" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="jkw_covernote" id="jkw_covernote"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="5" style="font-size: 8pt; text-transform:uppercase">
+  Bulan</font></td>
+  <td width="13" height="25" style="border-style: none; border-width: medium"></td>
+      <td width="299" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Tgl. Jatuh Tempo Covernote</font></td>
+      <td width="188" height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input name="tgl_jt_covernote" id="tgl_jt_covernote" type="text" size="10" style="font-size: 8pt; text-transform:uppercase; " onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_covernote);return false;" >
+        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_covernote);return false;" > </a></font> </td>
+    </tr>
+    <tr>
+      <td width="193" height="25" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Nama Notaris</font></td>
+      <td width="211" height="25" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="notaris" size="40" style="font-size: 8pt; text-transform:uppercase ; ">
+      </font></td>
+      <td width="13" height="27" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">&nbsp;</td>
+      <td width="297" height="25" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Nama Developer/Penjual</font></td>
+      <td width="132" height="25" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+        <input type="text" name="developer" size="41" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+    <tr>
+      <td width="168" height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Status IMB</font></td>
+      <td width="227" height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="status_imb" style="position: relative; font-size: 8pt ; ">
+          <option>= SELECT =</option>
+          <option>PENDING</option>
+          <option>ADA</option>
+        </select>
+      </span></font></td>
+      <td width="13" height="27" style="border-style: none; border-width: medium" bgcolor="#FFFFFF">&nbsp;</td>
+      <td width="299" height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Skim PKS Developer</font></td>
+      <td width="188" height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="skim_pks" style="position: relative; font-size: 8pt">
+          <option>= SELECT =</option>
+          <option>READY STOCK</option>
+          <option>KAVLING BANGUN</option>
+          <option>INDENT</option>
+        </select>
+      </span></font></td>
+    </tr>
+    <tr>
+      <td width="168" height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">No. IMB</font></td>
+      <td width="227" height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="no_imb" size="20" style="font-size: 8pt; ">
+      </font></td>
+      <td height="17" style="border-style: none; border-width: medium"></td>
+      <td height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Nama Perumahan/Project</font></td>
+      <td height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+        <input type="text" name="nama_perumahan" size="41" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+    <tr>
+      <td height="29" style="border-style: none; border-width: medium"> <font style="font-size: 9pt" face="Arial">Tgl. IMB </font></td>
+      <td height="29" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <input type="text" name="tgl_imb" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_imb);return false;">
+        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_surat_tanah);return false;" > </a></font></td>
+      <td width="13" height="17" style="border-style: none; border-width: medium"></td>
+      <td height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Nama KJPP </font></td>
+      <td height="27" bgcolor="#FFFFFF" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">
+        <!--webbot bot="Validation" s-data-type="Number" s-number-separators=".," -->
+        <input type="text" name="kjpp" size="41" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 900">
+    <colgroup>
+      <col width="64" span="5" style="width:48pt">
+    </colgroup>
+    <tr height="20" style="height:15.0pt">
+      <td colspan="5" height="20" style="height: 15.0pt; width: 900; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: #0D0D0D">
+      <font size="2">INFORMASI ASURANSI JIWA</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="900" height="110">
+    <tr>
+  <td width="148" style="border-style: none; border-width: medium" height="27">
+  <font style="font-size: 9pt" face="Arial">Asuransi Jiwa</font></td>
+  <td width="235" style="border-style: none; border-width: medium" height="27">
+  <font face="Arial" style="font-size: 9pt"></font><font face="Arial" size="1"><span style="font-size: 9pt">
+</span></font><font face="Arial" style="font-size: 9pt">
+<input type="text" name="asuransi_jiwa" size="41" style="font-size: 8pt; ">
+</font></td>
+      <td width="12" style="border-style: none; border-width: medium" height="27">&nbsp;</td>
+      <td width="262" style="border-style: none; border-width: medium" height="27">
+      <font style="font-size: 9pt" face="Arial">Nilai Pertanggungan Ass. Jiwa</font></td>
+      <td width="203" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" style="font-size: 9pt">    
+      <body onLoad="document.postform.elements['nilai_pertanggungan_ass_jiwa'].focus();">
+	  <input type="text" name="nilai_pertanggungan_ass_jiwa" onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td width="184" style="border-style: none; border-width: medium" height="29">
+      <font style="font-size: 9pt" face="Arial">No. Polis Ass. Jiwa</font></td>
+      <td width="217" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+  <select size="1" name="no_polis_ass_jiwa" style="position: relative; font-size: 8pt ; ">
+            <option>= SELECT =</option>
+			<option>ADA</option>
+			<option>PENDING</option>
+			<option>TIDAK</option>
+	    </select></span></font></td>
+      <td width="12" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+      <td width="262" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Tgl. Asuransi Jiwa</font></td>
+      <td width="203" style="border-style: none; border-width: medium" height="29">      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="tgl_ass_jiwa" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_ass_jiwa);return false;">
+      <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_ass_jiwa);return false;" >      </a></font></td>
+    </tr>
+    <tr>
+      <td width="184" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Premi Asuransi Jiwa</font></td>
+      <td width="217" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt"> 
+	  <body onLoad="document.postform.elements['premi_jiwa'].focus();">   
+      <input type="text" name="premi_jiwa"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="12" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+      <td width="262" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Tgl. Jatuh Tempo Ass. Jiwa</font></td>
+      <td width="203" style="border-style: none; border-width: medium" height="29">      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="tgl_jt_ass_jiwa" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_ass_jiwa);return false;" >
+      <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_ass_jiwa);return false;" >      </a></font></td>
+    </tr>
+    <tr>
+      <td width="184" style="border-style: none; border-width: medium" height="17">&nbsp;
+      </td>
+      <td width="217" style="border-style: none; border-width: medium" height="17">&nbsp;
+      </td>
+      <td width="12" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="239" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="261" style="border-style: none; border-width: medium" height="17"></td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 899">
+    <colgroup>
+      <col width="64" span="5" style="width:48pt">
+    </colgroup>
+    <tr height="20" style="height:15.0pt">
+      <td colspan="5" height="20" style="height: 15.0pt; width: 899; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: red">
+      <font size="2">INFORMASI ASURANSI KERUGIAN</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="900" height="111">
+    <tr>
+      <td width="123" style="border-style: none; border-width: medium" height="28">
+      <font face="Arial" style="font-size: 9pt">Asuransi Kerugian</font></td>
+      <td width="240" style="border-style: none; border-width: medium" height="28">
+      <font face="Arial" style="font-size: 9pt"></font><font face="Arial" size="1"><span style="font-size: 9pt">
+  </span></font><font face="Arial" style="font-size: 9pt">
+  <input type="text" name="asuransi_kerugian" size="41" style="font-size: 8pt; ">
+  </font><font face="Arial" size="1"><span style="font-size: 9pt">  </span></font></td>
+      <td width="13" style="border-style: none; border-width: medium" height="28">&nbsp;</td>
+      <td width="193" style="border-style: none; border-width: medium" height="28">
+      <font style="font-size: 9pt" face="Arial">Nilai Pertanggungan Ass. Kerugian</font></td>
+      <td width="276" style="border-style: none; border-width: medium" height="28">
+      <font face="Arial" style="font-size: 9pt">   
+	   <body onLoad="document.postform.elements['nilai_pertanggungan_ass_kerugian'].focus();"> 
+      <input type="text" name="nilai_pertanggungan_ass_kerugian"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td width="169" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">No. Polis Ass. Kerugian</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+  <select size="1" name="no_polis_ass_kerugian" style="position: relative; font-size: 8pt ; ">
+            <option>= SELECT =</option>
+            <option>ADA</option>
+			<option>PENDING</option>
+			<option>TIDAK</option>
+	    </select></span></font></td>
+      <td width="13" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+      <td width="175" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Tgl. Ass. Kerugian</font></td>
+      <td width="276" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">
+      <input type="text" name="tgl_ass_kerugian" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_ass_kerugian);return false;">      
+      <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_ass_kerugian);return false;" >  </a></font></td>
+    </tr>
+    <tr>
+      <td width="194" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Premi Asuransi Kerugian</font></td>
+      <td width="226" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">  
+	  <body onLoad="document.postform.elements['premi_kerugian'].focus();">   
+      <input type="text" name="premi_kerugian"  onKeyup="ri33();" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="13" style="border-style: none; border-width: medium" height="29">&nbsp;</td>
+      <td width="208" style="border-style: none; border-width: medium" height="29">
+      <font face="Arial" style="font-size: 9pt">Tgl. Jatuh Tempo Ass. Kerugian</font></td>
+      <td width="228" style="border-style: none; border-width: medium" height="29">      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="tgl_jt_ass_kerugian" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_ass_kerugian);return false;">
+      <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_jt_ass_kerugian);return false;" >  </a></font></td>
+    </tr>
+    <tr>
+      <td width="122" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="240" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="13" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="274" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="245" style="border-style: none; border-width: medium" height="17"></td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 900">
+    <colgroup>
+      <col width="64" span="5" style="width:48pt">
+    </colgroup>
+    <tr height="20" style="height:15.0pt">
+      <td colspan="5" height="20" style="height: 15.0pt; width: 900; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: #4A452A">
+      <font size="2">INFORMASI OTO COLLATERAL</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="900" height="118">
+    <tr>
+      <td width="171" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" style="font-size: 9pt">Jenis Kendaraan</font></td>
+      <td width="225" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="jenis_kendaraan" style="position: relative; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+            <option>KENDARAAN RODA 2</option>
+            <option>KENDARAAN RODA 4</option>
+		    
+      </select></span></font></td>
+      <td width="11" style="border-style: none; border-width: medium" height="21">&nbsp;</td>
+      <td width="241" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" style="font-size: 9pt">Merk</font></td>
+      <td width="247" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="merk" style="position: relative; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+            <option>AUDI</option>
+            <option>DAIHATSU</option>
+            <option>HONDA</option>
+		    <option>HYUNDAI</option>
+            <option>KIA</option>
+            <option>YAMAHA</option>
+            <option>SUZUKI</option>
+            <option>KAWASAKI</option>
+            <option>TOYOTA</option>
+		    
+      </select></span></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" style="font-size: 9pt">No. BPKB</font></td>
+      <td width="225" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+  <select size="1" name="no_bpkb" style="position: relative; font-size: 8pt; ">
+            <option>= SELECT =</option>
+            <option>PENDING</option>
+            <option>ADA</option>
+		    
+      </select></span></font></td>
+      <td width="11" style="border-style: none; border-width: medium" height="21">&nbsp;</td>
+      <td width="241" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" style="font-size: 9pt">No. Mesin</font></td>
+      <td width="247" style="border-style: none; border-width: medium" height="21">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="no_mesin" size="20" style="font-size: 8pt; "></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" style="font-size: 9pt">No. Rangka</font></td>
+      <td width="225" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="no_rangka" size="20" style="font-size: 8pt; "></font></td>
+      <td width="11" style="border-style: none; border-width: medium" height="25">&nbsp;</td>
+      <td width="241" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" style="font-size: 9pt">No. Polisi</font></td>
+      <td width="247" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="no_polisi" size="20" style="font-size: 8pt; "></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="24">
+      <font face="Arial" style="font-size: 9pt">Nama Dealer</font></td>
+      <td width="225" style="border-style: none; border-width: medium" height="24">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="nama_dealer" size="20" style="font-size: 8pt; "></font></td>
+      <td width="11" style="border-style: none; border-width: medium" height="24">&nbsp;</td>
+      <td width="241" style="border-style: none; border-width: medium" height="24">&nbsp;</td>
+      <td width="247" style="border-style: none; border-width: medium" height="24">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="225" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="11" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="241" style="border-style: none; border-width: medium" height="17"></td>
+      <td width="247" style="border-style: none; border-width: medium" height="17"></td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 900">
+    <colgroup>
+      <col width="64" span="5" style="width:48pt">
+    </colgroup>
+    <tr height="20" style="height:15.0pt">
+      <td colspan="5" height="20" style="height: 15.0pt; width: 900; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium none; padding: 0px; background: #215867">
+      <font size="2">INFORMASI LAIN</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="902" height="355">
+    <tr>
+      <td width="171" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" style="font-size: 9pt">No. Kluis Dokumen Asli</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      </span></font><font face="Arial" style="font-size: 9pt">
+      <input type="text" name="lokasi_dokumen_asli"  size="20" style="font-size: 8pt; ">
+      </font></td>
+      <td width="14" style="border-style: none; border-width: medium" height="25"></td>
+      <td width="240" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" style="font-size: 9pt">No. Kluis Dokumen Kerja </font></td>
+      <td width="249" style="border-style: none; border-width: medium" height="25">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      </span></font><font face="Arial" style="font-size: 9pt">
+      <input type="text" name="lokasi_dokumen_copy"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="20" style="font-size: 8pt; text-transform:uppercase">
+      </font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="30">
+      <font face="Arial" style="font-size: 9pt">No. Bantek Dokumen Asli</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="30">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="amplop_asli"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="14" style="border-style: none; border-width: medium" height="30"></td>
+      <td width="239" style="border-style: none; border-width: medium" height="30">
+      <font face="Arial" style="font-size: 9pt">No. Bantek Dokumen Kerja </font></td>
+      <td width="249" style="border-style: none; border-width: medium" height="30">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="amplop_copy"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">No. Amplop Asli</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="amplopasli"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+      <td width="14" style="border-style: none; border-width: medium" height="26">&nbsp;</td>
+      <td width="239" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">No. Amplop Kerja </font></td>
+      <td width="249" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="amplopcopy"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size="20" style="font-size: 8pt; text-transform:uppercase"></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">Status Rekg. Pinjaman</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="status_rekg" style="position: relative; font-size: text-transform:uppercase">
+            <option>AKTIF</option>
+            <option>LUNAS</option>
+		    
+      </select></span></font></td>
+      <td width="14" style="border-style: none; border-width: medium" height="26">&nbsp;</td>
+      <td width="239" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">Tgl. Pelunasan</font></td>
+      <td width="249" style="border-style: none; border-width: medium" height="26">      <font face="Arial" style="font-size: 9pt">    
+      <input type="text" name="tgl_pelunasan" size="10" style="font-size: 8pt; text-transform:uppercase" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_pelunasan);return false;">
+      <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_pelunasan);return false;" >  </a></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="31"><font face="Arial" style="font-size: 9pt">Permohonan SKDR</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="31"><font face="Arial" size="1"><span style="font-size: 9pt">
+        <select size="1" name="skdr" style="position: relative; font-size: 8pt; text-transform:uppercase ; ">
+          <option>= SELECT =</option>
+		  <option>YA</option>
+          <option>TIDAK</option>
+        </select>
+      </span></font>
+      </td>
+      <td width="14" style="border-style: none; border-width: medium" height="31">&nbsp;</td>
+      <td width="239" style="border-style: none; border-width: medium" height="31">
+      <font face="Arial" style="font-size: 9pt">Penyerahan Jaminan Setelah Pelunasan</font></td>
+      <td width="249" style="border-style: none; border-width: medium" height="31">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="serah" style="position: relative; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+            <option>SUDAH</option>
+            <option>BELUM</option>
+        </select></span></font></td>
+    </tr>
+    <tr>
+      <td style="border-style: none; border-width: medium" height="21"><font face="Arial" style="font-size: 9pt">Nama Sales</font></td>
+      <td style="border-style: none; border-width: medium" height="21"><font face="Arial" style="font-size: 9pt">
+        <input type="text" name="sales"  size="50" style="font-size: 8pt; ">
+      </font></td>
+      <td style="border-style: none; border-width: medium" height="21"></td>
+      <td style="border-style: none; border-width: medium" height="21"><font face="Arial" style="font-size: 9pt">No. HP Sales </font></td>
+      <td style="border-style: none; border-width: medium" height="21"><font face="Arial" style="font-size: 9pt">
+        <input type="text" name="hp_sales"  size="50" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+    <tr>
+      <td style="border-style: none; border-width: medium" height="17"></td>
+      <td style="border-style: none; border-width: medium" height="17"></td>
+      <td style="border-style: none; border-width: medium" height="17"></td>
+      <td style="border-style: none; border-width: medium" height="17"></td>
+      <td style="border-style: none; border-width: medium" height="17"></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="7">
+      </td>
+      <td width="224" style="border-style: none; border-width: medium" height="7">
+      </td>
+      <td width="14" style="border-style: none; border-width: medium" height="7"></td>
+      <td width="239" style="border-style: none; border-width: medium" height="7">
+      </td>
+      <td width="249" style="border-style: none; border-width: medium" height="7">
+      </td>
+    </tr>
+      <td colspan="5" height="20" style="height: 15.0pt; width: 900; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, 
+  sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium 
+  none; padding: 0px; background: #f00">
+      <font size="2">LEGALITAS</font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">SIUP</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="siup" style="position: relative; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+		    <option>ADA</option>
+            <option>BELUM ADA</option>
+	    </select></span></font></td>
+      <td width="14" style="border-style: none; border-width: medium" height="26">&nbsp;</td>
+      <td width="170" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" style="font-size: 9pt">TDP</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="26">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="tdp" style="position: relative; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+		    <option>ADA</option>
+            <option>BELUM ADA</option>
+	    </select></span></font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" style="font-size: 9pt">Others</font></td>
+      <td width="224" style="border-style: none; border-width: medium" height="27">
+      <font face="Arial" size="1"><span style="font-size: 9pt">
+      <select size="1" name="others" style="position: relative; font-size: 8pt; text-transform:uppercase">
+            <option>= SELECT =</option>
+            <option>ADA</option>
+		    <option>BELUM ADA</option>
+	    </select></span></font></td>
+      
+    <td width="14" style="border-style: none; border-width: medium" height="27">&nbsp;</td>
+      <td height="26" style="border-style:none; border-width:medium; "><font face="Arial" style="font-size: 9pt">No. NPWP</font></td>
+      <td height="26" style="border-style:none; border-width:medium; "><font face="Arial" style="font-size: 9pt">
+        <input type="text" name="npwp" size="40" style="font-size: 8pt; ">
+      </font></td>
+    </tr>
+    <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="224" style="border-style: none; border-width: medium" height="1">
+      </td>
+      
+    <td width="14" style="border-style: none; border-width: medium" height="1"></td>
+      <td width="239" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="249" style="border-style: none; border-width: medium" height="1">
+      </td>
+    </tr>
+      <tr>
+      <td width="170" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="224" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="14" style="border-style: none; border-width: medium" height="1"></td>
+      <td width="239" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="249" style="border-style: none; border-width: medium" height="1">
+      </td>
+    </tr>
+        <td colspan="5" height="20" style="height: 15.0pt; width: 900; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, 
+  sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium 
+  none; padding: 0px; background: orange"> <font size="2">EMERGENCY CONTACT </font></td>
+    </tr>  <tr>
+        <td style="border-style: none; border-width: medium" height="25"> <font face="Arial" style="font-size: 9pt">Nama Emergency Contact </font></td>
+        <td style="border-style: none; border-width: medium" height="25"> <font face="Arial" size="1"><span style="font-size: 9pt"> </span></font><font face="Arial" style="font-size: 9pt">
+          <input type="text" name="nama_emergency"  size="50" style="font-size: 8pt; ">
+        </font></td>
+        <td style="border-style: none; border-width: medium" height="25"></td>
+        <td style="border-style: none; border-width: medium" height="25"> <font face="Arial" style="font-size: 9pt">Alamat Kantor </font></td>
+        <td style="border-style: none; border-width: medium" height="25"> <font face="Arial" size="1"><span style="font-size: 9pt"> </span></font><font face="Arial" style="font-size: 9pt">
+          <input type="text" name="alamat_kantor" size="50" style="font-size: 8pt; ">
+        </font></td>
+      </tr>
+      <tr>
+        <td style="border-style: none; border-width: medium" height="30"> <font face="Arial" style="font-size: 9pt">No. Telp. Emergency Contact</font></td>
+        <td style="border-style: none; border-width: medium" height="30"> <font face="Arial" style="font-size: 9pt">
+          <input type="text" name="telp_emergency"  size="40" style="font-size: 8pt; ">
+        </font></td>
+        <td style="border-style: none; border-width: medium" height="30"></td>
+        <td height="25" style="border-style: none; border-width: medium"> <font face="Arial" style="font-size: 9pt">Hubungan Keluarga </font></td>
+        <td height="25" style="border-style: none; border-width: medium"> <font face="Arial" size="1"><span style="font-size: 9pt"> </span></font><font face="Arial" style="font-size: 9pt">
+          <input type="text" name="hubungan" size="50" style="font-size: 8pt; ">
+        </font></td>
+      </tr>
+    <td colspan="5" height="20" style="height: 15.0pt; width: 900; color: white; font-size: 9.0pt; font-weight: 700; font-family: Arial, 
+  sans-serif; text-align: center; white-space: normal; font-style: normal; text-decoration: none; vertical-align: bottom; border: medium 
+  none; padding: 0px; background: #00CC00">
+      <font size="2">M E M O</font></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="901" height="132">
+    <tr>
+      <td width="238" style="border-style: none; border-width: medium" height="121">
+      <font face="Arial" style="font-size: 9pt">Memo</font></td>
+      <td style="border-style: none; border-width: medium" height="121" width="662">
+      <font face="Arial">
+      <textarea rows="7" name="memo" cols="59" style="font-family: Arial"></textarea></font></td>
+    </tr>
+  
+  <tr>
+      <td width="238" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="662" style="border-style: none; border-width: medium" height="1">
+      </td>
+      
+  </tr>
+  
+  <tr>
+      <td width="238" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="662" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="1" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="1" style="border-style: none; border-width: medium" height="1">
+      </td>
+      <td width="1" style="border-style: none; border-width: medium" height="1">
+      </td>
+    </tr>
+  
+  </table>
+</div>
+<p align="center">
+  <input type="submit" value="Submit"><input type="reset" value="Reset"></p>
+<!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
+<div align="center">
+  <iframe width=174 height=189 name="gToday:normal:./calender/agenda.js" id="gToday:normal:./calender/agenda.js" src="./calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+  </iframe>
+  
+</div>
+</body>
+
+</html>

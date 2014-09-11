@@ -1,0 +1,14 @@
+.style2 {
+	color: #0000FF;
+	font-style: italic;
+}
+.style8 {
+	color: #FF8000;
+	font-style: italic;
+}
+.style21 {font-size: 12px; font-weight: bold; font-family: Verdana; }
+.style23 {color: #0000FF; font-size: 12px; font-family: Verdana; }
+.style25 {font-size: 12px; font-family: Verdana; }
+body {
+	background-image: url('../logo-bni-vector-1.jpg') repeat;
+}

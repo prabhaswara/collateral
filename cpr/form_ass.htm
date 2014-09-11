@@ -1,0 +1,487 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="id">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FORM INPUT DEBITUR</title>
+<script>
+            function validasi(){
+				var nim = document.getElementById('lnc');
+                var nim = document.getElementById('produk');
+                var nama = document.getElementById('jenis');
+                var kelas = document.getElementById('no_aplikasi');
+				var kelas = document.getElementById('rekg_pinjaman');
+				var kelas = document.getElementById('fixed_rate');
+				var kelas = document.getElementById('bunga');
+				var kelas = document.getElementById('program');
+				
+			if (harusDiisi(lnc, "Nama LNC belum diisi")) {
+                if (harusDiisi(produk, "Nama Debitur belum diisi")) {
+                    if (harusDiisi(NOAPLIKASI, "No. Aplikasi belum diisi")) {
+                        if (harusDiisi(tgl_pk, "Tgl. PK belum diisi")) {
+						  if (harusDiisi(jkw_kredit, "Tenor belum diisi")) {
+						    if (harusDiisi(fixed_rate, "Masa Fix Rate belum diisi")) {
+							  if (harusDiisi(bunga, "Bunga belum diisi")) {
+							    if (harusDiisi(program, "Program belum diisi")) {
+                            return true;
+                        };
+                       };
+                      };
+				     };
+				    };
+				   };
+				  };
+				 };
+                return false;
+            }
+
+            function harusDiisi(att, msg){
+                if (att.value.length == 0) {
+                    alert(msg);
+                    att.focus();
+                    return false;
+                }
+                return true;
+            }
+</script>
+
+<script language="javascript">
+<!--
+
+
+
+function getkey(e)
+{
+if (window.event)
+   return window.event.keyCode;
+else if (e)
+   return e.which;
+else
+   return null;
+}
+function goodchars(e, goods, field)
+{
+var key, keychar;
+key = getkey(e);
+if (key == null) return true;
+ 
+keychar = String.fromCharCode(key);
+keychar = keychar.toLowerCase();
+goods = goods.toLowerCase();
+ 
+// check goodkeys
+if (goods.indexOf(keychar) != -1)
+    return true;
+// control keys
+if ( key==null || key==0 || key==8 || key==9 || key==27 )
+   return true;
+    
+if (key == 13) {
+    var i;
+    for (i = 0; i < field.form.elements.length; i++)
+        if (field == field.form.elements[i])
+            break;
+    i = (i + 1) % field.form.elements.length;
+    field.form.elements[i].focus();
+    return false;
+    };
+// else return false
+return false;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.style2 {
+	color: #0000FF;
+	font-style: italic;
+}
+.style8 {
+	color: #FF8000;
+	font-style: italic;
+}
+.style21 {font-size: 12px; font-weight: bold; font-family: Verdana; }
+.style23 {color: #0000FF; font-size: 12px; font-family: Verdana; }
+.style25 {font-size: 12px; font-family: Verdana; }
+body {
+	background-image: url();
+}
+.style26 {font-family: Arial, Helvetica, sans-serif}
+-->
+
+</style>
+</head>
+<body>
+
+<form id="postform" name="biodata" Method="post" Action="insertasuransi.php">
+
+<script language="javascript" src="ri32-fungsi.js"></script>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Verdana" size="1"><a href="summary.php">MENU UTAMA</a>&nbsp;&nbsp;&nbsp;
+<a href="laporan.htm">OUTPUT</a> </font></b></p>
+  
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p align="center" style="margin-top: 0; margin-bottom: 0"><b><font face="Verdana" size="5">
+FORM INPUT</font></b></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Arial Black">&nbsp;</font></b></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="100%" height="937">
+  <tr>
+    <td width="18%" style="border-style: none; border-width: medium" height="24">
+      <span class="style21">
+      NAMA LNC</span></td>
+    <td width="82%" style="border-style: none; border-width: medium" height="24">
+      <span class="style23">
+      <span class="style26">
+      <select size="1" name="lnc">
+        <option>BAL</option>
+      </select>
+      </span>      </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> PRODUK</span></td>
+    <td style="border-style: none; border-width: medium" height="27">      <span class="style23">
+      <select size="1" name="produk" value="">
+        <option>= SELECT =</option>
+        <option>GRIYA</option>
+		<option>GRIYA MULTIGUNA</option>
+        <option>BWU</option>
+      </select>
+      </span> </td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> JENIS</span></td>
+    <td style="border-style: none; border-width: medium" height="27">  <span class="style23">
+      <select size="1" name="jenis" value="">
+        <option>= SELECT =</option>
+        <option>PEMBELIAN</option>
+        <option>RENOVASI</option>
+        <option>PEMBANGUNAN</option>
+      </select>
+    </span> </td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NO. APLIKASI</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+       <input name=no_aplikasi type=text class="style2"
+	  onFocus="if(this.value=='Isi dengan nomor aplikasi ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan nomor aplikasi ...'}" VALUE="Isi dengan nomor aplikasi ..." size=40 /> 
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NO. REKENING PINJAMAN</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+    <input name=rekg_pinjaman type=text class="style2"
+	  onFocus="if(this.value=='Isi dengan nomor rekening pinjaman ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan nomor rekening pinjaman ...'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Isi dengan nomor rekening pinjaman ..." size=40 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NAMA DEBITUR</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <input name=nama_debitur type=text class="style2"
+	  onFocus="if(this.value=='Isi dengan nama debitur ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan nama debitur ...'}" VALUE="Isi dengan nama debitur ..." size=40 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> MAX KREDIT</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+    <body onLoad="document.postform.elements['max_kredit'].focus();">
+    <strong>Rp. 
+    </strong>
+    <input name="max_kredit" type=text class="style2" onKeyup="ri32();" onFocus="if(this.value=='Nominal kredit disetujui ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nominal kredit disetujui ...'}" VALUE="Nominal kredit disetujui ..." size=30  />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21">OUTSTANDING</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+    <body onLoad="document.postform.elements['max_kredit'].focus();">
+    <strong>Rp. 
+    </strong>
+    <input name="outstanding" type=text class="style2" onKeyup="ri32();" onFocus="if(this.value=='Outstanding terkini ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Outstanding terkini disetujui ...'}" VALUE="Outstanding terkini ..." size=30  />
+    </span></td>
+  </tr>
+<tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21">NILAI JAMINAN </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+    <body onLoad="document.postform.elements['max_kredit'].focus();">
+    <strong>Rp. 
+    </strong>
+    <input name="jaminan" type=text class="style2" onKeyup="ri32();" onFocus="if(this.value=='Nilai Jaminan ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nilai Jaminan ...'}" VALUE="Nilai Jaminan ..." size=30  />
+    </span></td>
+  </tr>
+  
+<tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21">NILAI BANGUNAN</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+    <body onLoad="document.postform.elements['max_kredit'].focus();">
+    <strong>Rp. 
+    </strong>
+    <input name="bangunan" type=text class="style2" onKeyup="ri32();" onFocus="if(this.value=='Nilai Bangunan ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nilai Bangunan ...'}" VALUE="Nilai Bangunan ..." size=30  />
+    </span></td>
+  </tr>
+  
+  
+  <tr>
+      <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> TENOR</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <input type="text" name="tenor" size="5" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+      <b>BULAN</b></span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <span class="style21"><b>TGL. PERJANJIAN KREDIT </b></span></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <span class="style25">
+      <input name=tgl_pk type=text class="style2" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_pk);return false;"
+	  onFocus="if(this.value=='Pilih Tgl')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Pilih Tgl'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Pilih Tgl" size=10 />
+      </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NAMA DEVELOPER/PENJUAL</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style23">
+    <input name=developer type=text class="style2" 
+	  onFocus="if(this.value=='Isi dengan nama developer/penjual ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan nama developer/penjual ...'}" value="Isi dengan nama developer/penjual ..." size=40 />
+    <select size="1" name="badan" value="">
+        <option>PT</option>
+        <option>CV</option>
+        <option>PERORANGAN</option>
+    </select>
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NAMA PROYEK </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style23">
+     <input name=perumahan type=text class="style2"
+	  onFocus="if(this.value=='Isi dengan nama perumahan ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan nama perumahan ...'}" VALUE="Isi dengan nama perumahan ..." size=40 />
+     </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> JENIS PROYEK</span></td>
+    <td style="border-style: none; border-width: medium" height="27">      <span class="style23">
+      <select size="1" name="kategori" value="">
+        <option>RUMAH TAPAK</option>
+        <option>HIGH RISE</option>
+        </select>
+      </span> </td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> KATEGORI PROYEK</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style23">
+      <select size="1" name="proyek" value="">
+        <option>RUMAH TINGGAL</option>
+        <option>RUKO</option>
+        <option>RUKAN</option>
+        <option>APARTEMEN</option>
+        <option>GRIYA TAWANG</option>
+		<option>CONDOMINIUM</option>
+        <option>RUMAH SUSUN</option>
+	  </select>
+    </span> </td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> SKIM PKS </span></td>
+    <td style="border-style: none; border-width: medium" height="27">  <span class="style23">
+      <select size="1" name="skim" value="">
+        <option>PKS</option>
+        <option>NON PKS</option>
+      </select>
+    </span> </td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NO. PKS </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style23">
+      <input name=pks type=text class="style2"
+	  onFocus="if(this.value=='Isi dengan no. PKS ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan no. PKS ...'}" VALUE="Isi dengan no. PKS ..." size=40 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> TOTAL UNIT DIBANGUN</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <input type="text" name="unit" size="5" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> MEDIA TRANSAKSI </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <span class="style23">
+      <select size="1" name="transaksi" value="">
+	    <option>= SELECT =</option>
+        <option>AJB</option>
+        <option>PPJB</option>
+      </select>
+    </span>    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> PENGIKATAN </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25"> <span class="style23">
+      <select size="1" name="pengikatan" value="">
+        <option>= SELECT =</option>
+        <option>SKMHT</option>
+        <option>APHT</option>
+      </select>
+    </span> </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> PENGUASAAN SERTIFIKAT INDUK </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <input name=induk type=text class="style2"
+	  onFocus="if(this.value=='Penguasaan Sertifikat Induk ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Penguasaan Sertifikat Induk ...'}" VALUE="Penguasaan Sertifikat Induk ..." size=40 />
+    </span></td>
+  </tr>
+
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> NO. REKENING ESCROW</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <input name=escrow type=text class="style2"
+	  onFocus="if(this.value=='Isi dengan nomor rekening escrow ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi dengan nomor rekening escrow ...'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Isi dengan nomor rekening escrow ..." size=40 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> CAIR TAHAP PONDASI </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+     <body onLoad="document.postform.elements['cair_1'].focus();">
+     <strong>Rp.</strong> 
+
+      <input name=cair_1 onKeyup="ri32();" type=text class="style2"
+	  onFocus="if(this.value=='Nominal cair tahap Pondasi ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nominal cair tahap Pondasi ...'}" VALUE="Nominal cair tahap Pondasi ..." size=30 />
+      <input name=keterangan1 type=text class="style8"
+	  onFocus="if(this.value=='Keterangan Pencairan')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Keterangan Pencairan'}" VALUE="Keterangan Pencairan" size=50 />  
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <span class="style21"><b>TGL. CAIR TAHAP PONDASI </b></span></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <span class="style25">
+      <input name=tgl_cair_1 type=text class="style2" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_cair_1);return false;"
+	  onFocus="if(this.value=='Pilih Tgl')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Pilih Tgl'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Pilih Tgl" size=10 />
+      </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> CAIR TAHAP TOPPING OFF </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+     <body onLoad="document.postform.elements['cair_2'].focus();">
+     <strong>Rp.</strong>      
+     <input name=cair_2 type=text onKeyup="ri32();" class="style2" 
+	  onFocus="if(this.value=='Nominal cair tahap topping off ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nominal cair tahap topping off ...'}" VALUE="Nominal cair tahap topping off ..." size=30 />
+      <input name=keterangan2 type=text class="style8"
+	  onFocus="if(this.value=='Keterangan Pencairan')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Keterangan Pencairan'}" VALUE="Keterangan Pencairan" size=50 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <span class="style21"><b>TGL. CAIR TAHAP TOPPING OFF </b></span></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <span class="style25">
+      <input name=tgl_cair_2 type=text class="style2" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_cair_2);return false;"
+	  onFocus="if(this.value=='Pilih Tgl')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Pilih Tgl'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Pilih Tgl" size=10 />
+      </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> CAIR TAHAP BAST </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+     <body onLoad="document.postform.elements['cair_3'].focus();">
+     <strong>Rp.</strong>     
+     <input name=cair_3 onKeyup="ri32();" type=text class="style2"
+	  onFocus="if(this.value=='Nominal cair tahap BAST ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nominal cair tahap BAST ...'}" VALUE="Nominal cair tahap BAST ..." size=30 />
+     <input name=keterangan3 type=text class="style8"
+	  onFocus="if(this.value=='Keterangan Pencairan')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Keterangan Pencairan'}" VALUE="Keterangan Pencairan" size=50 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <span class="style21"><b>TGL. CAIR TAHAP BAST </b></span></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <span class="style25">
+      <input name=tgl_cair_3 type=text class="style2" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_cair_3);return false;"
+	  onFocus="if(this.value=='Pilih Tgl')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Pilih Tgl'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Pilih Tgl" size=10 />
+      </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> CAIR TAHAP DOKUMEN </span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+
+     <body onLoad="document.postform.elements['cair_4'].focus();">
+     <strong>Rp.</strong>      
+     <input name=cair_4 onKeyup="ri32();" type=text class="style2"
+	  onFocus="if(this.value=='Nominal cair tahap Dokumen ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Nominal cair tahap dokumen ...'}" VALUE="Nominal cair tahap dokumen ..." size=30/>
+      <input name=keterangan4 type=text class="style8"
+	  onFocus="if(this.value=='Keterangan Pencairan')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Keterangan Pencairan'}" VALUE="Keterangan Pencairan" size=50 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <span class="style21"><b>TGL. CAIR TAHAP DOKUMEN </b></span></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <span class="style25">
+      <input name=tgl_cair_4 type=text class="style2" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_cair_4);return false;"
+	  onFocus="if(this.value=='Pilih Tgl')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Pilih Tgl'}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" VALUE="Pilih Tgl" size=10 />
+      </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> KETERANGAN</span></td>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style25">
+      <input name=keterangan type=text class="style2"
+	  onFocus="if(this.value=='Isi jika ada keterangan lainnya ...')
+	  {this.value=''}" onBlur="if(this.value==''){this.value='Isi jika ada keterangan lainnya ...'}" VALUE="Isi jika ada keterangan lainnya ..." size=90 />
+    </span></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="27"> <span class="style21"> PROGRESS PEMBANGUNAN </span></td>
+    <td height="27" style="border-style: none; border-width: medium"> <span class="style25">
+      <select size="1" name="progress" value="">
+        <option>BELUM</option>
+        <option>SELESAI</option>
+      </select>
+    </span></td>
+  </tr>
+  <tr>
+    <td width="18%" style="border-style: none; border-width: medium" height="17"></td>
+    <td width="82%" style="border-style: none; border-width: medium" height="17"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <input type="submit" value="Submit"><input type="reset" value="Reset"></p>
+<!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
+<iframe width=174 height=189 name="gToday:normal:./calender/agenda.js" id="gToday:normal:./calender/agenda.js" src="./calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe>
+</body>
+
+</html>

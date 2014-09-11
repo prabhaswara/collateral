@@ -1,0 +1,31 @@
+#menu ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+} 
+#menu ul li{ 
+position: relative; 
+float: left; 
+width: 162px; /*supaya menu rapih*/
+} 
+#menu li ul{ 
+position: relative; 
+top: 20px; 
+display: none; 
+} 
+#menu ul li a{ 
+display: block; 
+text-decoration: none; 
+line-height: 20px; 
+color: #000000; /*huruf menu*/
+padding: 1px; 
+background: #FFFFFF; /*background menu*/
+margin: 0; 
+text-align: left; 
+font-family: Arial; 
+} #menu ul li a:hover{ 
+background: #FFFF66; /*kursor menu*/
+} #menu li:hover ul, li.hover ul{ 
+display: block; 
+} 

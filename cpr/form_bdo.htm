@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="id">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>FORM INPUT BDO</title>
+
+<style type="text/css">
+<!--
+.style2 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+</head>
+<body>
+
+<form name="biodata" Method="post" Action="insertbdo.php">
+
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Verdana" size="1"><a href="summary_bso.php">MENU UTAMA</a>&nbsp;&nbsp;&nbsp;
+<a href="bso_menu.htm">BSO MENU</a><a href="cari_debitur.php"> </a></font></b></p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p align="center" style="margin-top: 0; margin-bottom: 0"><b><font face="Verdana" size="5">
+FORM INPUT REVIEW BDO </font></b></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>
+<font face="Arial Black">&nbsp;</font></b></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" width="100%" height="653">
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="33">
+    <font face="Arial" size="2">Nama LNC</font></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="33">
+    <font face="Arial">    
+    <span class="style2">
+    <select size="1" name="LNC">
+      <option>PLL</option>
+    </select>
+    </span>    </font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="28">
+    <font face="Arial" size="2">Nama Debitur</font></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="28">
+    <font face="Arial">    
+    <input type="text" name="nama debitur" size="40"></font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="27">
+    <font face="Arial" size="2">No. Rekening </font></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="27">
+    <font face="Arial">    
+    <input type="text" name="no_rekg" size="40"></font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="28">
+    <font size="2" face="Arial">Kolektibiliti</font></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="28">
+    <font face="Arial">    
+    <input type="text" name="golongan" size="10" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"></font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="35">
+    <font face="Arial" size="2">Kewenangan Memutus </font></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="35">
+    <font face="Arial">
+    <select size="1" name="persetujuan">
+      <option>= SELECT =</option>
+      <option>CNR</option>
+      <option>LNC</option>
+      <option>LAINNYA</option>
+    </select>
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Hutang Pokok </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+    <input type="text" name="hp" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+</font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Tunggakan Hutang Pokok </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="tgk_hp" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Tunggakan Bunga </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="tgk_bunga" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Tunggakan Denda </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="tgk_denda" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Tunggakan Biaya </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="tgk_biaya" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Outstanding</font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="outstanding" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Hapus Tagih </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="ht" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial" size="2">Hapus Tagih Pokok &amp; Biaya </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <select size="1" name="ada_ht">
+        <option>= SELECT =</option>
+        <option>ADA</option>
+        <option>TIDAK ADA</option>
+      </select>
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Voucher Pembukuan </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="voucher" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="33"> <font face="Arial" size="2">Tgl. Pembukuan </font></td>
+    <td style="border-style: none; border-width: medium" height="19">
+      <input type="text" name="tgl_buku" size="10" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_buku);return false;">
+      <font size="2">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font size="2" face="Arial">Selisih Perintah Memo vs Pembukuan </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <input type="text" name="selisih" size="40" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial" size="2">Memo</font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <select size="1" name="testkey">
+        <option>= SELECT =</option>
+        <option>ADA</option>
+        <option>TIDAK ADA</option>
+      </select>
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial" size="2">Status BDO </font></td>
+    <td style="border-style: none; border-width: medium" height="35"> <font face="Arial">
+      <select size="1" name="status">
+        <option>= SELECT =</option>
+        <option>CLEAN</option>
+        <option>TIDAK</option>
+      </select>
+    </font></td>
+  </tr>
+  <tr>
+    <td style="border-style: none; border-width: medium" height="30"> <font size="2" face="Arial">Keterangan/Catatan</font></td>
+    <td style="border-style: none; border-width: medium" height="16"> <font face="Arial">
+      <textarea name="keterangan" size="40" style="text-transform:uppercase"></textarea>
+    </font></td>
+  </tr>
+  <tr>
+    <td width="32%" style="border-style: none; border-width: medium" height="17"></td>
+    <td width="68%" style="border-style: none; border-width: medium" height="17"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <input type="submit" value="Submit"><input type="reset" value="Reset"></p>
+<!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
+<iframe width=174 height=189 name="gToday:normal:./calender/agenda.js" id="gToday:normal:./calender/agenda.js" src="./calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe>
+
+</body>
+
+</html>
