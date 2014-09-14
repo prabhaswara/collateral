@@ -1,34 +1,8 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE>CARI DOKUMEN</TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-size: 12px;
-}
-.style10 {font-size: 18px}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-</p>
-<form method=get action=cari_bantek.php>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
+    <form method=get action=cari_bantek.php>
   <p class="style2">&nbsp;</p>
   <p class="style2"><span class="style10">Nama LNC</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
     <select size="1" name="LNC">
@@ -80,8 +54,8 @@ if(empty($halaman)){
 else{
   $posisi=($halaman-1)* $batas;}
 
-$warna1 = "#A6D000";   // baris genap berwarna hijau tua
-$warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
+$warna1 = "#DBDBA6";   // baris genap berwarna tua
+$warna2 = "#F2F2DF";   // baris ganjil berwarna muda
 $warna  = $warna1;     // warna default
 
 //Langkah 2
@@ -116,8 +90,8 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<br><p align='center'><b>DATA PENYIMPANAN FILE DEBITUR</b></p><br><table cellpadding=4>
-
+echo "<br><p align='center'><b>DATA PENYIMPANAN FILE DEBITUR</b></p><br><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th >NO.</th>
 <th width=20>NAMA LNC</th>
@@ -133,7 +107,7 @@ echo "<br><p align='center'><b>DATA PENYIMPANAN FILE DEBITUR</b></p><br><table c
 <th>NO. BANTEK FILE KERJA</th>
 <th>NO. AMPLOP KERJA</th>
 <th>STATUS REKG.</th>
-</tr>";
+</tr></thead>";
 
 $no=$posisi+1;
 While ($r=mysql_fetch_array($tampil)){
@@ -218,7 +192,7 @@ echo "";
 }
 else 
 
-echo "<p><b>$jmldata</b> DATA DEBITUR <b>LNC $lnc</b> KRITERIA : <b>$a : <b>$cari</b></p><font color='red'>";
+echo "<p><b>$jmldata</b> DATA DEBITUR <b>LNC $lnc</b> KRITERIA : <b>$a : <b>$cari</b></p>";
 echo "<b>SISA TEMPAT KOSONG : <BLINK>$xl</b>";
 
 }
@@ -229,4 +203,5 @@ echo "<br><p class=style11><b>Maaf, data <b>$a dari LNC $lnc</b> yang anda cari 
 
 
 ?>
+</div>
 </div>

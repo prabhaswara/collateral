@@ -1,34 +1,7 @@
 <?php include 'collateral_script/session_head.php'; ?>
+<?php include 'collateral_script/head.php'; ?> 
 <TITLE>MONITORING NOTARIS</TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-size: 9px;
-}
-.style10 {font-size: 18px}
--->
-</style>
-<p><span class="style1"><a href="summary.php">MENU UTAMA</a>&nbsp&nbsp&nbsp<a href="menu_laporan.htm" class="style4">REPORTING</a></span> <BR>
-  <BR>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #99FF66;
-}
-  </style>
-</p>
+<div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_notaris.php>
   <p class="style2"><span class="style10">Nama LNC</span> :
     <select size="1" name="LNC">
@@ -92,24 +65,26 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<p class=style10><b>MONITORING PENYELESAIAN SHT PER NOTARIS</p></b><table cellpadding=4>
-
+echo "<p class=style10><b>MONITORING PENYELESAIAN SHT PER NOTARIS</p></b>
+<table class='tblLookup' border='1px'>
+<thead>
 <tr>
-<th><b>NO.</th>
+<th>NO.</th>
 <th width=20><b>NAMA LNC</th>
-<th><b>NO. APLIKASI</th>
-<th><b>NAMA DEBITUR</th>
-<th widht=20><b>NO. REK. PINJAMAN</th>
-<th><b>JENIS PRODUK</th>
-<th><b>NO.PK</th>
-<th><b>MAKSIMUM KREDIT</th>
-<th><b>NILAI PENGIKATAN</th>
-<th><b>NOTARIS</th>
-<th><b>DEVELOPER</th>
-<th width=65><b>TGL. PK</th>
-<th width=40><b>HARI PROSES</th>
-<th width=65><b>STATUS</b></th>
-<th><b>ACTION</th></th>
+<th>NO. APLIKASI</th>
+<th>NAMA DEBITUR</th>
+<th widht=20>NO. REK. PINJAMAN</th>
+<th>JENIS PRODUK</th>
+<th>NO.PK</th>
+<th>MAKSIMUM KREDIT</th>
+<th>NILAI PENGIKATAN</th>
+<th>NOTARIS</th>
+<th>DEVELOPER</th>
+<th width=65>TGL. PK</th>
+<th width=40>HARI PROSES</th>
+<th width=65>STATUS</b></th>
+<th>ACTION</th></th>
+</thead>
 </tr>";
 
 $no=$posisi+1;
@@ -164,20 +139,20 @@ if ($bbb=='PENDING'){
 
 echo "
 <tr bgcolor=$warna>
-<td><font color='red'>$no</font></td>
-<td align='center'><font color='red'>$r[LNC]</td>
-<td><font color='red'>$r[NOAPLIKASI]</td>
-<td><font color='red'>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'>$r[produk]</td>
-<td align='center'><font color='red'>$r[no_pk]</td>
-<td align='right'><font color='red'>$rupiah</td>
-<td align='right'><font color='red'>$rupiah1</td>
-<td align='center'><font color='red'>$r[notaris]</td>
-<td align='center'><font color='red'>$r[developer]</td>
-<td align='center'><font color='red'>$r[tgl_pk]</td>
-<td align='right'><font color='red'>$slsh</td>
-<td align='center'><font color='red'><b><BLINK>$bbb</td>
+<td>$no</td>
+<td align='center'>$r[LNC]</td>
+<td>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='center'>$r[no_pk]</td>
+<td align='right'>$rupiah</td>
+<td align='right'>$rupiah1</td>
+<td align='center'>$r[notaris]</td>
+<td align='center'>$r[developer]</td>
+<td align='center'>$r[tgl_pk]</td>
+<td align='right'>$slsh</td>
+<td align='center'><BLINK>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -249,3 +224,4 @@ echo "<b><p class=style1>Maaf, data Notaris <b>$cari</b> dari <b>LNC $lnc</b> ya
 }
 ?>
 </div>
+</DIV>

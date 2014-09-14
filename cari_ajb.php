@@ -1,45 +1,9 @@
 <?php include 'collateral_script/session_head.php'; ?>
+<?php include 'collateral_script/head.php'; ?> 
 <TITLE>MONITORING AJB</TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 9px;
-	table-layout: auto;
-}
-.style5 {
-	font-size: 12px;
-	font-weight: bold;
-}
-.style8 {font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
-.style10 {font-size: 18px}
-.style11 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-</p>
+
+
+<div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_ajb.php>
   <p class="style2">&nbsp;</p>
   <p class="style2"><span class="style10">Nama LNC</span> : <span class="style2">
@@ -129,8 +93,8 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<br><p class=style11><b>$a</b></p><table cellpadding=4>
-<tr>
+echo "<br><p class=style11><b>$a</b></p><table class='tblLookup' border='1px'>
+<thead><tr>
 <th>NO.</th>
 <th width=20>NAMA LNC</th>
 <th>NO. APLIKASI</th>
@@ -142,7 +106,7 @@ echo "<br><p class=style11><b>$a</b></p><table cellpadding=4>
 <th width=40>HARI PROSES</th>
 <th width=65>STATUS</th>
 <th width=10>ACTION</th></th>
-</tr>";
+</tr></thead>";
 
 $no=$posisi+1;
 While ($r=mysql_fetch_array($tampil)){
@@ -193,17 +157,17 @@ else{
 
 if ($bbb=='PENDING'){	
 Echo "
-<tr bgcolor=$warna>
-<td><font color='red'><b>$no</td>
-<td align='center'><font color='red'><b>$r[LNC]</td>
-<td align='center'><font color='red'><b>$r[NOAPLIKASI]</td>
-<td><font color='red'><b>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'><b>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'><b>$r[produk]</td>
-<td align='center'><font color='red'><b>$r[notaris]</td>
-<td align='center'><font color='red'><b>$r[tgl_pk]</td>
-<td align='right'><font color='red'><b>$selisih</td>
-<td align='center'><font color='red'><b><BLINK>$bbb</td>
+<tr  bgcolor=$warna>
+<td>$no</td>
+<td align='center'>$r[LNC]</td>
+<td align='center'>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='center'>$r[notaris]</td>
+<td align='center'>$r[tgl_pk]</td>
+<td align='right'>$selisih</td>
+<td align='center'><BLINK>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -212,7 +176,7 @@ Echo "
 else {
 Echo "
 
-<tr bgcolor=$warna>
+<tr >
 <td>$no</td>
 <td align='center'>$r[LNC]</td>
 <td align='center'>$r[NOAPLIKASI]</td>
@@ -254,4 +218,5 @@ echo "<b><p class=style11>Maaf, data <b>$a dari LNC $lnc</b> yang anda cari tida
 }
 }
 ?>
+</div>
 </div>

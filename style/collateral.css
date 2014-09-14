@@ -92,6 +92,9 @@ select{
     background:  #2E6874;
     color: white;
 }
+.tblLookup  tr td{
+    padding: 3px;
+}
 .tblLookup tbody tr td{
     padding: 3px;
 }

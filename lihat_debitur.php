@@ -1,43 +1,10 @@
 <TITLE> LIST DEBITUR </TITLE>
-<style type="text/css">
-<!--
-.style3 {
-	font-size: 12px;
-	font-weight: bold;
-}
-.style4 {
-	font-size: 12px;
-	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
-}
-body,td,th {
-	font-size: 14px;
-}
--->
-</style>
-<p><span class="style4"><a href="summary.php" class="style4">MENU UTAMA </a>&nbsp&nbsp&nbsp<a href="menu_laporan.htm" class="style4">REPORTING</a></span><BR>
-  <BR>
-</p>
-<div align="center">
-    <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-.style3 {font-size: 10px}
-  </style>
-  
-  
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">  
   <?php
 
-$warna1 = "#A6D000";   // baris genap berwarna hijau tua
-$warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
+$warna1 = "#DBDBA6";   // baris genap berwarna tua
+$warna2 = "#F2F2DF";   // baris ganjil berwarna muda
 $warna  = $warna1;     // warna default
 
 Include ("koneksi.php");
@@ -50,7 +17,8 @@ $jmldata     = number_format($jmldata,0,',','.');
 
 echo "<p align='left'>Total data debitur : <b>$jmldata</b> orang <BR>"; 
 //echo "<br>CARI DEBITUR<a href=cari_debitur.php>
-echo "<br><p align='center'><b>DAFTAR DEBITUR</b></p><table cellpadding=4>
+echo "<br><p align='center'><b>DAFTAR DEBITUR</b></p><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th>NO.</th>
 <th>NAMA LNC</th>
@@ -59,7 +27,7 @@ echo "<br><p align='center'><b>DAFTAR DEBITUR</b></p><table cellpadding=4>
 <th>NO. REK. PINJAMAN</th>
 <th>JENIS PRODUK</th>
 <th>TGL. INPUT</th>
-</tr>";
+</tr></thead>";
 
 //lANGKAH 1 : Tentukan batas, crk halaman $ posisi data
 $batas   = 100;
@@ -127,4 +95,5 @@ else{
      echo "Next > | Last >>";}
 
 ?>
+</div>
 </div>

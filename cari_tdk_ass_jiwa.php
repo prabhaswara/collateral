@@ -1,33 +1,7 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE> TIDAK DICOVER ASS. JIWA </TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-size: 11px;
-}
-.style10 {font-size: 18px}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-</p>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_tdk_ass_jiwa.php>
   <p class="style2">&nbsp;</p>
   <p class="style2"><span class="style10"><span class="style10">Nama LNC</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
@@ -75,8 +49,8 @@ if(empty($halaman)){
 else{
   $posisi=($halaman-1)* $batas;}
 
-$warna1 = "#A6D000";   // baris genap berwarna hijau tua
-$warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
+$warna1 = "#DBDBA6";   // baris genap berwarna tua
+$warna2 = "#F2F2DF";   // baris ganjil berwarna muda
 $warna  = $warna1;     // warna default
 
 //Langkah 2
@@ -91,7 +65,8 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<br><b>MONITORING DEBITUR TIDAK DICOVER ASURANSI JIWA</b><BR><br><table cellpadding=4>
+echo "<br><b>MONITORING DEBITUR TIDAK DICOVER ASURANSI JIWA</b><BR><br><table class='tblLookup' border='1px'>
+<thead>
 
 <tr>
 <th >NO.</th>
@@ -196,4 +171,5 @@ echo "<br><p class=style10><b>Maaf, data <b>$a dari LNC $lnc</b> yang anda cari 
 }
 }
 ?>
+</div>
 </div>

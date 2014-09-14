@@ -1,36 +1,7 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE>MONITORING PRODUK</TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-size: 9px;
-}
-.style10 {font-size: 18px}
-.style12 {font-size: 12}
-.style14 {font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
-.style15 {font-size: 16px}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #99FF66;
-}
-  </style>
-</p>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_produk.php>
   <tr>
   <td width="100">&nbsp;</td>
@@ -125,8 +96,9 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<p class=style10><b>MONITORING PENYELESAIAN SHT PER PRODUK</p></b><table cellpadding=4>
-
+echo "<p class=style10><b>MONITORING PENYELESAIAN SHT PER PRODUK</p></b>
+    <table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th><b>NO.</th>
 <th width=20><b>NAMA LNC</th>
@@ -142,7 +114,7 @@ echo "<p class=style10><b>MONITORING PENYELESAIAN SHT PER PRODUK</p></b><table c
 <th width=40><b>HARI PROSES</th>
 <th width=65><b>STATUS</b></th>
 <th><b>ACTION</th></th>
-</tr>";
+</tr></thead>";
 
 $no=$posisi+1;
 While ($r=mysql_fetch_array($tampil)){
@@ -196,19 +168,19 @@ if ($bbb=='PENDING'){
 
 echo "
 <tr bgcolor=$warna>
-<td><font color='red'>$no</font></td>
-<td align='center'><font color='red'>$r[LNC]</td>
-<td><font color='red'>$r[NOAPLIKASI]</td>
-<td><font color='red'>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'>$r[produk]</td>
-<td align='center'><font color='red'>$r[no_pk]</td>
-<td align='right'><font color='red'>$rupiah</td>
-<td align='right'><font color='red'>$rupiah1</td>
-<td align='center'><font color='red'>$r[notaris]</td>
-<td align='center'><font color='red'>$r[tgl_pk]</td>
-<td align='right'><font color='red'>$slsh</td>
-<td align='center'><font color='red'><b><BLINK>$bbb</td>
+<td>$no</font></td>
+<td align='center'>$r[LNC]</td>
+<td>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='center'>$r[no_pk]</td>
+<td align='right'>$rupiah</td>
+<td align='right'>$rupiah1</td>
+<td align='center'>$r[notaris]</td>
+<td align='center'>$r[tgl_pk]</td>
+<td align='right'>$slsh</td>
+<td align='center'><BLINK>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -279,3 +251,4 @@ echo "<b><p class=style1>Maaf, data Penyelesaian SHT <b>$cari</b> dari <b>LNC $l
 }
 ?>
 </div>
+</DIV>

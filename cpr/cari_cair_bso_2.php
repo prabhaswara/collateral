@@ -343,7 +343,7 @@ $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $jmldata	= number_format($jmldata,0,',','.');
 
-//echo "<p class=style11>TOTAL DATA <b>$a LNC $lnc</b> : <br><b><font color='red'>$jmldata</font> DEBITUR, SISA SALDO :<font color='red'> Rp. $xxxy</p></b></font> ";
+//echo "<p class=style11>TOTAL DATA <b>$a LNC $lnc</b> : <br><b>$jmldata</font> DEBITUR, SISA SALDO : Rp. $xxxy</p></b></font> ";
 
 }
 else{

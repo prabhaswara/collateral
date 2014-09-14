@@ -1,23 +1,13 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE>DUPLIKASI SERTIFIKAT</TITLE>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-</p>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
+
 <p align="center">
   <?php
 
-echo "<br><align='center'><b>DAFTAR DUPLIKASI JAMINAN</b><BR><br><table cellpadding=4>
+echo "<br><align='center'><b>DAFTAR DUPLIKASI JAMINAN</b><BR><br><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th>NO.</th>
 <th>NAMA LNC</th>
@@ -29,10 +19,10 @@ echo "<br><align='center'><b>DAFTAR DUPLIKASI JAMINAN</b><BR><br><table cellpadd
 <th>NO. SERTIFIKAT</th>
 <th>NO. GS/SU</th>
 <th>ACTION</th></th>
-</tr>";
+</tr></thead>";
 
-$warna1 = "#A6D000";   // baris genap berwarna hijau tua
-$warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
+$warna1 = "#DBDBA6";   // baris genap berwarna tua
+$warna2 = "#F2F2DF";   // baris ganjil berwarna muda
 $warna  = $warna1;     // warna default
 
 Include ("koneksi.php");

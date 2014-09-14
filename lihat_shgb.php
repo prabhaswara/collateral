@@ -1,40 +1,8 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE>SHGB JATUH TEMPO</TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	table-layout: auto;
-}
-.style10 {font-size: 18px}
-.style11 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-</p>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
+    
 <form name=biodata method=get action=lihat_shgb.php>
   <p class="style11">
     <INPUT type=radio name=pilih value=status_rekg checked>
@@ -157,7 +125,8 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<br><p class=style11><b>$a $_GET[tgl_awal] S/D $_GET[tgl_akhir] LNC $lnc</b></p><table cellpadding=4>
+echo "<br><p class=style11><b>$a $_GET[tgl_awal] S/D $_GET[tgl_akhir] LNC $lnc</b></p><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th>NO.</th>
 <th>NO. APLIKASI</th>
@@ -292,7 +261,7 @@ Echo "
 <td align='right'><b>$rupiah</td>
 <td align='center'><b>$r[tgl_pk]</td>
 <td align='center'><b>$r[tgl_jt_pk]</td>
-<td align='center'><font color='red'><blink><b>$r[tgl_jt_surat_tanah]</td>
+<td align='center'><blink><b>$r[tgl_jt_surat_tanah]</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </tr>";
       $no++;
@@ -308,7 +277,7 @@ Echo "
 <td align='right'><b>$rupiah</td>
 <td align='center'><b>$r[tgl_pk]</td>
 <td align='center'><b>$r[tgl_jt_pk]</td>
-<td align='center'><font color='red'><blink><b>$r[tgl_jt_surat_tanah]</td>
+<td align='center'><blink><b>$r[tgl_jt_surat_tanah]</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </tr>";
       $no++;
@@ -324,7 +293,7 @@ Echo "
 <td align='right'><b>$rupiah</td>
 <td align='center'><b>$r[tgl_pk]</td>
 <td align='center'><b>$r[tgl_jt_pk]</td>
-<td align='center'><font color='red'><blink><b>$r[tgl_jt_surat_tanah]</td>
+<td align='center'><blink><b>$r[tgl_jt_surat_tanah]</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 
 </tr>";
@@ -383,6 +352,7 @@ echo "<br><p class=style11><b>Maaf, data <b>$a $_GET[tgl_awal] S/D $_GET[tgl_akh
 }
 }
 ?>
+</div>
 </div>
 <!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
 <iframe width=174 height=189 name="gToday:normal:./calender/agenda.js" id="gToday:normal:./calender/agenda.js" src="./calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">

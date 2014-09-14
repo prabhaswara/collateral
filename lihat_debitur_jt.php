@@ -1,28 +1,6 @@
 <TITLE> LIST DEBITUR JATUH TEMPO </TITLE>
-<style type="text/css">
-<!--
-.style3 {
-	font-size: 12px;
-	font-weight: bold;
-}
-.style4 {
-	font-size: 12px;
-	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
-}
-body,td,th {
-	font-size: 11px;
-}
-.style10 {font-size: 18px}
-.style11 {	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
--->
-</style>
-<p><span class="style4"><a href="summary.php" class="style4">MENU UTAMA </a>&nbsp&nbsp&nbsp<a href="menu_laporan.htm" class="style4">REPORTING</a></span><BR>
-</p>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
 <form method=get action=lihat_debitur_jt.php>
   <p class="style2">&nbsp;</p>
   <p class="style2"><span class="style10">Nama LNC</span> :
@@ -86,7 +64,8 @@ $jmldata     = number_format($jmldata,0,',','.');
 
 echo "<p align='left'>Total data debitur : <b>$jmldata</b> orang <BR>"; 
 
-echo "<br><p align='center'><b>DAFTAR STATUS REKENING DEBITUR YANG MASIH AKTIF </b></p><table cellpadding=4>
+echo "<br><p align='center'><b>DAFTAR STATUS REKENING DEBITUR YANG MASIH AKTIF </b></p><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th>NO.</th>
 <th>NAMA LNC</th>
@@ -97,7 +76,7 @@ echo "<br><p align='center'><b>DAFTAR STATUS REKENING DEBITUR YANG MASIH AKTIF <
 <th>JATUH TEMPO PK</th>
 <th>HARI</th>
 <th>KETERANGAN</th>
-</tr>";
+</tr></thead>";
 
 //lANGKAH 1 : Tentukan batas, crk halaman $ posisi data
 $batas   = 100;
@@ -165,15 +144,15 @@ else {
 if ($bbb=='JATUH TEMPO'){
 Echo "
 <tr bgcolor=$warna>
-<td align='center'><font color='red'>$no</td>
-<td align='center'><font color='red'>$r[LNC]</td>
-<td><font color='red'>$r[NOAPLIKASI]</td>
-<td><font color='red'>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'>$r[produk]</td>
-<td align='center'><font color='red'>$r[tgl_jt_pk]</td>
-<td align='center'><font color='red'>$slsh</td>
-<td align='center'><font color='red'><blink>$bbb</td>
+<td align='center'>$no</td>
+<td align='center'>$r[LNC]</td>
+<td>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='center'>$r[tgl_jt_pk]</td>
+<td align='center'>$slsh</td>
+<td align='center'><blink>$bbb</td>
 </tr>";
       $no++;
 }
@@ -241,4 +220,5 @@ else{
      echo "Next > | Last >>";}
 
 ?>
+</div>
 </div>

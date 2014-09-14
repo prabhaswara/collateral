@@ -235,7 +235,7 @@ $xl    = $batas - $jmldata;
 //}
 //else{
 //     echo "Next > | Last >>";}
-echo "<p><b>$jmldata</b> DATA DEBITUR <b>LNC $lnc</b> KRITERIA <b><font color='red'>$a : <b>$cari</b>, SISA TEMPAT KOSONG : <blink>$xl </b></p>";
+echo "<p><b>$jmldata</b> DATA DEBITUR <b>LNC $lnc</b> KRITERIA <b>$a : <b>$cari</b>, SISA TEMPAT KOSONG : <blink>$xl </b></p>";
 }
 else{
 echo "<br><p class=style11><b>Maaf, data <b>$a dari LNC $lnc</b> yang anda cari tidak ada pada database !!!</b></p>";

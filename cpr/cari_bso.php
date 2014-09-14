@@ -150,19 +150,19 @@ if ($bbb=='PENDING'){
 
 echo "
 <tr bgcolor=$warna>
-<td><font color='red'>$no</font></td>
-<td align='center'><font color='red'>$r[LNC]</td>
-<td><font color='red'>$r[NOAPLIKASI]</td>
-<td><font color='red'>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'>$r[produk]</td>
-<td align='center'><font color='red'>$r[no_pk]</td>
-<td align='right'><font color='red'>$rupiah</td>
-<td align='right'><font color='red'>$rupiah1</td>
-<td align='center'><font color='red'>$r[notaris]</td>
-<td align='center'><font color='red'>$r[tgl_pk]</td>
-<td align='right'><font color='red'>$slsh</td>
-<td align='center'><font color='red'><b><BLINK>$bbb</td>
+<td>$no</font></td>
+<td align='center'>$r[LNC]</td>
+<td>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='center'>$r[no_pk]</td>
+<td align='right'>$rupiah</td>
+<td align='right'>$rupiah1</td>
+<td align='center'>$r[notaris]</td>
+<td align='center'>$r[tgl_pk]</td>
+<td align='right'>$slsh</td>
+<td align='center'><BLINK>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
 </td>
 </tr>";

@@ -231,19 +231,19 @@ else {
 if ($bbb=='JATUH TEMPO'){	
 Echo "
 <tr bgcolor=$warna>
-<td><font color='red'><b>$no</td>
-<td align='center'><font color='red'><b>$r[LNC]</td>
-<td align='center'><font color='red'><b>$r[NOAPLIKASI]</td>
-<td><font color='red'><b>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'><b>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'><b>$r[produk]</td>
-<td align='right'><font color='red'><b>$rupiah</td>
-<td align='center'><font color='red'><b>$r[tgl_jt_pk]</td>
-<td align='right'><font color='red'><b>$selisih</td>
-<td align='center'><font color='red'><b><blink>$bbb</td>
-<td align='center'><font color='red'><b>$r[no_pengikatan]</td>
-<td align='center'><font color='red'><b>$r[no_polis_ass_jiwa]</td>
-<td align='center'><font color='red'><b>$r[no_polis_ass_kerugian]</td>
+<td>$no</td>
+<td align='center'>$r[LNC]</td>
+<td align='center'>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='right'>$rupiah</td>
+<td align='center'>$r[tgl_jt_pk]</td>
+<td align='right'>$selisih</td>
+<td align='center'><blink>$bbb</td>
+<td align='center'>$r[no_pengikatan]</td>
+<td align='center'>$r[no_polis_ass_jiwa]</td>
+<td align='center'>$r[no_polis_ass_kerugian]</td>
 
 <td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
 </td>

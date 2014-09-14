@@ -1,33 +1,7 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE> CARI & EDIT DEBITUR </TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-size: 14px;
-}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-
-</p>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_debitur.php>
   <p class="style2">&nbsp;</p>
   <p class="style2">
@@ -74,8 +48,8 @@ if(empty($halaman)){
 else{
   $posisi=($halaman-1)* $batas;}
 
-$warna1 = "#A6D000";   // baris genap berwarna hijau tua
-$warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
+$warna1 = "#DBDBA6";   // baris genap berwarna tua
+$warna2 = "#F2F2DF";   // baris ganjil berwarna muda
 $warna  = $warna1;     // warna default
 
 
@@ -102,7 +76,8 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<p class=style6><b>DAFTAR DEBITUR</b><BR><br><table cellpadding=4>
+echo "<p class=style6><b>DAFTAR DEBITUR</b><BR><br><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th font-size: 14px>NO.</th>
 <th>NAMA LNC</th>
@@ -114,7 +89,7 @@ echo "<p class=style6><b>DAFTAR DEBITUR</b><BR><br><table cellpadding=4>
 <th>TGL PK</th>
 <th>MAKSIMUM KREDIT</th>
 <th>ACTION</th></th>
-</tr>";
+</tr></thead>";
 
 $no=$posisi+1;
 While ($r=mysql_fetch_array($tampil)){
@@ -173,4 +148,5 @@ echo "</table>";
 }
 }
 ?>
+</div>
 </div>

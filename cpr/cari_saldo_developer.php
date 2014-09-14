@@ -274,7 +274,7 @@ $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $jmldata	= number_format($jmldata,0,',','.');
 
-echo "<p p class=style11>TOTAL DATA DENGAN KRITERIA PENCARIAN $cari</b> ADALAH : <br><b><font color='red'>$jmldata</font> DEBITUR, TOTAL SISA SALDO :<font color='red'> Rp. $xxxy</p></b></font> ";
+echo "<p p class=style11>TOTAL DATA DENGAN KRITERIA PENCARIAN $cari</b> ADALAH : <br><b>$jmldata</font> DEBITUR, TOTAL SISA SALDO : Rp. $xxxy</p></b></font> ";
 
 
 

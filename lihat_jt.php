@@ -1,41 +1,8 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <TITLE>MONITORING JATUH TEMPO</TITLE>
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-}
-.style2 {font-family: Arial, Helvetica, sans-serif}
-body,td,th {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 9px;
-	table-layout: auto;
-}
-.style10 {font-size: 18px}
-.style11 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-}
--->
-</style>
-<p>
-  <style type="text/css">
-table { 
-   border: 1px solid #000000;
-}
-th {
-   background-color : #FF9900;
-   color            : #FFFFFF;
-}
-tr:hover{
-   background-color : #CCCCCC;
-}
-  </style>
-</p>
-<form name=biodata method=get action=lihat_jt.php>
+<?php include 'collateral_script/head.php'; ?> 
+<div style="margin:0px 50px;text-align: left;">
+    <form name=biodata method=get action=lihat_jt.php>
   <p class="style11">
     <INPUT type=radio name=pilih value=status_rekg checked>
   Status  Rekening Jatuh Tempo<br>
@@ -157,7 +124,8 @@ $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
 
-echo "<br><p class=style11><b>$a</b></p><table cellpadding=4>
+echo "<br><p class=style11><b>$a</b></p><table class='tblLookup' border='1px'>
+<thead>
 <tr>
 <th>NO.</th>
 <th width=20>NAMA LNC</th>
@@ -175,7 +143,7 @@ echo "<br><p class=style11><b>$a</b></p><table cellpadding=4>
 <th width=65>STATUS POLIS JIWA</th>
 <th width=65>STATUS POLIS KERUGIAN</th>
 <th width=10>ACTION</th></th>
-</tr>";
+</tr></thead>";
 
 $no=$posisi+1;
 While ($r=mysql_fetch_array($tampil)){
@@ -233,21 +201,21 @@ else {
 if ($bbb=='JATUH TEMPO'){	
 Echo "
 <tr bgcolor=$warna>
-<td><font color='red'><b>$no</td>
-<td align='center'><font color='red'><b>$r[LNC]</td>
-<td align='center'><font color='red'><b>$r[NOAPLIKASI]</td>
-<td><font color='red'><b>$r[NAMADEBITUR]</td>
-<td align='right'><font color='red'><b>$r[no_rekg_pinjaman]</td>
-<td align='center'><font color='red'><b>$r[produk]</td>
-<td align='right'><font color='red'><b>$rupiah</td>
-<td align='center'><font color='red'><b>$r[tgl_jt_pk]</td>
-<td align='right'><font color='red'><b>$selisih</td>
-<td align='center'><font color='red'><b><blink>$bbb</td>
-<td align='center'><font color='red'><b>$r[no_bpkb]</td>
-<td align='center'><font color='red'><b>$r[no_ajb]</td>
-<td align='center'><font color='red'><b>$r[no_pengikatan]</td>
-<td align='center'><font color='red'><b>$r[no_polis_ass_jiwa]</td>
-<td align='center'><font color='red'><b>$r[no_polis_ass_kerugian]</td>
+<td>$no</td>
+<td align='center'>$r[LNC]</td>
+<td align='center'>$r[NOAPLIKASI]</td>
+<td>$r[NAMADEBITUR]</td>
+<td align='right'>$r[no_rekg_pinjaman]</td>
+<td align='center'>$r[produk]</td>
+<td align='right'>$rupiah</td>
+<td align='center'>$r[tgl_jt_pk]</td>
+<td align='right'>$selisih</td>
+<td align='center'><blink>$bbb</td>
+<td align='center'>$r[no_bpkb]</td>
+<td align='center'>$r[no_ajb]</td>
+<td align='center'>$r[no_pengikatan]</td>
+<td align='center'>$r[no_polis_ass_jiwa]</td>
+<td align='center'>$r[no_polis_ass_kerugian]</td>
 
 <td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
 </td>
@@ -267,8 +235,8 @@ Echo "
 <td align='center'><font color='blue'><b>$r[tgl_jt_pk]</td>
 <td align='right'><font color='blue'><b>$selisih</td>
 <td align='center'><font color='blue'><b><blink>$bbb</td>
-<td align='center'><font color='red'><b>$r[no_bpkb]</td>
-<td align='center'><font color='red'><b>$r[no_ajb]</td>
+<td align='center'>$r[no_bpkb]</td>
+<td align='center'>$r[no_ajb]</td>
 <td align='center'><font color='blue'><b>$r[no_pengikatan]</td>
 <td align='center'><font color='blue'><b>$r[no_polis_ass_jiwa]</td>
 <td align='center'><font color='blue'><b>$r[no_polis_ass_kerugian]</td>
@@ -291,8 +259,8 @@ Echo "
 <td align='center'><b>$r[tgl_jt_pk]</td>
 <td align='right'><b>$selisih</td>
 <td align='center'><b>$bbb</td>
-<td align='center'><font color='red'><b>$r[no_bpkb]</td>
-<td align='center'><font color='red'><b>$r[no_ajb]</td>
+<td align='center'>$r[no_bpkb]</td>
+<td align='center'>$r[no_ajb]</td>
 <td align='center'><b>$r[no_pengikatan]</td>
 <td align='center'><b>$r[no_polis_ass_jiwa]</td>
 <td align='center'><b>$r[no_polis_ass_kerugian]</td>
@@ -344,6 +312,7 @@ echo "<br><p class=style11><b>Maaf, data <b>$a dari LNC $lnc</b> yang anda cari 
 }
 }
 ?>
+</div>
 </div>
 <!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
 <iframe width=174 height=189 name="gToday:normal:./calender/agenda.js" id="gToday:normal:./calender/agenda.js" src="./calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">

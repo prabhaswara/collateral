@@ -292,7 +292,7 @@ Echo ("NO. APLIKASI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;$noaplikasi<br>");
 Echo ("NAMA DEBITUR&nbsp;&nbsp;: &nbsp;$namadebitur<br><br><br><br>");
 
 
-echo "<blink><font color='red'><h3>Duplikasi No. SHM & No. GS/SU !!! </h3></blink>";
+echo "<blink><h3>Duplikasi No. SHM & No. GS/SU !!! </h3></blink>";
 
 $tampil= mysql_query("SELECT * FROM debitur WHERE debitur.no_surat_tanah = '$_POST[no_surat_tanah]' AND debitur.jaminan='SATUAN' AND debitur.jml_jaminan='$_POST[jml_jaminan]'");
 $jumlah= mysql_num_rows($tampil);
