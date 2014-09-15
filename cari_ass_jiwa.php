@@ -2,7 +2,6 @@
 <TITLE> PENDING POLIS ASS. JIWA </TITLE>
 <?php include 'collateral_script/head.php'; ?> 
 <div style="margin:0px 50px;text-align: left;">
-<form method=get action=cari_kendala.php>
     
 <form method=get action=cari_ass_jiwa.php>
   <p class="style1">&nbsp;</p>

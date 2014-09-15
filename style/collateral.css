@@ -4,7 +4,7 @@ body,table,div,p,td,span,a,h1,h2,h3{
 
 }
 body,table,div,p,td,span,a{
-    font-size: 12px;
+    font-size: 14px;
     margin: 0px;
     padding: 0px;
 }
@@ -102,7 +102,7 @@ select{
     padding: 5px 0px;
 }
 .menu_li li a{
-    font-size: 16px;
+    font-size: 14px;
     color:black;
 }
 .menu_li li:hover{
