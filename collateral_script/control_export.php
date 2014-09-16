@@ -1,5 +1,5 @@
 <?php
-
+ini_set('memory_limit', '-1');
 if (!empty($_POST)) {
     
     header("Pragma: public");

@@ -30,10 +30,20 @@ if (!empty($_FILES)) {
         }
     } else {
         //kalau nulis biasa
-        for ($i = 2; $i <= $baris; $i++) {
-            insertDebitur($data, $i, "manual");
-            
+        
+        if($data->val(1, 156)=="USER UPDATE")
+        {
+            for ($i = 2; $i <= $baris; $i++) {
+                insertDebitur($data, $i, "manual");
+            }
         }
+        else{
+             $_SESSION['colateral']['message'] = showMessage("Format xls salah", "error", "-ses");
+            header("location:col_import.php");
+        exit;
+        }
+        
+        
        // $_SESSION['colateral']['message']=$db_function->initTrail('xls', "1", $_SESSION['colateral']['npp']);
       
     }
