@@ -59,7 +59,7 @@ Include ("koneksi.php");
 //Get values from form
 $id=$_GET['LNC'];
 
-mysql_select_db("collateral_db");
+mysql_select_db("collateral");
 
 $del=mysql_query("delete from debitur WHERE LNC='$id'");
 

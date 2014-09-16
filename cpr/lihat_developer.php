@@ -41,7 +41,7 @@ $warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
 $warna  = $warna1;     // warna default
 
 Include ("koneksi.php");
-mysql_select_db("collateral_db");
+mysql_select_db("collateral");
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
 $tampil2     = mysql_query("SELECT * FROM developer");

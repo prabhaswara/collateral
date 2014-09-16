@@ -281,7 +281,7 @@ $tampil2    = mysql_query("SELECT * FROM data WHERE $pilih LIKE '%$cari%' AND da
 $jmldata    = mysql_num_rows($tampil2);
 $jmldata	= number_format($jmldata,0,',','.');
 
-echo "<b><p class=style11>TOTAL : <br>$jmldata</font> DEBITUR, SISA SALDO : Rp. $xxxy</p></b></font> ";
+echo "<b><p class=style11>TOTAL : <br><font color='red'>$jmldata</font> DEBITUR, SISA SALDO :<font color='red'> Rp. $xxxy</p></b></font> ";
 }
 else{
 echo "<b><p class=style11>Maaf, data <b>$a dari $pilih</b> yang anda cari tidak ada pada database !!!</b>";

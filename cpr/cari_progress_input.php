@@ -249,7 +249,7 @@ $tampil2    = mysql_query("SELECT * FROM data WHERE data.tgl_input between '$_GE
 $jmldata    = mysql_num_rows($tampil2);
 $jmldata	= number_format($jmldata,0,',','.');
 
-echo "<b><p class=style11>TOTAL DATA INPUT PERIODE $_GET[tgl_awal] S/D $_GET[tgl_akhir]: <br>$jmldata</font> DEBITUR</p></b></font> ";
+echo "<b><p class=style11>TOTAL DATA INPUT PERIODE $_GET[tgl_awal] S/D $_GET[tgl_akhir]: <br><font color='red'>$jmldata</font> DEBITUR</p></b></font> ";
 }
 else{
 echo "<b><p class=style11>Maaf, data <b>$a dari $pilih</b> yang anda cari tidak ada pada database !!!</b>";

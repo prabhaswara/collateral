@@ -54,6 +54,10 @@ $db_function = new db_function();
     if (!$sidx)
         $sidx = 1;
 
+    
+    if($limit==""){
+        $limit=10;
+    }
     $sql = "select noaplikasi,namadebitur,no_rekg_pinjaman,produk,tgl_pk,no_bpkb,
         no_pengikatan,no_polis_ass_jiwa,no_polis_ass_kerugian,tgl_update,no_trail  
         from debitur_trail where :whereInput: and userupdate='$npp' and lnc='$lnc' and
@@ -187,6 +191,9 @@ function json_sumDet() {
     $sidx = $_GET['sidx'];
     $sord = $_GET['sord'];
     
+    if($limit==""){
+        $limit=10;
+    }
     $tgl_update = $tgl . " 23:59:59";
     $sql = "select trail.noaplikasi,trail.namadebitur,trail.no_rekg_pinjaman,trail.produk,trail.tgl_pk,trail.no_bpkb,
         trail.no_pengikatan,trail.no_polis_ass_jiwa,trail.no_polis_ass_kerugian,trail.tgl_update,trail.no_trail 

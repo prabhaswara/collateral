@@ -21,7 +21,7 @@ $warna2 = "#D5F35B";   // baris ganjil berwarna hijau muda
 $warna  = $warna1;     // warna default
 
 Include ("koneksi.php");
-mysql_select_db("collateral_db");
+mysql_select_db("collateral");
 
 //echo "<br>CARI DEBITUR<a href=cari_debitur.php>
 echo "<br>DAFTAR DEBITUR<BR><br><table cellpadding=4>

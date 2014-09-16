@@ -235,26 +235,26 @@ else {
 Echo "
 
 <tr bgcolor=$warna>
-<td>$no</td>
-<td align='center'>$r[lnc]</td>
-<td align='center'>$r[produk]</td>
-<td align='center'>$r[rekg_pinjaman]</td>
-<td>$r[nama_debitur]</td>
-<td align='right'>$r[max_kredit]</td>
-<td align='center'>$r[tgl_pk]</td>
-<td align='center'>$r[developer]</td>
-<td align='center'>$r[perumahan]</td>
-<td align='center'>$r[escrow]</td>
-<td align='right'>$r[cair_1]</td>
-<td align='center'>$r[tgl_cair_1]</td>
-<td align='right'>$r[cair_2]</td>
-<td align='center'>$r[tgl_cair_2]</td>
-<td align='right'>$r[cair_3]</td>
-<td align='center'>$r[tgl_cair_3]</td>
-<td align='right'>$r[cair_4]</td>
-<td align='center'>$r[tgl_cair_4]</td>
-<td align='center'><blink>IN PROGRESS</blink></a></td>
-<td align='right'>$a1</td>
+<td><font color='red'><b>$no</td>
+<td align='center'><font color='red'><b>$r[lnc]</td>
+<td align='center'><font color='red'><b>$r[produk]</td>
+<td align='center'><font color='red'><b>$r[rekg_pinjaman]</td>
+<td><font color='red'><b>$r[nama_debitur]</td>
+<td align='right'><font color='red'><b>$r[max_kredit]</td>
+<td align='center'><font color='red'><b>$r[tgl_pk]</td>
+<td align='center'><font color='red'><b>$r[developer]</td>
+<td align='center'><font color='red'><b>$r[perumahan]</td>
+<td align='center'><font color='red'><b>$r[escrow]</td>
+<td align='right'><font color='red'><b>$r[cair_1]</td>
+<td align='center'><font color='red'><b>$r[tgl_cair_1]</td>
+<td align='right'><font color='red'><b>$r[cair_2]</td>
+<td align='center'><font color='red'><b>$r[tgl_cair_2]</td>
+<td align='right'><font color='red'><b>$r[cair_3]</td>
+<td align='center'><font color='red'><b>$r[tgl_cair_3]</td>
+<td align='right'><font color='red'><b>$r[cair_4]</td>
+<td align='center'><font color='red'><b>$r[tgl_cair_4]</td>
+<td align='center'><font color='red'><b><blink>IN PROGRESS</blink></a></td>
+<td align='right'><font color='red'><b>$a1</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -270,7 +270,7 @@ $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $jmldata	= number_format($jmldata,0,',','.');
 
-echo "<p class=style11>TOTAL DATA <b>$a LNC $lnc</b> : <br><b>$jmldata</font> DEBITUR, SISA SALDO : Rp. $xxxy</p></b></font> ";
+echo "<p class=style11>TOTAL DATA <b>$a LNC $lnc</b> : <br><b><font color='red'>$jmldata</font> DEBITUR, SISA SALDO :<font color='red'> Rp. $xxxy</p></b></font> ";
 
 }
 else{

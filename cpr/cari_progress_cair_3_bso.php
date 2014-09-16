@@ -233,24 +233,24 @@ $r[cair_4]		= number_format($r[cair_4],0,',','.');
 if ($selisih > $aaa){	
 Echo "
 <tr bgcolor=$warna>
-<td>$no</td>
-<td align='center'>$r[lnc]</td>
-<td td align='center'>$r[produk]</td>
-<td td align='center'>$r[rekg_pinjaman]</td>
-<td align='left'>$r[nama_debitur]</td>
-<td align='right'>$r[max_kredit]</td>
-<td align='center'>$r[tgl_pk]</td>
-<td align='center'>$r[developer]</td>
-<td align='center'>$r[perumahan]</td>
-<td align='center'>$r[escrow]</td>
-<td align='right'>$r[cair_1]</td>
-<td align='center'>$r[tgl_cair_1]</td>
-<td align='right'>$r[cair_2]</td>
-<td align='center'>$r[tgl_cair_2]</td>
-<td align='right'><BLINK>$a1</BLINK></td>
-<td align='center'>$selisih</td>
-<td align='center'>CEK BSO</td>
-<td align='center'>$r[cek_bso]</td>
+<td><font color='red'><b>$no</td>
+<td align='center'><font color='red'><b>$r[lnc]</td>
+<td td align='center'><font color='red'><b>$r[produk]</td>
+<td td align='center'><font color='red'><b>$r[rekg_pinjaman]</td>
+<td align='left'><font color='red'><b>$r[nama_debitur]</td>
+<td align='right'><font color='red'><b>$r[max_kredit]</td>
+<td align='center'><font color='red'><b>$r[tgl_pk]</td>
+<td align='center'><font color='red'><b>$r[developer]</td>
+<td align='center'><font color='red'><b>$r[perumahan]</td>
+<td align='center'><font color='red'><b>$r[escrow]</td>
+<td align='right'><font color='red'><b>$r[cair_1]</td>
+<td align='center'><font color='red'><b>$r[tgl_cair_1]</td>
+<td align='right'><font color='red'><b>$r[cair_2]</td>
+<td align='center'><font color='red'><b>$r[tgl_cair_2]</td>
+<td align='right'><font color='red'><b><BLINK>$a1</BLINK></td>
+<td align='center'><font color='red'><b>$selisih</td>
+<td align='center'><font color='red'>CEK BSO</td>
+<td align='center'><font color='red'><b>$r[cek_bso]</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -292,7 +292,7 @@ $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $jmldata	= number_format($jmldata,0,',','.');
 
-//echo "<p p class=style11>TOTAL DATA : <br><b>$jmldata</font> DEBITUR, TOTAL SISA SALDO : Rp. $xxxy</p></b></font> ";
+//echo "<p p class=style11>TOTAL DATA : <br><b><font color='red'>$jmldata</font> DEBITUR, TOTAL SISA SALDO :<font color='red'> Rp. $xxxy</p></b></font> ";
 
 }
 else{
