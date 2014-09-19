@@ -93,13 +93,13 @@ $db_function = new db_function();
 
     $query = $db_function->selectAllRows($sqlDt);
    
-    $responce->page = $page; 
-    $responce->total = $total_pages; 
-    $responce->records = $count;
+    $responce['page'] = $page; 
+    $responce['total'] = $total_pages; 
+    $responce['records']= $count;
     $i=0;
     foreach($query as $row){
-        $responce->rows[$i]['id']=$i; 
-        $responce->rows[$i]['cell']=array(        
+        $responce['rows'][$i]['id']=$i; 
+        $responce['rows'][$i]['cell']=array(        
             'noaplikasi'=>$row['noaplikasi'],
             'namadebitur'=>$row['namadebitur'],
             'no_rekg_pinjaman'=>$row['no_rekg_pinjaman'],
@@ -234,13 +234,13 @@ function json_sumDet() {
     
     $query = $db_function->selectAllRows($sqlDt);
    
-    $responce->page = $page; 
-    $responce->total = $total_pages; 
-    $responce->records = $count;
+    $responce['page'] = $page; 
+    $responce['total'] = $total_pages; 
+    $responce['records']= $count;
     $i=0;
     foreach($query as $row){
-        $responce->rows[$i]['id']=$i; 
-        $responce->rows[$i]['cell']=$row;
+        $responce['rows'][$i]['id']=$i; 
+        $responce['rows'][$i]['cell']=$row;
         $i++;
         
     }

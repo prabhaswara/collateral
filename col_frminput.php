@@ -14,6 +14,23 @@ include 'collateral_script/list_dropdown.php';
         <script>
 
             $(document).ready(function() {
+
+hidejkwt_covernote();
+function hidejkwt_covernote(){
+    if($("#jenis_surat_tanah").val()=="SHM"){
+        $("#jkw_covernote").hide();
+        $("#jkw_covernote").val("0");
+        
+    }
+    else{
+        $("#jkw_covernote").show();
+    }
+}
+$("#jenis_surat_tanah").change(function(){
+
+    hidejkwt_covernote();
+});
+
 <?php
 if (strtolower(cleanstr($_POST['frm']['skim_pencairan'])) == "partial drow down") {
     echo '$(".skimshowhide").show();';
@@ -506,7 +523,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                     <td>
                                         <table class="tbllayout" class='skimshowhide '>                                   
                                             <tr class='skimPKSshowhide '><td class="tambahan w180">Cair Tahap Fondasi(Rp)</td><td class="w300"><?= ht_input("cair_tahap_fondasi", "class='kendorupiah'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Fondasi Off</td><td><?= ht_input("tgl_cair_tahap_fondasi", "class='dateNormal dateMask'") ?></td></tr>
+                                            <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Fondasi</td><td><?= ht_input("tgl_cair_tahap_fondasi", "class='dateNormal dateMask'") ?></td></tr>
                                             <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-1</td><td><?= ht_input("ket_cair_tahap_fondasi") ?></td></tr>
                                             <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Topping Off(Rp)</td><td><?= ht_input("cair_tahap_topping", "class='kendorupiah'") ?></td></tr>
                                             <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Topping Off</td><td><?= ht_input("tgl_cair_tahap_topping", "class='dateNormal dateMask'") ?></td></tr>
@@ -545,8 +562,8 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 <td>
                                     <table class="tbllayout">
                                         <tr><td class="w180">Nilai Pertanggungjawaban Asuransi Kerugian</td><td class="w300"><?= ht_input("nilai_pertanggungan_ass_kerugian", "class='kendorupiah'") ?></td></tr>
-                                        <tr><td>Tanggal Asuransi Kerugian</td><td><?= ht_input("tgl_ass_kerugian", "class='dateNormal dateMask'") ?></td></tr>
-                                        <tr><td>Tanggal Jatuh Tempo Asuransi Kerugian</td><td><?= ht_input("tgl_jt_ass_kerugian", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr><td>Tgl Cover Asuransi Kerugian</td><td><?= ht_input("tgl_ass_kerugian", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr><td>Tgl Jatuh Tempo Asuransi Kerugian</td><td><?= ht_input("tgl_jt_ass_kerugian", "class='dateNormal dateMask'") ?></td></tr>
 
                                     </table>
                                 </td>
