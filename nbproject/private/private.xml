@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="collateral">
-            <file>file:/C:/xampp/htdocs/collateral/lihat_jt_ass_kerugian.php</file>
-            <file>file:/C:/xampp/htdocs/collateral/lihat_jt.php</file>
-            <file>file:/C:/xampp/htdocs/collateral/cari_ass_jiwa.php</file>
-            <file>file:/C:/xampp/htdocs/collateral/cari_ass_kerugian.php</file>
-            <file>file:/C:/xampp/htdocs/collateral/cari_ajb.php</file>
-            <file>file:/C:/xampp/htdocs/collateral/lihat_jt_ass_jw.php</file>
+            <file>file:/C:/xampp/htdocs/collateral/collateral_script/control_sumPending.php</file>
+            <file>file:/C:/xampp/htdocs/collateral/col_sumPending.php</file>
+            <file>file:/C:/xampp/htdocs/collateral/collateral_script/control_sumCairTahap.php</file>
+            <file>file:/C:/xampp/htdocs/collateral/cpr/summary.php</file>
+            <file>file:/C:/xampp/htdocs/collateral/col_sumCairTahap.php</file>
         </group>
     </open-files>
 </project-private>

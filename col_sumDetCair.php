@@ -22,10 +22,10 @@ include 'collateral_script/db_function.php';
                 }
                 
                          jQuery("#gridTbl").jqGrid({
-                url: 'col_json.php?mod=json_sumDet&tgl=<?=$_GET['tgl']?>&lnc=<?=$_GET['lnc']?>&jns=<?=$_GET['jns']?>',
+                url: 'col_json.php?mod=json_sumDetCair&lnc=<?=$_GET['lnc']?>&jns=<?=$_GET['jns']?>',
                 datatype: "json",
-                colNames: ['NO. APLIKASI', 'NAMA DEBITUR', 'NO. REK. PINJAMAN', 'JENIS PRODUK', 'TGL. PK',
-                    'NO. BPKB', 'NO. SHT','NO. POLIS JW','NO. POLIS KERUGIAN','TGL. ACTION','',''
+                colNames: ['NO. APLIKASI', 'NAMA DEBITUR', 'NO. REK. PINJAMAN',
+                    'TGL. PONDASI', 'TGL. TOPPING OFF','TGL. BAST','TGL. DOKUMEN',''
                 ],
                 colModel: [{
                     name: 'noaplikasi',
@@ -35,57 +35,38 @@ include 'collateral_script/db_function.php';
                 }, {
                     name: 'namadebitur',
                     index: 'namadebitur',
-                    width: 100, 
+                    width: 120, 
                     sortable: false
                 }, {
                     name: 'no_rekg_pinjaman',
                     index: 'no_rekg_pinjaman',
-                    width: 100, 
+                    width: 150, 
                     sortable: false
                 }, {
-                    name: 'produk',
-                    index: 'produk',
-                    width: 100, 
-                    sortable: false
-                }, {
-                    name: 'tgl_pk',
-                    index: 'tgl_pk',
-                    width: 70,
-                    sortable: false
-                   
-                }, {
-                    name: 'no_bpkb',
-                    index: 'no_bpkb',
-                    width: 100, 
-                    sortable: false
+                    name: 'tgl_cair_tahap_fondasi',
+                    index: 'tgl_cair_tahap_fondasi',
+                    width: 150, 
+                    sortable: false,
+                    align:'center'
                 },{
-                    name: 'no_pengikatan',
-                    index: 'no_pengikatan',
-                    width: 100, 
-                    sortable: false
+                    name: 'tgl_cair_tahap_topping',
+                    index: 'tgl_cair_tahap_topping',
+                    width: 150, 
+                    sortable: false,
+                    align:'center'
                 },{
-                    name: 'no_polis_ass_jiwa',
-                    index: 'no_polis_ass_jiwa',
-                    width: 100, 
-                    sortable: false
+                    name: 'tgl_cair_tahap_bast',
+                    index: 'tgl_cair_tahap_bast',
+                    width: 150, 
+                    sortable: false,
+                    align:'center'
                     
                 },{
-                    name: 'no_polis_ass_kerugian',
-                    index: 'no_polis_ass_kerugian',
-                    width: 100,
-                   sortable: false
-                }, {
-                    name: 'tgl_update',
-                    index: 'tgl_update',
-                    width: 70  , 
-                    sortable: false                  
-               
-                }, {
-                    name: 'no_trail',
-                    index: 'no_trail',
-                     hidden: true, 
-                     sortable: false
-                    
+                    name: 'tgl_cair_tahap_dok',
+                    index: 'tgl_cair_tahap_dok',
+                    width: 150,
+                   sortable: false,
+                    align:'center'
                 },
                 {name: 'showdet', width:'16',  sortable:false,align:'center',
                         formatter:function(){
@@ -155,7 +136,6 @@ include 'collateral_script/db_function.php';
             <h1 class="judulfrm">Detail <?=$_GET["jenis"]?></h1>
             
             <table style="margin:5px;">
-                <tr><td width="200px">Per Tanggal</td><td width="5px">:</td><td><?=  balikTgl($_GET["tgl"])?></td></tr>
                 <tr><td>LNC</td><td>:</td><td><?=$_GET["lnc"]?></td></tr>
                 <tr><td>
                         <select id="searchBy" style="width:150px">

@@ -24,7 +24,7 @@ if ($action != "") {
 
     $chekNoaplikasi = true;
     $noaplikasi = $_POST['frm']['noaplikasi'];
-    if (strlen($noaplikasi) == 20) {
+    if (strlen($noaplikasi) >= 18 && strlen($noaplikasi) <= 24) {
         $buf['tgl'] = substr($noaplikasi, 0, 8);
         $buf['program_kd'] = substr($noaplikasi, 8, 2);
         $buf['cab_kd'] = substr($noaplikasi, 10, 5);
@@ -263,6 +263,18 @@ if ($action != "") {
       $buf=$db_function->selectOnefield("select noaplikasi from debitur where no_rekg_pinjaman ='".$frm['no_rekg_pinjaman']."'");
       if(cleanstr($buf)!=""){
           array_push($pesanError, "Norek Pinjaman sudah ada sebelum nya dengan no aplikasi ".$buf);
+      }
+      
+      $skimPencairan=  strtolower($frm['skim_pencairan']);
+      $skimPks=  strtolower($frm['skim_pks']);
+      if($skimPencairan=="partial drow down" && in_array($skimPks,array("kavling bangun","indent") ) ){
+          
+          if($frm['progress']==""){
+            array_push($pesanError, "Progress Pembangunan harus di isi untuk Partial drow down, skim pks kavling bangun/indent ");
+          }elseif($frm["progress"]!="SELESAI"&&!in_array($frm['tgl_cair_tahap_dok'],array("","00-00-0000") )){
+            array_push($pesanError, "tanggal cair tahap dok sudah di isi harap progress pembangunan = <b>selesai</b>");
+          }
+          
       }
       
       return $pesanError;

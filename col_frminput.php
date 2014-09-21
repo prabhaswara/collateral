@@ -15,21 +15,21 @@ include 'collateral_script/list_dropdown.php';
 
             $(document).ready(function() {
 
-hidejkwt_covernote();
-function hidejkwt_covernote(){
-    if($("#jenis_surat_tanah").val()=="SHM"){
-        $("#jkw_covernote").hide();
-        $("#jkw_covernote").val("0");
-        
-    }
-    else{
-        $("#jkw_covernote").show();
-    }
-}
-$("#jenis_surat_tanah").change(function(){
+                hidejkwt_covernote();
+                function hidejkwt_covernote() {
+                    if ($("#jenis_surat_tanah").val() == "SHM") {
+                        $("#jkw_covernote").hide();
+                        $("#jkw_covernote").val("0");
 
-    hidejkwt_covernote();
-});
+                    }
+                    else {
+                        $("#jkw_covernote").show();
+                    }
+                }
+                $("#jenis_surat_tanah").change(function() {
+
+                    hidejkwt_covernote();
+                });
 
 <?php
 if (strtolower(cleanstr($_POST['frm']['skim_pencairan'])) == "partial drow down") {
@@ -46,19 +46,101 @@ if (strtolower(cleanstr($_POST['frm']['skim_pencairan'])) == "partial drow down"
     echo '$(".skimPKSshowhide").hide();';
 }
 ?>
-        
-        $('#jenis_pengikatan').change(function() {
-          
-             if($('#jenis_pengikatan').val()=='SHT'){
-                                
-                 $('#no_pengikatan').html("<option value=''>--pilih--</option><option value='ADA'>ADA</option><option value='PENDING'>PENDING</option>");
-                 
-             }else{
-                $('#no_pengikatan').html("<option value='PENDING'>PENDING</option>");
-                  
-             }
-             
-         }); 
+// rusdi start
+<?php
+$prod = strtolower(cleanstr($_POST['frm']['produk']));
+$prog = strtolower(cleanstr($_POST['frm']['program']));
+if ($prod == "BNI GRIYA" && ( $prog == "GRIYA SEHAT BAPERTARUM PEMBELIAN" ||
+        $prog == "GRIYA SEHAT JAMSOSTEK PEMBELIAN" ||
+        $prog == "GRIYA SEHAT MENPERA PEMBELIAN" ||
+        $prog == "GRIYA IDAMAN PEMBELIAN RUMAH TINGGAL" ||
+        $prog == "GRIYA SEHAT" ||
+        $prog == "GRIYA PEMBELIAN KAVLING" ||
+        $prog == "GRIYA IDAMAN PEMBELIAN RUSUN" ||
+        $prog == "GRIYA PEMBELIAN RUKO" ||
+        $prog == "GRIYA PEMBELIAN RUKAN" ||
+        $prog == "GRIYA PEMBELIAN KIOS" ||
+        $prog == "GRIYA IMPIAN PEMBELIAN APARTEMEN" ||
+        $prog == "GRIYA IMPIAN PEMBELIAN KONDOMINIUM" ||
+        $prog == "GRIYA IMPIAN PEMBELIAN VILLA" ||
+        $prog == "GRIYA PEMBELIAN KIOS" ||
+        $prog == "GRIYA SEHAT MENPERA SARUSUNA" ||
+        $prog == "GRIYA SEHAT MENPERA TEST" ||
+        $prog == "BNI GRIYA SUBSIDI MENPERA")) {
+    echo '$(".ajbshowhide").show();';
+} else {
+    echo '$(".ajbshowhide").hide();';
+}
+if ($prod == "BNI GRIYA" || $prod == "BNI GRIYA MULTIGUNA") {
+    echo '$(".fixrateshowhide").show();';
+} else {
+    echo '$(".fixrateshowhide").hide();';
+}
+?>
+                $('#noaplikasi').change(function() {
+                    ajbshowhide();
+                    fixrateshowhide();
+                });
+                ajbshowhide();
+                function ajbshowhide() {
+                    produk = $("#produk").val().toUpperCase();
+                    program = $("#program").val().toUpperCase();
+                    if (produk == "BNI GRIYA" &&
+                            (program == "GRIYA SEHAT BAPERTARUM PEMBELIAN" ||
+                                    program == "GRIYA SEHAT JAMSOSTEK PEMBELIAN" ||
+                                    program == "GRIYA SEHAT MENPERA PEMBELIAN" ||
+                                    program == "GRIYA IDAMAN PEMBELIAN RUMAH TINGGAL" ||
+                                    program == "GRIYA SEHAT" ||
+                                    program == "GRIYA PEMBELIAN KAVLING" ||
+                                    program == "GRIYA IDAMAN PEMBELIAN RUSUN" ||
+                                    program == "GRIYA PEMBELIAN RUKO" ||
+                                    program == "GRIYA PEMBELIAN RUKAN" ||
+                                    program == "GRIYA PEMBELIAN KIOS" ||
+                                    program == "GRIYA IMPIAN PEMBELIAN APARTEMEN" ||
+                                    program == "GRIYA IMPIAN PEMBELIAN KONDOMINIUM" ||
+                                    program == "GRIYA IMPIAN PEMBELIAN VILLA" ||
+                                    program == "GRIYA PEMBELIAN KIOS" ||
+                                    program == "GRIYA SEHAT MENPERA SARUSUNA" ||
+                                    program == "GRIYA SEHAT MENPERA TEST" ||
+                                    program == "BNI GRIYA SUBSIDI MENPERA"
+                                    ))
+                    {
+                        $(".ajbshowhide").show();
+                    }
+                    else {
+                        $(".ajbshowhide").hide();
+                        $(".ajbshowhide td input").val("");
+                        $(".ajbshowhide td select").val("");
+                        $("input.ajbshowhide").val("");
+                    }
+                }
+                fixrateshowhide();
+                function fixrateshowhide() {
+                    produk = $("#produk").val().toUpperCase();
+                    if (produk == "BNI GRIYA" || produk == "BNI GRIYA MULTIGUNA")
+                    {
+                        $(".fixrateshowhide").show();
+                    }
+                    else {
+                        $(".fixrateshowhide").hide();
+                        $(".fixrateshowhide td input").val("");
+                        $(".fixrateshowhide td select").val("");
+                        $("input.fixrateshowhide").val("");
+                    }
+                }
+//end rusdi
+                $('#jenis_pengikatan').change(function() {
+
+                    if ($('#jenis_pengikatan').val() == 'SHT') {
+
+                        $('#no_pengikatan').html("<option value=''>--pilih--</option><option value='ADA'>ADA</option><option value='PENDING'>PENDING</option>");
+
+                    } else {
+                        $('#no_pengikatan').html("<option value='PENDING'>PENDING</option>");
+
+                    }
+
+                });
                 $("#close_box").click(function() {
                     $("#alert-box").hide("slow");
                 });
@@ -73,37 +155,37 @@ if (strtolower(cleanstr($_POST['frm']['skim_pencairan'])) == "partial drow down"
                 $('#skim_pks').change(function() {
 
                     showHideSkimPKS();
-                });                
-                function showHideSkimPKS(){
-                    skimPencairan=$('#skim_pencairan').val().toLowerCase();
-                    skimPKS=$('#skim_pks').val().toLowerCase();
-                    
+                });
+                function showHideSkimPKS() {
+                    skimPencairan = $('#skim_pencairan').val().toLowerCase();
+                    skimPKS = $('#skim_pks').val().toLowerCase();
+
                     if (skimPencairan == "partial drow down") {
                         $(".skimshowhide").show();
-                        if(skimPKS=="kavling bangun"||skimPKS=="indent"){
+                        if (skimPKS == "kavling bangun" || skimPKS == "indent") {
                             $(".skimPKSshowhide").show();
                         }
-                        else{
+                        else {
                             $(".skimPKSshowhide").hide();
                             $(".skimPKSshowhide td input").val("");
                             $(".skimPKSshowhide td select").val("");
-                            $("input.skimPKSshowhide").val("");     
+                            $("input.skimPKSshowhide").val("");
                         }
                     }
                     else {
-                        
+
                         $(".skimshowhide").hide();
                         $(".skimshowhide td input").val("");
                         $(".skimshowhide td select").val("");
                         $("input.skimshowhide").val("");
-                        
+
                         $(".skimPKSshowhide").hide();
                         $(".skimPKSshowhide td input").val("");
                         $(".skimPKSshowhide td select").val("");
                         $("input.skimPKSshowhide").val("");
 
                     }
-                    
+
                 }
                 ///--tambahan skim pks end
 <?php
@@ -233,7 +315,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
         <form method="POST">
 
             <div style="margin:0px 50px;text-align: left;">
-                <?= $messageBox ?>
+<?= $messageBox ?>
                 <?php
                 if (isset($_SESSION['colateral']['message'])) {
                     echo $_SESSION['colateral']['message'];
@@ -257,9 +339,9 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                         </td>
                     </tr>
                 </table>
-                <?php
-                if ($showForm) {
-                    ?>
+<?php
+if ($showForm) {
+    ?>
                     <table class="tbllayout">
                         <tr>
                             <td>
@@ -268,25 +350,25 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                     <tr>
                                         <td class="w180">LNC</td><td class="w300"> 
 
-                                            <?= cleanstr($_POST['frm']['lnc']) ?>    
+    <?= cleanstr($_POST['frm']['lnc']) ?>    
                                             <?= ht_input("lnc", "", "hidden") ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class='tambahan'>Input Date</td><td>
-                                            <?= cleanstr($_POST['frm']['input_date']) ?>    
+    <?= cleanstr($_POST['frm']['input_date']) ?>    
                                             <?= ht_input("input_date", "", "hidden") ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Nama Produk</td><td>
-                                            <?= cleanstr($_POST['frm']['produk']) ?>
+    <?= cleanstr($_POST['frm']['produk']) ?>
                                             <?= ht_input("produk", "", "hidden") ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Nama Produk Program</td><td>
-                                            <?= cleanstr($_POST['frm']['program']) ?> 
+    <?= cleanstr($_POST['frm']['program']) ?> 
                                             <?= ht_input("program", "", "hidden") ?>
                                             <input type="hidden" value="<?= $program_kd ?>" id="program_kd" />
 
@@ -368,18 +450,17 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                     <tr>
                                         <td>Rate Bunga (%) <span class="red">*)</span> </td><td><?= ht_input("bunga") ?> </td>
                                     </tr>
-                                    <tr>
-                                        <td>Masa fix rate (bulan) <span class="red">*)</span> </td><td><?= ht_input("fixed_rate", "class='kendonumber'") ?>  </td>
-                                    </tr>
+                                    <tr class='fixrateshowhide'><td>Masa fix rate (bulan) <span class="red">*)</span> </td><td><?= ht_input("fixed_rate", "class='kendonumber'") ?></td></tr>
+                                    <tr class='fixrateshowhide'><td>Tgl. Berakhir Masa Fixed Rate</td><td><?= ht_input("tgl_jt_fixed_rate", "class='dateNormal'") ?></td></tr>
 
-                                    <tr><td >Tgl. Berakhir Masa Fixed Rate</td><td><?= ht_input("tgl_jt_fixed_rate", "class='dateNormal'") ?></td></tr>
+
                                 </table>
                             </td>
                         </tr>
                     </table>
-                    <?php
-                    if ($showInformasiJaminan) {
-                        ?>
+    <?php
+    if ($showInformasiJaminan) {
+        ?>
                         <h1 class="judulfrm">Informasi Jaminan</h1>
                         <table class="tbllayout">
                             <tr>
@@ -389,7 +470,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                             <td class='w180'>Status Agunan
                                             </td>
                                             <td class="w300">
-                                                <?= ht_select("jaminan", $listJnsJaminan) ?>
+        <?= ht_select("jaminan", $listJnsJaminan) ?>
                                             </td>
                                         </tr>
 
@@ -397,7 +478,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                             <td>Proses Agunan
                                             </td>
                                             <td>
-                                                <?= ht_select("proses_agunan", $ListProsesAgunan) ?>
+        <?= ht_select("proses_agunan", $ListProsesAgunan) ?>
                                             </td>
                                         </tr>
                                         <tr><td>Jenis Jaminan </td><td><?= ht_select("jenis_surat_tanah", $ListJenisSuratTanah) ?></td></tr>
@@ -408,13 +489,13 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 <td>
                                     <table class="tbllayout">
                                         <tr><td class="tambahan w180">Covernote</td><td class="w300">
-                                                <?= ht_select("no_covernote", $listAdaPending, "style='width:100px'", false) ?>
+        <?= ht_select("no_covernote", $listAdaPending, "style='width:100px'", false) ?>
                                                 <?= ht_input("no_covernote_n", "style='width:151px' class='covernoteshowhide'") ?>
                                             </td></tr>
 
                                         <tr class="covernoteshowhide"><td>Jangka Waktu Covernote(bln)</td><td><?= ht_select("jkw_covernote", $ListJkwCov) ?></td></tr>
-                                        <tr class="covernoteshowhide"><td>Tanggal Covernote</td><td><?= ht_input("tgl_covernote", "class='dateNormal dateMask'") ?></td></tr>
-                                        <tr class="covernoteshowhide"><td>Tanggal JTP Covernote</td><td><?= ht_input("tgl_jt_covernote", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr class="covernoteshowhide"><td>Tgl Covernote</td><td><?= ht_input("tgl_covernote", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr class="covernoteshowhide"><td>Tgl JTP Covernote</td><td><?= ht_input("tgl_jt_covernote", "class='dateNormal dateMask'") ?></td></tr>
 
                                     </table>
                                 </td>
@@ -429,7 +510,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                         <tr><td class="tambahan w180">Banyaknya Jaminan </td><td class='w300'><?= ht_input("jml_jaminan_n", "class='kendonumber'") ?></td>
                                         <tr><td >No IMB</td>
                                             <td> 
-                                                <?= ht_select("status_imb", $listAdaPending, "style='width:100px'") ?>
+        <?= ht_select("status_imb", $listAdaPending, "style='width:100px'") ?>
                                                 <?= ht_input("no_imb", "style='width:151px'") ?>
 
                                             </td></tr>
@@ -439,7 +520,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
 
                                         <tr><td>Jenis Pengikatan</td><td><?= ht_select("jenis_pengikatan", $listJnsPengikatan) ?></td></tr>
                                         <tr><td class="tambahan">No Pengikatan </td><td> 
-                                                <?= ht_select("no_pengikatan", $listAdaPending, "style='width:100px'") ?>
+        <?= ht_select("no_pengikatan", $listAdaPending, "style='width:100px'") ?>
                                                 <?= ht_input("no_pengikatan_n", "style='width:151px'") ?>
                                             </td>
                                         </tr>
@@ -448,12 +529,8 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                         <tr><td class="tambahan">Tanggal Penyerahan Berkas Pengikatan </td><td><?= ht_input("tgl_penyerahan_berkas", "class='dateNormal dateMask'") ?></td></tr>
                                         <tr><td class="tambahan">Proses Pengikatan </td><td><?= ht_select("proses_pengikatan", $ListJnsProsespengikatan) ?></td></tr>
 
-                                        <tr><td >No AJB</td>
-                                            <td> 
-                                                <?= ht_select("no_ajb", $listAdaPending, "style='width:100px'") ?>
-                                                <?= ht_input("no_ajb_n", "style='width:151px'") ?>
-
-                                            </td></tr>
+                                        <tr class='ajbshowhide'><td>No AJB</td><td> <?= ht_select("no_ajb", $listAdaPending, "style='width:100px'") ?>
+        <?= ht_input("no_ajb_n", "style='width:151px'") ?> </td></tr>										
 
                                         <tr>
                                             <td>Nama Pemilik Dokumen </td>
@@ -465,7 +542,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 <td>
                                     <table class="tbllayout">
                                         <tr class="showkjpp"><td class="w180">KJPP  </td><td  class="w300"> 
-                                                <?= ht_input("kjpp_flag", "", "hidden") ?>
+        <?= ht_input("kjpp_flag", "", "hidden") ?>
                                                 <select style="width:55px" readonly="readonly"><option>YA</option></select>
                                                 <?= ht_select("kjpp", $ListKjpp, "style='width:190px'"); ?>
 
@@ -489,67 +566,67 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                         </table>
                         <div class="diagonal_line">&nbsp;</div>
                         <table class="tbllayout">
-                                <tr>
-                                    <td>
-                                        <table class="tbllayout">                                   
-                                            <tr><td class="tambahan w180">Skim Pencairan </td><td class="w300"><?= ht_select("skim_pencairan", $ListSkimPencairan, "", false) ?></td></tr>  
-                                            <tr class=''><td>SIUP </td><td>                             
+                            <tr>
+                                <td>
+                                    <table class="tbllayout">                                   
+                                        <tr><td class="tambahan w180">Skim Pencairan </td><td class="w300"><?= ht_select("skim_pencairan", $ListSkimPencairan, "", false) ?></td></tr>  
+                                        <tr class=''><td>SIUP </td><td>                             
         <?= ht_select("siup", $listAdaTidak, "style='width:100px'", false) ?>
-        <?= ht_input("siup_n", "style='width:151px'") ?>
+                                                <?= ht_input("siup_n", "style='width:151px'") ?>
 
-                                                </td></tr>  
-                                            <tr class=''><td>Tanda Daftar Perusahaan </td><td>
+                                            </td></tr>  
+                                        <tr class=''><td>Tanda Daftar Perusahaan </td><td>
         <?= ht_select("tdp", $listAdaTidak, "style='width:100px'", false) ?>
-        <?= ht_input("tdp_n", "style='width:151px'") ?>
-                                                </td></tr>
-                                            <tr class=''><td>Others </td><td>
-                                                    <?= ht_select("others", $listAdaTidak, "style='width:100px'", false) ?>
-        <?= ht_input("others_n", "style='width:151px'") ?></td></tr>
-                                            <tr class=''><td>No NPWP </td><td><?= ht_input("npwp") ?></td></tr>
-                                            <tr class=''><td>No. GS/SU </td><td><?= ht_input("jml_jaminan") ?></td></tr>                                            
-                                            <tr class=''><td>No Sertifikat Tanah</td><td><?= ht_input("no_surat_tanah") ?></td></tr>
-                                            <tr class=''><td>Tgl. Sertifikat </td><td><?= ht_input("nilai_taksasi","class='dateNormal dateMask'") ?></td> </tr>
-                                            <tr class=''><td class="tambahan">Jenis Sertifikat </td><td><?= ht_select("jenis_sertifikat",$ListJenisSertifikat) ?></td></tr>
-                                            <tr class='skimshowhide'><td>Skim PKS </td><td> <?= ht_select("skim_pks", $ListSkimPKSDev) ?></td></tr>
-                                            <tr class='skimshowhide'><td>Nama Proyek </td><td><?= ht_input("nama_perumahan") ?></td></tr>
-                                            <tr class='skimshowhide'><td class="tambahan">Jenis Proyek </td><td><?= ht_input("jenis_proyek") ?></td></tr>
-                                            <tr class='skimshowhide'><td class="tambahan">Kategori Proyek </td><td><?= ht_input("kategori_proyek") ?></td></tr>
-                                            <tr class='skimshowhide'><td class="tambahan">Nomor PKS </td><td><?= ht_input("no_pks") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Total Unit di Bangun </td><td><?= ht_input("total_unitdibangun", "class='kendonumber'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Penguasaan Sertifikat Induk</td><td><?= ht_input("penguasaan_sertifikat") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">No Rekening Escrow</td><td><?= ht_input("no_rek_escrow") ?></td></tr>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table class="tbllayout" class='skimshowhide '>                                   
-                                            <tr class='skimPKSshowhide '><td class="tambahan w180">Cair Tahap Fondasi(Rp)</td><td class="w300"><?= ht_input("cair_tahap_fondasi", "class='kendorupiah'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Fondasi</td><td><?= ht_input("tgl_cair_tahap_fondasi", "class='dateNormal dateMask'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-1</td><td><?= ht_input("ket_cair_tahap_fondasi") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Topping Off(Rp)</td><td><?= ht_input("cair_tahap_topping", "class='kendorupiah'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Topping Off</td><td><?= ht_input("tgl_cair_tahap_topping", "class='dateNormal dateMask'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td>Keterangan-2</td><td><?= ht_input("ket_cair_tahap_topping") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Bast(Rp)</td><td><?= ht_input("cair_tahap_bast", "class='kendorupiah'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Bast</td><td><?= ht_input("tgl_cair_tahap_bast", "class='dateNormal dateMask'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-3</td><td><?= ht_input("ket_cair_tahap_bast") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Dokumen(Rp)</td><td><?= ht_input("cair_tahap_dok", "class='kendorupiah'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Dokumen</td><td><?= ht_input("tgl_cair_tahap_dok", "class='dateNormal dateMask'") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-4</td><td><?= ht_input("ket_cair_tahap_dok") ?></td></tr>
-                                            <tr class='skimPKSshowhide'><td>Progress Pembangunan</td><td><?= ht_select("progress", $ListSelesaiBelum) ?></td></tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        <?php
-                    }
-                    if ($showInformasiAsuransiKerugian) {
-                        ?>
+                                                <?= ht_input("tdp_n", "style='width:151px'") ?>
+                                            </td></tr>
+                                        <tr class=''><td>Others </td><td>
+        <?= ht_select("others", $listAdaTidak, "style='width:100px'", false) ?>
+                                                <?= ht_input("others_n", "style='width:151px'") ?></td></tr>
+                                        <tr class=''><td>No NPWP </td><td><?= ht_input("npwp") ?></td></tr>
+                                        <tr class=''><td>No. GS/SU </td><td><?= ht_input("jml_jaminan") ?></td></tr>                                            
+                                        <tr class=''><td>No Sertifikat Tanah</td><td><?= ht_input("no_surat_tanah") ?></td></tr>
+                                        <tr class=''><td>Tgl. Sertifikat </td><td><?= ht_input("nilai_taksasi", "class='dateNormal dateMask'") ?></td> </tr>
+                                        <tr class=''><td class="tambahan">Jenis Sertifikat </td><td><?= ht_select("jenis_sertifikat", $ListJenisSertifikat) ?></td></tr>
+                                        <tr class='skimshowhide'><td>Skim PKS </td><td> <?= ht_select("skim_pks", $ListSkimPKSDev) ?></td></tr>
+                                        <tr class='skimshowhide'><td>Nama Proyek </td><td><?= ht_input("nama_perumahan") ?></td></tr>
+                                        <tr class='skimshowhide'><td class="tambahan">Jenis Proyek </td><td><?= ht_input("jenis_proyek") ?></td></tr>
+                                        <tr class='skimshowhide'><td class="tambahan">Kategori Proyek </td><td><?= ht_input("kategori_proyek") ?></td></tr>
+                                        <tr class='skimshowhide'><td class="tambahan">Nomor PKS </td><td><?= ht_input("no_pks") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Total Unit di Bangun </td><td><?= ht_input("total_unitdibangun", "class='kendonumber'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Penguasaan Sertifikat Induk</td><td><?= ht_input("penguasaan_sertifikat") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">No Rekening Escrow</td><td><?= ht_input("no_rek_escrow") ?></td></tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="tbllayout" class='skimshowhide '>                                   
+                                        <tr class='skimPKSshowhide '><td class="tambahan w180">Cair Tahap Pondasi(Rp)</td><td class="w300"><?= ht_input("cair_tahap_fondasi", "class='kendorupiah'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Pondasi</td><td><?= ht_input("tgl_cair_tahap_fondasi", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-1</td><td><?= ht_input("ket_cair_tahap_fondasi") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Topping Off(Rp)</td><td><?= ht_input("cair_tahap_topping", "class='kendorupiah'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Topping Off</td><td><?= ht_input("tgl_cair_tahap_topping", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td>Keterangan-2</td><td><?= ht_input("ket_cair_tahap_topping") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Bast(Rp)</td><td><?= ht_input("cair_tahap_bast", "class='kendorupiah'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Bast</td><td><?= ht_input("tgl_cair_tahap_bast", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-3</td><td><?= ht_input("ket_cair_tahap_bast") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Cair Tahap Dokumen(Rp)</td><td><?= ht_input("cair_tahap_dok", "class='kendorupiah'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Tanggal Cair Tahap Dokumen</td><td><?= ht_input("tgl_cair_tahap_dok", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td class="tambahan">Keterangan-4</td><td><?= ht_input("ket_cair_tahap_dok") ?></td></tr>
+                                        <tr class='skimPKSshowhide'><td>Progress Pembangunan</td><td><?= ht_select("progress", $ListSelesaiBelum) ?></td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+        <?php
+    }
+    if ($showInformasiAsuransiKerugian) {
+        ?>
                         <h1 class="judulfrm">Informasi Asuransi Kerugian</h1>
                         <table class="tbllayout">
                             <tr>
                                 <td>
                                     <table class="tbllayout">
                                         <tr><td class="tambahan">Nomor Polis Asuransi Kerugian</td><td>                                                      
-                                                <?= ht_select("no_polis_ass_kerugian", $listAdaPendingTidak, "style='width:100px'") ?>
+        <?= ht_select("no_polis_ass_kerugian", $listAdaPendingTidak, "style='width:100px'") ?>
                                                 <?= ht_input("no_polis_ass_kerugian_n", "style='width:151px'") ?>
                                             </td>
                                         </tr>
@@ -570,17 +647,17 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
 
                             </tr>
                         </table>
-                        <?php
-                    }
-                    if ($showInformasiAsuransiJiwa) {
-                        ?>
+        <?php
+    }
+    if ($showInformasiAsuransiJiwa) {
+        ?>
                         <h1 class="judulfrm">Informasi Asuransi Jiwa</h1>
                         <table class="tbllayout">
                             <tr>
                                 <td>
                                     <table class="tbllayout">
                                         <tr><td class="tambahan">Nomor Polis Asuransi Jiwa</td><td>
-                                                <?= ht_select("no_polis_ass_jiwa", $listAdaPendingTidak, "style='width:100px'") ?>
+        <?= ht_select("no_polis_ass_jiwa", $listAdaPendingTidak, "style='width:100px'") ?>
                                                 <?= ht_input("no_polis_ass_jiwa_n", "style='width:151px'") ?>
                                             </td>
                                         </tr>
@@ -594,24 +671,24 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 <td>
                                     <table class="tbllayout">
                                         <tr><td class="w180">Nilai Pertanggungjawaban Asuransi Jiwa</td><td class="w300"><?= ht_input("nilai_pertanggungan_ass_jiwa", "class='kendorupiah'") ?></td></tr>
-                                        <tr><td>Tanggal Asuransi Jiwa</td><td><?= ht_input("tgl_ass_jiwa", "class='dateNormal dateMask'") ?></td></tr>
-                                        <tr><td>Tanggal Jatuh Tempo Asuransi Jiwa</td><td><?= ht_input("tgl_jt_ass_jiwa", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr><td>Tgl Cover Asuransi Jiwa</td><td><?= ht_input("tgl_ass_jiwa", "class='dateNormal dateMask'") ?></td></tr>
+                                        <tr><td>Tgl Jatuh Tempo Asuransi Jiwa</td><td><?= ht_input("tgl_jt_ass_jiwa", "class='dateNormal dateMask'") ?></td></tr>
 
                                     </table>
                                 </td>
                             </tr>
                         </table>
-                        <?php
-                    }
-                    if ($showInformasiFleksi) {
-                        ?>
+        <?php
+    }
+    if ($showInformasiFleksi) {
+        ?>
                         <h1 class="judulfrm">Informasi Fleksi</h1>
                         <table class="tbllayout">
                             <tr>
                                 <td>
                                     <table class="tbllayout">
                                         <tr><td class="w180">No Jaminan</td><td class="w300">
-                                                <?= ht_select("no_jaminan_fleksi", $listAdaPending, "style='width:100px'") ?>
+        <?= ht_select("no_jaminan_fleksi", $listAdaPending, "style='width:100px'") ?>
                                                 <?= ht_input("no_jaminan_fleksi_n", "style='width:151px'") ?>
                                             </td></tr>
                                         <tr><td>Jenis Jaminan </td><td class="w300"><?= ht_select("jns_jaminan_fleksi", $ListJnsJaminanFleksi) ?></td></tr>
@@ -621,17 +698,17 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
 
                             </tr>
                         </table>
-                        <?php
-                    }
-                    if ($showInformasiOto) {
-                        ?>
+        <?php
+    }
+    if ($showInformasiOto) {
+        ?>
                         <h1 class="judulfrm">Informasi Oto</h1>
                         <table class="tbllayout">
                             <tr>
                                 <td>
                                     <table class="tbllayout"> 
                                         <tr><td>No BPKB</td><td>                        
-                                                <?= ht_select("no_bpkb", $listAdaPending, "style='width:100px'") ?>
+        <?= ht_select("no_bpkb", $listAdaPending, "style='width:100px'") ?>
                                                 <?= ht_input("no_bpkb_n", "style='width:151px'") ?>                                                    
                                             </td>
                                         </tr>
@@ -651,10 +728,10 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 </td>
                             </tr>
                         </table>
-                        <?php
-                    }
-                    if ($showEmergencyKon) {
-                        ?>
+        <?php
+    }
+    if ($showEmergencyKon) {
+        ?>
                         <h1 class="judulfrm">Emergeny Contact</h1>
                         <table class="tbllayout">
                             <tr>
@@ -675,7 +752,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 <td>
                                     <table class="tbllayout">
                                         <tr>
-                                            <td class="w180">Alamat Kantor </td>
+                                            <td class="w180">Alamat </td>
                                             <td class="w300"><?= ht_textarea("alamat_kantor") ?></td>
                                         </tr>
 
@@ -688,10 +765,10 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                 </td>
                             </tr>
                         </table>
-                        <?php
-                    }
-                    if ($showInformasiLain) {
-                        ?>
+        <?php
+    }
+    if ($showInformasiLain) {
+        ?>
                         <h1 class="judulfrm">Informasi Lain</h1>
                         <table class="tbllayout">
                             <tr>
@@ -740,11 +817,11 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
 
                         </table>
 
-                        <?php
-                    }
+        <?php
+    }
 
-                    if ($showDtLunas) {
-                        ?>
+    if ($showDtLunas) {
+        ?>
                         <h1 class="judulfrm">Data Pelunasan</h1>
                         <table class="tbllayout">
                             <tr>
@@ -753,7 +830,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                                         <tr>
                                             <td class="w180">Status Penyerahan</td>
                                             <td class="w300">
-                                                <?= ht_select("serah", $ListSerah) ?>
+        <?= ht_select("serah", $ListSerah) ?>
 
                                             </td>
                                         </tr>
@@ -780,12 +857,12 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                             </tr>
                         </table>
                         <h1 class="judulfrm">Memo</h1>
-                        <?= ht_textarea("memo", 'style="width:90%;height:180px;margin: 10px"') ?>
+        <?= ht_textarea("memo", 'style="width:90%;height:180px;margin: 10px"') ?>
                         </table>
 
-                        <?php
-                    }
-                    ?>
+        <?php
+    }
+    ?>
                     <div></div>
                     <input type="submit" name="action" value="simpan" style='margin:10px;' />
     <?php
@@ -796,15 +873,3 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
         </form>
     </body>
 </html>
-<?php /*
-  status_rekg
-  no_bpkb
-  no_ajb
-  no_pengikatan
-  no_polis_ass_jiwa
-  no_polis_ass_kerugian
-  status_rekg
- * 
- * 
- */
-?>

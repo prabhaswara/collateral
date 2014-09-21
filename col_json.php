@@ -27,6 +27,11 @@ switch ($mod) {
         json_sumDet();
 
     break;
+    case "json_sumDetCair":
+
+        json_sumDetCair();
+
+    break;
 
 case "json_produktifitasDet":
 
@@ -239,6 +244,101 @@ function json_sumDet() {
     $responce['records']= $count;
     $i=0;
     foreach($query as $row){
+        $responce['rows'][$i]['id']=$i; 
+        $responce['rows'][$i]['cell']=$row;
+        $i++;
+        
+    }
+    echo json_encode($responce);
+
+    exit;
+}
+function json_sumDetCair() {
+    $db_function = new db_function();
+    
+    $lnc = $_GET['lnc'];
+    $jns = $_GET['jns'];
+
+    $page = $_GET['page'];
+    $limit = $_GET['rows'];
+    $sidx = $_GET['sidx'];
+    $sord = $_GET['sord'];
+    
+    if($limit==""){
+        $limit=10;
+    }
+    $tgl_update = $tgl . " 23:59:59";
+    $sql = "select trail.noaplikasi,trail.namadebitur,trail.no_rekg_pinjaman,trail.tgl_pk".
+           ",tgl_cair_tahap_fondasi,tgl_cair_tahap_topping,tgl_cair_tahap_bast,tgl_cair_tahap_dok from debitur trail ".
+           "where lnc='$lnc' and skim_pencairan='PARTIAL DROW DOWN' and  skim_pks in('KAVLING BANGUN','INDENT') ".
+           "";
+
+   if(isset($_GET['searchValue']) && trim($_GET['searchValue'])!="" ){
+        $sql.=" and ".$_GET['searchBy']." like '%".$_GET['searchValue']."%' ";
+    }
+    
+   switch ($jns){
+       case "debitur";
+       
+       break;
+       
+       case "pondasi";
+           $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_fondasi  in(null,'','0000-00-00')";
+       break;
+       
+       case "topping";
+           $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_fondasi >'0000-00-00' and tgl_cair_tahap_topping in(null,'','0000-00-00')";
+       break;
+   
+       case "bast";
+           $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_topping >'0000-00-00' and tgl_cair_tahap_bast in(null,'','0000-00-00')";
+       break;
+       
+       case "dokumen";
+            $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_bast >'0000-00-00' and tgl_cair_tahap_dok in(null,'','0000-00-00')";
+       break;
+       
+       case "inprogress";
+           $sql.="and progress='BELUM SELESAI'";
+       break;
+   
+       case "selesai";
+           $sql.="AND progress='SELESAI'";
+       
+       break;
+       
+   }
+    $sqlCount = "select count(*) from ($sql) test";
+    
+  
+    $count = $db_function->selectOnefield($sqlCount);
+
+    if ($count > 0 && $limit > 0) {
+        $total_pages = ceil($count / $limit);
+    } else {
+        $total_pages = 0;
+    }
+    if ($page > $total_pages)
+        $page = $total_pages;
+    $start = $limit * $page - $limit;
+    if ($start < 0)
+        $start = 0;
+
+    $sqlDt = "select * from ($sql)temp LIMIT $start , $limit";
+    
+    $query = $db_function->selectAllRows($sqlDt);
+   
+    $responce['page'] = $page; 
+    $responce['total'] = $total_pages; 
+    $responce['records']= $count;
+    $i=0;
+    foreach($query as $row){
+        
+        $row['tgl_pk']=  balikTgl($row['tgl_pk']);
+        $row['tgl_cair_tahap_fondasi']=  balikTgl($row['tgl_cair_tahap_fondasi']);
+        $row['tgl_cair_tahap_topping']=  balikTgl($row['tgl_cair_tahap_topping']);
+        $row['tgl_cair_tahap_bast']=  balikTgl($row['tgl_cair_tahap_bast']);
+        $row['tgl_cair_tahap_dok']=  balikTgl($row['tgl_cair_tahap_dok']);
         $responce['rows'][$i]['id']=$i; 
         $responce['rows'][$i]['cell']=$row;
         $i++;

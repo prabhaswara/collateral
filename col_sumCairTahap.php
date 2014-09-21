@@ -31,21 +31,48 @@ include 'collateral_script/control_sumCairTahap.php';
                     <table class="tblLookup" border="1px" style="width:100%">
                         <thead>
                             <tr>
-                                <th align="center" rowspan="2">LNC</th>
+                                <th align="center" rowspan="2" width="80px">LNC</th>
                                 <th align="center" rowspan="2">TOTAL DEBITUR</th>
                                 <th align="center" colspan="4">PEMBANGUNAN IN PROGRESS</th>
                                 <th align="center" colspan="2">TOTAL PENCAIRAN BERTAHAP</th>
                                 <th align="center" rowspan="2">PROGRESS PENYELESAIAN</th>
                             </tr>
                             <tr>
-                                <th align="center">PONDASI</th>
-                                <th align="center">TOPPING OFF</th>
-                                <th align="center">BAST</th>
-                                <th align="center">DOKUMEN</th>
-                                <th align="center">IN PROGRESS</th>
-                                <th align="center">SELESAI</th>
+                                <th align="center" width="120px">PONDASI</th>
+                                <th align="center" width="120px">TOPPING OFF</th>
+                                <th align="center" width="120px">BAST</th>
+                                <th align="center" width="120px">DOKUMEN</th>
+                                <th align="center" width="120px">IN PROGRESS</th>
+                                <th align="center" width="120px">SELESAI</th>
                             </tr>
                         </thead>
+                        
+                        <tbody>
+                            <?php
+                            foreach ($dataLNC as $lnc) {
+                                $inprogress=  intval($countFondasi[$lnc['singkatan']])+
+                                             intval($countTopping[$lnc['singkatan']])+
+                                             intval($countBast[$lnc['singkatan']])+
+                                             intval($countTahapDok[$lnc['singkatan']]);
+                                $persen= floatval($countSelesai[$lnc['singkatan']])/floatval($countDebitur[$lnc['singkatan']])*100;
+                                                
+                            ?> 
+                            <tr>
+                                <td  style="text-align: center"><?= $lnc['singkatan'] ?></td>                        
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=debitur&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countDebitur[$lnc['singkatan']])) ?></a></td> 
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=pondasi&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countFondasi[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=topping&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countTopping[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=bast&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countBast[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=dokumen&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countTahapDok[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=inprogress&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($inprogress)) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=selesai&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countSelesai[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><?=$persen?> %</td>
+                                        
+                            </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
 
                     </table>
 
