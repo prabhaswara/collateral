@@ -133,7 +133,19 @@ include 'collateral_script/db_function.php';
     </head>
     <body>           
         <div style="margin:0px 50px;text-align: left;">
-            <h1 class="judulfrm">Detail <?=$_GET["jenis"]?></h1>
+            <h1 class="judulfrm">Detail 
+                <?php
+                    $jns=$_GET["jns"];
+                 
+                    if($jns=="debitur"){
+                        echo "Total Debitur";         
+                    }                    
+                    else{
+                       echo ucfirst($jns);
+                    }
+                    
+                ?>
+            </h1>
             
             <table style="margin:5px;">
                 <tr><td>LNC</td><td>:</td><td><?=$_GET["lnc"]?></td></tr>

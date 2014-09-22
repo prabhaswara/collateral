@@ -1,29 +1,17 @@
 <?php include 'collateral_script/session_head.php'; ?>
-<TITLE>PENDING POLIS ASS. KERUGIAN</TITLE>
 <?php include 'collateral_script/head.php'; ?> 
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
+<TITLE>PENDING POLIS ASS. KERUGIAN</TITLE>
 <div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_ass_kerugian.php>
   <p class="style1">&nbsp;</p>
   <p class="style1"><span class="style1">Nama LNC :
-    <select size="1" name="LNC">
-      <option>= SELECT =</option>
-      <option>MDL</option>
-      <option>PBL</option>
-      <option>PLL</option>
-      <option>BAL</option>
-      <option>SML</option>
-      <option>YGL</option>
-      <option>SBL</option>
-      <option>DPL</option>
-      <option>BJL</option>
-      <option>MKL</option>
-      <option>MNL</option>
-      <option>JKL</option>
-              </select>
+    <?=selectLNC("LNC") ?>
   </span> </p>
   <p class="style1">
     <input type=radio name=pilih value=asuransi_kerugian checked>
-   Nama Perusahaan Asuransi Kerugian<br><input type=text name=cari size=50>
+   Nama Perusahaan Asuransi Kerugian<br><?=inputnya("cari") ?>
   </p>
   <p class="style2">
   
@@ -60,7 +48,7 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_kerugian = 'PENDING' AND debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
+$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_kerugian = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -177,7 +165,7 @@ echo "
 echo "</table>";
 
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_kerugian = 'PENDING' AND debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk ASC";
+$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_kerugian = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ASC";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);

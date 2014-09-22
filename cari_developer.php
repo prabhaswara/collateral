@@ -1,31 +1,19 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <?php include 'collateral_script/head.php'; ?> 
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
 <TITLE> DEVELOPER PENDING PENGIKATAN</TITLE>
 <div style="margin:0px 50px;text-align: left;">
     
 <form method=get action=cari_developer.php>
   <p class="style1">&nbsp;</p>
   <p class="style1"><span class="style1">Nama LNC</span> :
-    <select size="1" name="LNC">
-      <option>= SELECT =</option>
-      <option>MDL</option>
-      <option>PBL</option>
-      <option>PLL</option>
-      <option>BAL</option>
-      <option>SML</option>
-      <option>YGL</option>
-      <option>SBL</option>
-      <option>DPL</option>
-      <option>BJL</option>
-      <option>MKL</option>
-      <option>MNL</option>
-      <option>JKL</option>
-    </select>
+    <?=selectLNC("LNC") ?>
   </p>
   <p class="style1">
     <input type=radio name=pilih value=developer checked>
    Nama Developer<br>
-   <input type=text name=cari size=50>
+   <?=inputnya("cari") ?>
   </p>
   <p class="style2">
   
@@ -63,7 +51,7 @@ $cari  =$_GET['cari'];
 $ht =$_GET['no_pengikatan'];
 $lnc=$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk LIMIT $posisi,$batas");
+$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk LIMIT $posisi,$batas");
 
 $jumlah= mysql_num_rows($tampil);
 
@@ -133,7 +121,7 @@ $rupiah1=number_format($nht,0,',','.');
 $slsh= number_format($selisih,0,',','.');
 
 //ngitung jumlah pada tabel
-$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND debitur.LNC LIKE '%$lnc%' ";
+$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ";
   $result = mysql_query($allx) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
@@ -194,7 +182,7 @@ echo "
 echo "<br></table>";
 Echo "<b>TOTAL MAKSIMUM KREDIT : Rp. $xxx,-</b>";
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND debitur.LNC LIKE '%$lnc%'";
+$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")."";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);

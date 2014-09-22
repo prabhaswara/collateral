@@ -1,5 +1,61 @@
 <?php
 
+function inputnya($name, $atribut = "", $type = "text"){
+    $value = cleanstr($_POST[$name]);    
+    $value = in_array($value, array(null,""))?$_GET[$name]:$value;
+  
+    return "<input type='$type' id='$name' name='$name' $atribut value='$value' />";
+}
+function selectnya($name,$options){
+    
+    $value = cleanstr($_POST[$name]);    
+    $value = in_array($value, array(null,""))?$_GET[$name]:$value;
+    
+    $return = "<select id='$name' name='$name' $atribut>";    
+   
+    $return.="<option value='all'>- All -</option>";
+
+    if (!empty($options))
+        foreach ($options as $optVal => $optName) {
+            $selected = ($optVal == $value) ? "selected='selected'" : "";
+            $return.=
+                    "<option value='$optVal' $selected >$optName</option>";
+        }
+
+    $return.=
+            "</select>";
+
+    return $return;
+}
+function selectLNC($name){
+    $db_function=new db_function();
+    
+    $options=array();
+    $data = $db_function->selectAllRows("select singkatan from master_cab order by singkatan asc");
+    foreach ($data as $row) {
+        $options[$row["singkatan"]] = $row["singkatan"];
+    }
+
+    $value = cleanstr($_POST[$name]);    
+    $value = in_array($value, array(null,""))?$_GET[$name]:$value;
+    
+    $return = "<select id='$name' name='$name' $atribut>";    
+   
+    $return.="<option value='all'>- All -</option>";
+
+    if (!empty($options))
+        foreach ($options as $optVal => $optName) {
+            $selected = ($optVal == $value) ? "selected='selected'" : "";
+            $return.=
+                    "<option value='$optVal' $selected >$optName</option>";
+        }
+
+    $return.=
+            "</select>";
+
+    return $return;
+}
+
 function numsep($number){
     return number_format($number,0,",",".");
 }
@@ -89,6 +145,9 @@ function isDateDB($date){
 }
 function balikTgl($tgl){
     return implode("-", array_reverse(explode("-", $tgl)) );
+}
+function cleanDate($tgl){
+    return in_array($tgl, array("00-00-0000","0000-00-00"))?"":$tgl;
 }
 function balikTglDate($tgl,$jam=false){
     $pecah=  explode(" ",$tgl);

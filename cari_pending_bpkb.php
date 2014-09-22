@@ -1,25 +1,14 @@
 <?php include 'collateral_script/session_head.php'; ?>
+<?php include 'collateral_script/head.php'; ?>
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
+
 <TITLE>MONITORING BPKB</TITLE>
-<?php include 'collateral_script/head.php'; ?> 
 <div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_pending_bpkb.php>
   <p class="style2">&nbsp;</p>
   <p class="style2"><span class="style10">Nama LNC</span> : <span class="style2">
-    <select size="1" name="LNC">
-      <option>= SELECT =</option>
-      <option>MDL</option>
-      <option>PBL</option>
-      <option>PLL</option>
-      <option>BAL</option>
-      <option>SML</option>
-      <option>YGL</option>
-      <option>SBL</option>
-      <option>DPL</option>
-      <option>BJL</option>
-      <option>MKL</option>
-      <option>MNL</option>
-      <option>JKL</option>
-    </select>
+    <?=selectLNC("LNC") ?>
   </span></p>
   <p class="style11">
     <INPUT type=radio name=pilih value=no_bpkb checked>
@@ -85,8 +74,9 @@ elseif($pilih == "no_ajb")
 {
 $a = "MONITORING AKTA JUAL BELI";
 }
-
-$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='PENDING' AND LNC='$lnc' 
+echo "SELECT * FROM debitur WHERE $pilih='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")."
+                    ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas";
+$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")."
                     ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
@@ -200,7 +190,7 @@ echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'PENDING' AND LNC LIKE '$lnc' ORDER BY debitur.tgl_pk ASC");
+$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ASC");
 $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $file       = "cari_pending_bpkb.php";

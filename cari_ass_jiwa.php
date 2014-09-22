@@ -1,4 +1,6 @@
 <?php include 'collateral_script/session_head.php'; ?>
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
 <TITLE> PENDING POLIS ASS. JIWA </TITLE>
 <?php include 'collateral_script/head.php'; ?> 
 <div style="margin:0px 50px;text-align: left;">
@@ -6,26 +8,12 @@
 <form method=get action=cari_ass_jiwa.php>
   <p class="style1">&nbsp;</p>
   <p class="style1">Nama LNC :
-    <select size="1" name="LNC">
-      <option>= SELECT =</option>
-      <option>MDL</option>
-      <option>PBL</option>
-      <option>PLL</option>
-      <option>BAL</option>
-      <option>SML</option>
-      <option>YGL</option>
-      <option>SBL</option>
-      <option>DPL</option>
-      <option>BJL</option>
-      <option>MKL</option>
-      <option>MNL</option>
-      <option>JKL</option>
-    </select>
+     <?=selectLNC("LNC") ?>
   </p>
   <p class="style1">
     <input type=radio name=pilih value=asuransi_jiwa checked>
    Nama Perusahaan Asuransi Jiwa<br>
-   <input type=text name=cari size=50>
+   <?=inputnya("cari") ?>
   </p>
   <p class="style2">
   
@@ -62,7 +50,7 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' AND debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
+$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -127,7 +115,7 @@ $rupiah=number_format($max,0,',','.');
 $rupiah1=number_format($nht,0,',','.');
 $slsh=number_format($selisih,0,',','.');
 
-$allx  = "(SELECT sum(maksimum_kredit) FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' AND debitur.LNC LIKE '%$lnc%')";
+$allx  = "(SELECT sum(maksimum_kredit) FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'").")";
 
 if ($bbb==1){
     $bbb=$count;

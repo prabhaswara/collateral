@@ -34,7 +34,7 @@ $sql="select lnc,count(tgl_cair_tahap_dok)jml from debitur where progress='SELES
 $countSelesai  =  pecahData($db_function->selectAllRows($sql));
 */
 $sql="select lnc,count(tgl_cair_tahap_fondasi)jml from debitur where  skim_pencairan='PARTIAL DROW DOWN' ".
-     "and skim_pks in('KAVLING BANGUN','INDENT') group by lnc";
+     "and skim_pks in('KAVLING BANGUN','INDENT') and progress <> '' group by lnc";
 $countDebitur =  pecahData($db_function->selectAllRows($sql));
 
 $sql="select lnc,count(tgl_cair_tahap_fondasi)jml from debitur where progress='BELUM SELESAI' and skim_pencairan='PARTIAL DROW DOWN' ".

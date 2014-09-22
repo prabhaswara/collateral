@@ -1,6 +1,8 @@
 <?php include 'collateral_script/session_head.php'; ?>
-<TITLE>BOOKING</TITLE>
 <?php include 'collateral_script/head.php'; ?> 
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
+<TITLE>BOOKING</TITLE>
 <div style="margin:0px 50px;text-align: left;">
     
     <form name=biodata method=get action=lihat_booking.php>
@@ -12,21 +14,7 @@
     <tr>
       <td width="14%" style="border-style: none; border-width: medium" height="29"> <font face="Arial" size="2">Nama LNC</font></td>
       <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <select size="1" name="LNC">
-          <option>= SELECT =</option>
-          <option>MDL</option>
-          <option>PBL</option>
-          <option>PLL</option>
-          <option>BAL</option>
-          <option>SML</option>
-          <option>YGL</option>
-          <option>SBL</option>
-          <option>DPL</option>
-          <option>BJL</option>
-          <option>MKL</option>
-          <option>MNL</option>
-          <option>JKL</option>
-        </select>
+        <?=selectLNC("LNC") ?>
       </span></span>
       </font></td>
     </tr>
@@ -35,7 +23,8 @@
     <tr>
       <td width="14%" style="border-style: none; border-width: medium" height="29"> <font size="2" face="Arial">Tgl. Awal </font></td>
       <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <input type="date" name="tgl_awal" size="10" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;">
+                 <?=inputnya("tgl_awal",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
+  
 </span></span> </font></td>
     </tr>
   </table>
@@ -43,8 +32,8 @@
     <tr>
       <td width="14%" style="border-style: none; border-width: medium" height="29"> <font size="2" face="Arial">Tgl. Akhir</font></td>
       <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-      <input type=date name=tgl_akhir size="10" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_akhir);return false;">
-</span></span> </font></td>
+      <?=inputnya("tgl_akhir",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_akhir);return false;"') ?>
+              </span></span> </font></td>
     </tr>
   </table>
   <p class="style11">
@@ -120,7 +109,7 @@ elseif($pilih == "no_ajb")
 $a = "MONITORING AKTA JUAL BELI";
 }
 
-$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY produk ASC");
+$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY produk ASC");
 $jumlah= mysql_num_rows($tampil);
 
 
@@ -149,56 +138,57 @@ else{
   $warna = $warna1;
 }
 //ngitung jumlah pada tabel
-$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($allx) or die 
+$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+
+$result = mysql_query($allx) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $xxx = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah BWU pada tabel
-$all1  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='BWU' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all1  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='BWU' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all1) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $bwu = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah GRIYA pada tabel
-$all2  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='GRIYA' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all2  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='GRIYA' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all2) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $griya = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah GRIYA MULTIGUNA pada tabel
-$all3  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='GRIYA MULTIGUNA' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all3  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='GRIYA MULTIGUNA' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all3) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $griyam = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah MULTIGUNA pada tabel
-$all4  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='MULTIGUNA' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all4  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='MULTIGUNA' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all4) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $multi = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah OTO pada tabel
-$all5  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='OTO' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all5  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='OTO' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all5) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $oto = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah FLEKSI pada tabel
-$all6  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='FLEKSI' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all6  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='FLEKSI' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all6) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
 $fleksi = number_format($t['total_max'],0,',','.');
 
 //ngitung jumlah PINJAMAN PEGAWAI pada tabel
-$all7  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='PINJAMAN PEGAWAI' AND $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
+$all7  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='PINJAMAN PEGAWAI' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
   $result = mysql_query($all7) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);

@@ -1,29 +1,18 @@
 <?php include 'collateral_script/session_head.php'; ?>
 <?php include 'collateral_script/head.php'; ?> 
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
 <TITLE>MONITORING NOTARIS</TITLE>
 <div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_notaris.php>
   <p class="style2"><span class="style10">Nama LNC</span> :
-    <select size="1" name="LNC">
-      <option>= SELECT =</option>
-      <option>MDL</option>
-      <option>PBL</option>
-      <option>PLL</option>
-      <option>BAL</option>
-      <option>SML</option>
-      <option>YGL</option>
-      <option>SBL</option>
-      <option>DPL</option>
-      <option>BJL</option>
-      <option>MKL</option>
-      <option>MNL</option>
-      <option>JKL</option>
-    </select>
+    <?=selectLNC("LNC") ?>
 </p>
   <p class="style10">
     <input type=radio name=pilih value=notaris checked>
+    
     <span class="style2">Nama Notaris</span><br>
-    <input type=text name=cari size=50>
+    <?=inputnya("cari") ?>
   </p>
   <p class="style2">
   <p class="style2">
@@ -59,8 +48,8 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND 
-debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk LIMIT $posisi,$batas");
+$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' 
+".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -186,36 +175,13 @@ echo "
 echo "</table>";
 
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND 
-debitur.LNC LIKE '%$lnc%'";
+$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' 
+".(($lnc=="all")?"":"AND LNC='$lnc'")." ";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $jmldata	= number_format($jmldata,0,',','.');
 
-//Link ke halaman sebelumnya (previous)
-//if ($halaman>1){
-//    $previous = $halaman-1;
-//	echo "<A HREF=$file?halaman=1> << First </A> |
-//	      <A HREF=$file?halaman=$previous> < Previous </A> | ";
-//}
-//else{
-//     echo "<< First | < Previous | "; }
-
-//Tampilkan link halaman 1,2,3,...
-//for ($i=1;$i<=$jmlhalaman;$i++)
-//if  ($i !=$halaman){
-//  echo "<a href=$file?halaman=$i>$i</A> | ";}
-//else{
-//  echo "<b>$i</b> | ";}
-//Link ke halaman berikutnya (Next)
-//if ($halaman < $jmlhalaman){
-//    $next = $halaman+1;
-//	echo "<A HREF=$file?halaman=$next> Next > </A> |
-//	      <A HREF=$file?halaman=$jmlhalaman> Previous >> </A> | ";
-//}
-//else{
-//     echo "Next > | Last >>";}
 echo "<p class=style2>Ditemukan <b>$jmldata</b> data debitur <b>LNC $lnc</b> yang pengikatannya oleh Notaris : <b>$cari</b></p>";
 }
 else{

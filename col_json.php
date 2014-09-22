@@ -279,7 +279,7 @@ function json_sumDetCair() {
     
    switch ($jns){
        case "debitur";
-       
+           $sql.="and progress <> ''";
        break;
        
        case "pondasi";
@@ -335,10 +335,10 @@ function json_sumDetCair() {
     foreach($query as $row){
         
         $row['tgl_pk']=  balikTgl($row['tgl_pk']);
-        $row['tgl_cair_tahap_fondasi']=  balikTgl($row['tgl_cair_tahap_fondasi']);
-        $row['tgl_cair_tahap_topping']=  balikTgl($row['tgl_cair_tahap_topping']);
-        $row['tgl_cair_tahap_bast']=  balikTgl($row['tgl_cair_tahap_bast']);
-        $row['tgl_cair_tahap_dok']=  balikTgl($row['tgl_cair_tahap_dok']);
+        $row['tgl_cair_tahap_fondasi']=  cleanDate(balikTgl($row['tgl_cair_tahap_fondasi']));
+        $row['tgl_cair_tahap_topping']=  cleanDate(balikTgl($row['tgl_cair_tahap_topping']));
+        $row['tgl_cair_tahap_bast']=  cleanDate(balikTgl($row['tgl_cair_tahap_bast']));
+        $row['tgl_cair_tahap_dok']=  cleanDate(balikTgl($row['tgl_cair_tahap_dok']));
         $responce['rows'][$i]['id']=$i; 
         $responce['rows'][$i]['cell']=$row;
         $i++;

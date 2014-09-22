@@ -1,6 +1,9 @@
 <?php include 'collateral_script/session_head.php'; ?>
-<TITLE>MONITORING PRODUK</TITLE>
 <?php include 'collateral_script/head.php'; ?> 
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
+
+<TITLE>MONITORING PRODUK</TITLE>
 <div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_produk.php>
   <tr>
@@ -21,21 +24,7 @@
          <td width="14%" style="border-style: none; border-width: medium" height="33"> <input type=radio name=xxx checked>
            <span class="style14"> Nama LNC</span></td>
          <td width="86%" style="border-style: none; border-width: medium" height="33"> <font face="Arial">
-           <select size="1" name="LNC">
-             <option>= SELECT =</option>
-             <option>MDL</option>
-             <option>PBL</option>
-             <option>PLL</option>
-             <option>BAL</option>
-             <option>SML</option>
-             <option>YGL</option>
-             <option>SBL</option>
-             <option>DPL</option>
-             <option>BJL</option>
-             <option>MKL</option>
-             <option>MNL</option>
-             <option>JKL</option>
-           </select>
+           <?=selectLNC("LNC") ?>
          </font></td>
        </tr>
      </table>
@@ -44,14 +33,16 @@
          <td width="14%" style="border-style: none; border-width: medium" height="33"><input type=radio name=pilih value=produk checked>
            <span class="style14"> Nama Produk </span> <font face="Arial">&nbsp;</font> </td>
          <td width="86%" style="border-style: none; border-width: medium" height="33"> <font face="Arial">
-           <select size="1" name="cari" style="position: relative; font-size: 8pt">
-             <option>= SELECT =</option>
-             <option>GRIYA</option>
-             <option>GRIYA MULTIGUNA</option>
-             <option>MULTIGUNA</option>
-             <option>BWU</option>
-             <option>PINJAMAN PEGAWAI</option>
-           </select>
+           <?php
+           $db_function=new db_function();
+           $options=array();
+            $data = $db_function->selectAllRows("select produk_nm from master_produk");
+            foreach ($data as $row) {
+                $options[$row["produk_nm"]] = $row["produk_nm"];
+            }
+            echo selectnya("cari", $options);
+           ?>
+          
 </font></td>
        </tr>
      </table>     <p>&nbsp;</p></TD>
@@ -90,8 +81,10 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND 
-debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk LIMIT $posisi,$batas");
+$sql="SELECT * FROM debitur WHERE debitur.no_pengikatan = 'PENDING' ".(($cari=="all")?"":"and $pilih = '$cari'")." 
+".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ";
+
+$tampil= mysql_query($sql);
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -213,8 +206,8 @@ echo "
 echo "</table>";
 
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' AND 
-debitur.LNC LIKE '%$lnc%'";
+$tampil2    = "SELECT * FROM debitur WHERE debitur.no_pengikatan = 'PENDING' ".(($cari=="all")?"":"and $pilih = '$cari'")."
+".(($lnc=="all")?"":"AND LNC='$lnc'")."";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);
@@ -243,7 +236,7 @@ $jmldata	= number_format($jmldata,0,',','.');
 //}
 //else{
 //     echo "Next > | Last >>";}
-echo "<p class=style2>Ditemukan <b>$jmldata</b> data debitur <b>LNC $lnc</b> yang pengikatannya oleh Notaris : <b>$cari</b></p>";
+echo "<p class=style2>Ditemukan <b>$jmldata</b> data debitur <b>LNC $lnc</b> yang produk nya: <b>$cari</b></p>";
 }
 else{
 echo "<b><p class=style1>Maaf, data Penyelesaian SHT <b>$cari</b> dari <b>LNC $lnc</b> yang anda cari tidak ada pada database !!!</b>";

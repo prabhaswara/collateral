@@ -1,25 +1,13 @@
 <?php include 'collateral_script/session_head.php'; ?>
-<TITLE>CARI DOKUMEN</TITLE>
 <?php include 'collateral_script/head.php'; ?> 
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
+<TITLE>CARI DOKUMEN</TITLE>
 <div style="margin:0px 50px;text-align: left;">
     <form method=get action=cari_bantek.php>
   <p class="style2">&nbsp;</p>
   <p class="style2"><span class="style10">Nama LNC</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-    <select size="1" name="LNC">
-      <option>= SELECT =</option>
-      <option>MDL</option>
-      <option>PBL</option>
-      <option>PLL</option>
-      <option>BAL</option>
-      <option>SML</option>
-      <option>YGL</option>
-      <option>SBL</option>
-      <option>DPL</option>
-      <option>BJL</option>
-      <option>MKL</option>
-      <option>MNL</option>
-      <option>JKL</option>
-    </select>
+    <?=selectLNC("LNC") ?>
   </p>
   <p class="style1">
   <input type=radio name=pilih value=NAMADEBITUR checked>
@@ -84,7 +72,7 @@ $a = "MONITORING AKTA JUAL BELI";
 }
 
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE debitur.status_rekg='AKTIF' AND $pilih ='$cari' AND LNC='$lnc'  LIMIT $posisi,$batas");
+$tampil= mysql_query("SELECT * FROM debitur WHERE debitur.status_rekg='AKTIF' AND $pilih ='$cari' ".(($lnc=="all")?"":"AND LNC='$lnc'")."  LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 
@@ -180,7 +168,7 @@ echo "
 echo "</table>";
 
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE debitur.status_rekg='AKTIF' AND $pilih ='$cari' AND LNC='$lnc'";
+$tampil2    = "SELECT * FROM debitur WHERE debitur.status_rekg='AKTIF' AND $pilih ='$cari' ".(($lnc=="all")?"":"AND LNC='$lnc'")."";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);
