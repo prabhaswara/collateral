@@ -203,7 +203,7 @@ Echo "
 <td align='center'>$r[bunga]</td>
 <td align='center'>$r[fixed_rate]</td>
 <td align='center'><blink><b>$r[tgl_jt_fixed_rate]</td>
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </tr>";
       $no++;
 }

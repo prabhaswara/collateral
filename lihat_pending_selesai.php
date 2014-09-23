@@ -1,6 +1,8 @@
 <?php include 'collateral_script/session_head.php'; ?>
+<?php include 'collateral_script/head.php'; ?>
+<?php include 'collateral_script/db_function.php';?> 
+<?php include 'collateral_script/function.php';?> 
 <TITLE>MONITORING PENDING</TITLE>
-<?php include 'collateral_script/head.php'; ?> 
 <div style="margin:0px 50px;text-align: left;">
 <form name=biodata method=get action=lihat_pending_selesai.php>
   <p class="style11">
@@ -11,21 +13,7 @@
     <tr>
       <td width="14%" style="border-style: none; border-width: medium" height="29"> <font face="Arial" size="2">Nama LNC</font></td>
       <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <select size="1" name="LNC">
-          <option>= SELECT =</option>
-          <option>MDL</option>
-          <option>PBL</option>
-          <option>PLL</option>
-          <option>BAL</option>
-          <option>SML</option>
-          <option>YGL</option>
-          <option>SBL</option>
-          <option>DPL</option>
-          <option>BJL</option>
-          <option>MKL</option>
-          <option>MNL</option>
-          <option>JKL</option>
-        </select>
+        <?=selectLNC("LNC") ?>
       </span></span>
       </font></td>
     </tr>
@@ -34,7 +22,7 @@
     <tr>
       <td width="14%" style="border-style: none; border-width: medium" height="29"> <font size="2" face="Arial">Tgl. Awal </font></td>
       <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <input type="date" name="tgl_awal" size="10" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;">
+        <?=inputnya("tgl_awal",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
 </span></span> </font></td>
     </tr>
   </table>
@@ -42,7 +30,7 @@
     <tr>
       <td width="14%" style="border-style: none; border-width: medium" height="29"> <font size="2" face="Arial">Tgl. Akhir</font></td>
       <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-      <input type=date name=tgl_akhir size="10" style="text-transform:uppercase;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_akhir);return false;">
+      <?=inputnya("tgl_akhir",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_akhir);return false;"') ?>
 </span></span> </font></td>
     </tr>
   </table>
@@ -118,7 +106,7 @@ elseif($pilih == "no_ajb")
 $a = "MONITORING AKTA JUAL BELI";
 }
 
-$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='AKTIF' AND LNC='$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.produk asc LIMIT $posisi,$batas");
+$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.produk asc LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 
@@ -215,7 +203,7 @@ Echo "
 <td align='center'><b>$r[no_polis_ass_kerugian]</td>
 <td align='center'><b>$r[tgl_update]</td>
 
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
       $no++;
@@ -238,7 +226,7 @@ Echo "
 <td align='center'><b>$r[no_polis_ass_kerugian]</td>
 <td align='center'><b>$r[tgl_update]</td>
 
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
       $no++;
@@ -261,7 +249,7 @@ Echo "
 <td align='center'><b>$r[no_polis_ass_kerugian]</td>
 <td align='center'><b>$r[tgl_update]</td>
 
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
       $no++;
@@ -270,33 +258,33 @@ Echo "
 echo "</table>";
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'AKTIF' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata    = mysql_num_rows($tampil2);
 $file       = "lihat_pending_selesai.php";
 $jmldata	= number_format($jmldata,0,',','.');
 
 
-$tampil3    = mysql_query("SELECT debitur.no_bpkb FROM debitur WHERE debitur.no_bpkb='PENDING' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil3    = mysql_query("SELECT debitur.no_bpkb FROM debitur WHERE debitur.no_bpkb='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata1    = mysql_num_rows($tampil3);
 $file1       = "lihat_pending_selesai.php";
 $jmldata1	= number_format($jmldata1,0,',','.');
 
-$tampil4    = mysql_query("SELECT debitur.no_ajb FROM debitur WHERE debitur.no_ajb='PENDING' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil4    = mysql_query("SELECT debitur.no_ajb FROM debitur WHERE debitur.no_ajb='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata2   = mysql_num_rows($tampil4);
 $file2      = "lihat_pending_selesai.php";
 $jmldata2	= number_format($jmldata2,0,',','.');
 
-$tampil5    = mysql_query("SELECT debitur.no_pengikatan FROM debitur WHERE debitur.no_pengikatan='PENDING' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil5    = mysql_query("SELECT debitur.no_pengikatan FROM debitur WHERE debitur.no_pengikatan='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata3   = mysql_num_rows($tampil5);
 $file3      = "lihat_pending_selesai.php";
 $jmldata3	= number_format($jmldata3,0,',','.');
 
-$tampil6    = mysql_query("SELECT debitur.no_polis_ass_jiwa FROM debitur WHERE debitur.no_polis_ass_jiwa='PENDING' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil6    = mysql_query("SELECT debitur.no_polis_ass_jiwa FROM debitur WHERE debitur.no_polis_ass_jiwa='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata4   = mysql_num_rows($tampil6);
 $file4      = "lihat_pending_selesai.php";
 $jmldata4	= number_format($jmldata4,0,',','.');
 
-$tampil7    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_polis_ass_kerugian='PENDING' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil7    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_polis_ass_kerugian='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata5   = mysql_num_rows($tampil7);
 $file5      = "lihat_pending_selesai.php";
 $jmldata5	= number_format($jmldata5,0,',','.');
@@ -306,31 +294,31 @@ $jmldatax	= number_format($jmldatax,0,',','.');
 
 //SELESAI PENDING
 //ASS. KERUGIAN
-$tampil8    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_polis_ass_kerugian='ADA' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil8    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_polis_ass_kerugian='ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata6   = mysql_num_rows($tampil8);
 $file6      = "lihat_pending_selesai.php";
 $jmldata6	= number_format($jmldata6,0,',','.');
 
 //ASS. JIWA
-$tampil9    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_polis_ass_jiwa='ADA' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil9    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_polis_ass_jiwa='ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata7   = mysql_num_rows($tampil9);
 $file7      = "lihat_pending_selesai.php";
 $jmldata7	= number_format($jmldata7,0,',','.');
 
 //PENGIKATAN
-$tampil10    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_pengikatan='ADA' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil10    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_pengikatan='ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata8   = mysql_num_rows($tampil10);
 $file8      = "lihat_pending_selesai.php";
 $jmldata8	= number_format($jmldata8,0,',','.');
 
 //AJB
-$tampil11    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_ajb='ADA' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil11    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_ajb='ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata9   = mysql_num_rows($tampil11);
 $file9      = "lihat_pending_selesai.php";
 $jmldata9	= number_format($jmldata9,0,',','.');
 
 //BPKB
-$tampil12    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_bpkb='ADA' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
+$tampil12    = mysql_query("SELECT debitur.no_polis_ass_kerugian FROM debitur WHERE debitur.no_bpkb='ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'");
 $jmldata10   = mysql_num_rows($tampil12);
 $file10      = "lihat_pending_selesai.php";
 $jmldata10	 = number_format($jmldata10,0,',','.');

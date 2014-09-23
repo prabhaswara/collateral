@@ -8,7 +8,9 @@ foreach($rows as  $row){
 }*/
 $listTypeLookup=array("asuransi_jiwa"=>"Asuransi Jiwa","asuransi_kerugian"=>"Asuransi Kerugian",
     "daftar_kjpp"=>"Daftar Kjpp","developer"=>"Developer","jns_kendaraan"=>"Jenis Kendaraan",
-    "merk_kendaraan"=>"Merek Kendaraan","notaris"=>"Notaris","kendala"=>"Kendala Pengikatan");
+    "merk_kendaraan"=>"Merek Kendaraan","notaris"=>"Notaris","kendala"=>"Kendala Pengikatan",
+    "jns_pengikatan"=>"Jenis Pengikatan","jns_surat_tanah"=>"Jenis Jaminan"
+    );
 $listLookup="";
 $action=$_GET['action']!=null?$_GET['action']:"Simpan";
 

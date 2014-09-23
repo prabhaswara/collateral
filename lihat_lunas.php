@@ -199,7 +199,7 @@ Echo "
 <td align='right'>$rupiah</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='center'><blink><b>$r[tgl_pelunasan]</td>
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </tr>";
       $no++;
 }
@@ -239,7 +239,7 @@ echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'LUNAS' AND LNC LIKE '$lnc' AND debitur.tgl_pelunasan between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_pelunasan DESC ");
+$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'LUNAS'  ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pelunasan between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_pelunasan DESC ");
 $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $file       = "lihat_lunas.php";

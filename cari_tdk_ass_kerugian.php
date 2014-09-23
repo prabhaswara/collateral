@@ -48,7 +48,7 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc   =$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_kerugian = 'TIDAK' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk LIMIT $posisi,$batas");
+$tampil= mysql_query("SELECT * FROM debitur WHERE  debitur.no_polis_ass_kerugian = 'TIDAK' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -137,7 +137,7 @@ echo "
 echo "</table>";
 
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_kerugian = 'TIDAK' ".(($lnc=="all")?"":"AND LNC='$lnc'")."";
+$tampil2    = "SELECT * FROM debitur WHERE  debitur.no_polis_ass_kerugian = 'TIDAK' ".(($lnc=="all")?"":"AND LNC='$lnc'")."";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);

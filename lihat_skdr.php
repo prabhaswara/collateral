@@ -237,7 +237,9 @@ echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'YA' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_pk DESC ");
+$sql="SELECT * FROM debitur WHERE $pilih LIKE 'ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_pk DESC ";
+
+$tampil2    = mysql_query($sql);
 $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $file       = "lihat_skdr.php";

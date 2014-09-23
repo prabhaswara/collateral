@@ -18,7 +18,8 @@ $ListJnsJaminanFleksi = array('SK' => 'SK', 'IJAZAH' => 'IJAZAH', 'KARTU TASPEN'
 $ListSerah = array("SUDAH" => "SUDAH", "BELUM" => "BELUM");
 $ListStatusRekg = array("AKTIF" => "AKTIF", "LUNAS" => "LUNAS");
 $ListProsesAgunan = array("PPJB" => "PPJB", "AJB" => "AJB", "PPJK" => "PPJK");
-$ListJenisSuratTanah = array("SHM" => "SHM", "SHGB" => "SHGB", "STRATA TITLE" => "STRATA TITLE", "OTHER" => "OTHER");
+//$ListJenisSuratTanah = array("SHM" => "SHM", "SHGB" => "SHGB", "STRATA TITLE" => "STRATA TITLE", "OTHER" => "OTHER");
+$ListJenisSuratTanah = $db_function->selectLookup("jns_surat_tanah", $lnc);
 $ListJenisSertifikat= array("SHGB" => "SHGB", "SHGB DIATAS HPL" => "SHGB DIATAS HPL", "SHGB - STRATA TITLE" => "SHGB - STRATA TITLE", 
     "SHM" => "SHM", "SHM - SRS" => "SHM - SRS");
 
