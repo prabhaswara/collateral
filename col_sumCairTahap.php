@@ -9,7 +9,20 @@ include 'collateral_script/control_sumCairTahap.php';
     <head>
         <?php include 'collateral_script/head.php'; ?>  
 
+        <script>
+            $(document).ready(function() {
+                $('#jns_pencarian').change(function() {
 
+                    window.location.href = "col_sumCairTahap.php?jns_pencarian=" + $('#jns_pencarian').val();
+                });
+
+                $('#tgl_point').change(function() {
+
+                    window.location.href = "col_sumCairTahap.php?jns_pencarian=point&tgl_point=" + $('#tgl_point').val();
+                });
+            });
+
+        </script>
     </head>
     <body>           
 
@@ -21,13 +34,38 @@ include 'collateral_script/control_sumCairTahap.php';
             <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="height: 100%">        
                 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
                     <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-1" aria-labelledby="ui-id-1" aria-selected="false" aria-expanded="false"><a href="col_sumPending.php" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Summary Pending</a></li>
-                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="col_sumLegalitas.php" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Legalitas</a></li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="col_sumCairTahap.php" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Legalitas</a></li>
                     <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab-3" tabindex="0" aria-controls="tabs-3" aria-labelledby="ui-id-3" aria-selected="true" aria-expanded="true"><a href="" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Pencairan Bertahap</a></li>
                 </ul>
 
 
                 <div style="margin:5px">
+                    <form method="post">
+                    <div style="height: 20px;margin-top: 20px;">
+                            <?=
+                            ht_select("jns_pencarian", array(
+                                "tgl" => "Summary berdasar tanggal update trail",
+                                "saat_ini" => "Summary berdasar tgl hari ini",
+                                "point" => "Summary yang pernah disimpan"
+                                    ), "", false)
+                            ?>
 
+                            <?php
+                            if ($_GET['jns_pencarian'] == "tgl") {
+                                ?>
+                                <?= ht_input("tgl_update", "class='dateNormal dateMask' style='width:100px'") ?>
+                                <input type="Submit" name='action' value="cari" />
+                                <?php
+                            } else if ($_GET['jns_pencarian'] == "point") {
+                                ?>
+
+                                <?= ht_select("tgl_point", $ddl_tglpoint) ?>
+
+                                <?php
+                            }
+                            ?>
+
+                        </div>
                     <table class="tblLookup" border="1px" style="width:100%">
                         <thead>
                             <tr>
@@ -46,7 +84,10 @@ include 'collateral_script/control_sumCairTahap.php';
                                 <th align="center" width="120px">SELESAI</th>
                             </tr>
                         </thead>
-                        
+                         <?php
+                            $row = 1;
+                            if ($showtable) {
+                                ?>
                         <tbody>
                             <?php
                             foreach ($dataLNC as $lnc) {
@@ -73,8 +114,15 @@ include 'collateral_script/control_sumCairTahap.php';
                             }
                             ?>
                         </tbody>
+                          <?php }
+                                    ?> 
 
                     </table>
+                    <?php if ($showtable && !$_GET['jns_pencarian'] != "point") { ?>
+                            <div style="margin:10px 0px;"><input type="submit" name="action" value="Simpan Point" /></div>
+                            <?php }
+                        ?>
+                            </form>
 
                 </div>
 
