@@ -5,7 +5,7 @@ include 'collateral_script/db_function.php';
 $db_function =new db_function();
 if(!empty($_POST)){
     $user=$_SESSION['colateral']['npp'];   
-    $error=$db_function->initTrail('init', "1", "");
+    $error=$db_function->initTrail('init', "1", "sama");
     
     echo $error;
 }

@@ -211,6 +211,9 @@ function json_sumDet() {
     if ($jns == "status_rekg") {
         $sql = str_replace(":paramwhere:", "trail.status_rekg='AKTIF' ", $sql);
     }
+    else if ($jns == "total") {
+        $sql = str_replace(":paramwhere:", "(no_bpkb='PENDING' or no_ajb='PENDING' or no_pengikatan='PENDING' or no_polis_ass_jiwa='PENDING' or no_polis_ass_kerugian='PENDING') ", $sql);
+    }
     else{
         $sql = str_replace(":paramwhere:", "trail.$jns='PENDING' ", $sql);
     }
@@ -263,43 +266,53 @@ function json_sumDetCair() {
     $limit = $_GET['rows'];
     $sidx = $_GET['sidx'];
     $sord = $_GET['sord'];
+    $tgl = $_GET['tgl'];
     
     if($limit==""){
         $limit=10;
     }
+    
     $tgl_update = $tgl . " 23:59:59";
-    $sql = "select trail.noaplikasi,trail.namadebitur,trail.no_rekg_pinjaman,trail.tgl_pk".
-           ",tgl_cair_tahap_fondasi,tgl_cair_tahap_topping,tgl_cair_tahap_bast,tgl_cair_tahap_dok from debitur trail ".
-           "where lnc='$lnc' and skim_pencairan='PARTIAL DROW DOWN' and  skim_pks in('KAVLING BANGUN','INDENT') ".
-           "";
-
+    $sql = "select trail.noaplikasi,trail.namadebitur,trail.no_rekg_pinjaman,trail.tgl_pk ,trail.tgl_cair_tahap_fondasi,trail.tgl_cair_tahap_topping,trail.tgl_cair_tahap_bast,trail.tgl_cair_tahap_dok 
+            from debitur join debitur_trail trail on debitur.no_rekg_pinjaman=trail.no_rekg_pinjaman
+            join (
+            select max(tgl_update) tgl_update,no_rekg_pinjaman from debitur_trail where tgl_update <= '$tgl_update'  group by no_rekg_pinjaman) bb
+            on trail.no_rekg_pinjaman=bb.no_rekg_pinjaman and trail.tgl_update=bb.tgl_update
+            where 1=1 and trail.skim_pencairan='PARTIAL DROW DOWN' and trail.skim_pks in('KAVLING BANGUN','INDENT') :paramwhere: group by trail.lnc";
+    
+    
+    
+  
+            
+            
    if(isset($_GET['searchValue']) && trim($_GET['searchValue'])!="" ){
         $sql.=" and ".$_GET['searchBy']." like '%".$_GET['searchValue']."%' ";
     }
     
    switch ($jns){
        case "debitur";
-           $sql.="and progress <> ''";
+           $sql = str_replace(":paramwhere:", "and trail.progress <>'' ", $sql);
        break;
        
        case "pondasi";
-           $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_fondasi  in(null,'','0000-00-00')";
+           $sql = str_replace(":paramwhere:", "and trail.progress='BELUM SELESAI' and trail.tgl_cair_tahap_fondasi  in(null,'','0000-00-00') ", $sql);
        break;
        
        case "topping";
-           $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_fondasi >'0000-00-00' and tgl_cair_tahap_topping in(null,'','0000-00-00')";
-       break;
+           $sql = str_replace(":paramwhere:", "and trail.progress='BELUM SELESAI' and trail.tgl_cair_tahap_fondasi >'0000-00-00' and trail.tgl_cair_tahap_topping in(null,'','0000-00-00') ", $sql);
+            
+      break;
    
        case "bast";
-           $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_topping >'0000-00-00' and tgl_cair_tahap_bast in(null,'','0000-00-00')";
+           $sql = str_replace(":paramwhere:", "and trail.progress='BELUM SELESAI' and trail.tgl_cair_tahap_topping >'0000-00-00' and trail.tgl_cair_tahap_bast in(null,'','0000-00-00') ", $sql);
        break;
        
        case "dokumen";
-            $sql.="and progress='BELUM SELESAI' and tgl_cair_tahap_bast >'0000-00-00' and tgl_cair_tahap_dok in(null,'','0000-00-00')";
-       break;
+            $sql = str_replace(":paramwhere:", "and trail.progress='BELUM SELESAI' and trail.tgl_cair_tahap_bast >'0000-00-00' and trail.tgl_cair_tahap_dok in(null,'','0000-00-00') ", $sql);
+      break;
        
        case "inprogress";
-           $sql.="and progress='BELUM SELESAI'";
+           $sql = str_replace(":paramwhere:", "and trail.progress='SELESAI' ", $sql);
        break;
    
        case "selesai";

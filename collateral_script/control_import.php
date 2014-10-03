@@ -47,7 +47,15 @@ if (!empty($_FILES)) {
        // $_SESSION['colateral']['message']=$db_function->initTrail('xls', "1", $_SESSION['colateral']['npp']);
       
     }
-    if (empty($_SESSION['colateral']['message'])) {
+    if(!empty($_SESSION['colateral']['message_loop'])){
+        
+            $_SESSION['colateral']['message'] =  showMessage($_SESSION['colateral']['message_loop'], "warning");
+           // echo "test";exit;
+            unset($_SESSION['colateral']['message_loop']);
+           
+           //  header("location:col_import.php");
+        }  
+    else if (empty($_SESSION['colateral']['message'])) {
         $_SESSION['colateral']['message'] = showMessage("Data telah di export", "success", "-ses");
         header("location:col_import.php");
         exit;
@@ -83,8 +91,12 @@ function insertDebitur($data, $row, $type = "system") {
     if (cleanstr($data->val($row, 9)) != "") {
         $pesan = "";
         $db_function = new db_function();
-        $sql = "delete from debitur where no_rekg_pinjaman='" . $data->val($row, 9) . "'";
-        $pesan.=$db_function->exec($sql);
+       $sql = "delete from debitur where no_rekg_pinjaman='" . $data->val($row, 9) . "'";
+        $pesan=$db_function->exec($sql);
+        if ($pesan != "") {
+            $_SESSION['colateral']['message_loop'][]=="[del debitur]no_rekg_pinjaman->".$data->val($row, 9).":".$pesan; 
+           
+        }
         
         /** // kalau insert manual hapus semua data debitur_trail
         if($type!="system"){
@@ -112,7 +124,8 @@ function insertDebitur($data, $row, $type = "system") {
         $pesan = $db_function->exec($sql);
       
         if ($pesan != "") {
-            //    echo $pesan;
+            $_SESSION['colateral']['message_loop'][]="[inst debitur]no_rekg_pinjaman->".$data->val($row, 9).":".$pesan; 
+           
         }
         
         if($type=="manual"){
@@ -141,6 +154,10 @@ function insertDebitur($data, $row, $type = "system") {
             $sql.=")";
         //    echo $sql;exit;
             $pesan = $db_function->exec($sql);
+            if ($pesan != "") {
+                $_SESSION['colateral']['message_loop'][]="[insr debitur trail]no_rekg_pinjaman->".$data->val($row, 9).":".$pesan; 
+
+            }
         
         }
     }
@@ -151,8 +168,11 @@ function insertDebiturTrail($data, $row) {
         $pesan = "";
         $db_function = new db_function();
         $sql = "delete from debitur_trail where no_rekg_pinjaman='" . $data->val($row, 7) . "' and no_trail='" . $data->val($row, 156) . "'";
-        $pesan.=$db_function->exec($sql);
-      //  echo $sql;
+        $pesan=$db_function->exec($sql);
+        if ($pesan != "") {
+            $_SESSION['colateral']['message_loop'][]=$pesan; 
+           
+        }
 
         $sql = "insert into debitur_trail (LNC,NOAPLIKASI,NAMADEBITUR,TEMPATLAHIR,TGLLAHIR,CIF,no_rekg_pinjaman,afiliasi,instansi,produk,maksimum_kredit,no_pk,tgl_pk,jkw_kredit,fixed_rate,tgl_jt_pk,tgl_jt_fixed_rate,lokasi_dokumen_asli,amplop_asli,amplopasli,lokasi_dokumen_copy,amplop_copy,amplopcopy,jaminan,jml_jaminan,jenis_surat_tanah,alamat_collateral,luas_tanah,tgl_jt_surat_tanah,jenis_pengikatan,nilai_ht,jkw_covernote,notaris,appraisal,no_ajb,no_surat_tanah,collateral_zipcode,luas_bangunan,nilai_taksasi,harga_tanah,harga_bangunan,harga_tanah_imb,harga_bangunan_imb,no_pengikatan,tgl_covernote,tgl_jt_covernote,developer,skim_pks,no_imb,status_imb,nama_perumahan,asuransi_jiwa,no_polis_ass_jiwa,premi_jiwa,nilai_pertanggungan_ass_jiwa,tgl_ass_jiwa,tgl_jt_ass_jiwa,asuransi_kerugian,no_polis_ass_kerugian,premi_kerugian,nilai_pertanggungan_ass_kerugian,tgl_ass_kerugian,tgl_jt_ass_kerugian,jenis_kendaraan,no_bpkb,no_rangka,nama_dealer,merk,no_mesin,no_polisi,status_rekg,tgl_pelunasan,memo,skdr,siup,tdp,others,serah,kendala,tgl_update,bunga,program,agama,npwp,kelamin,tgl_imb,penilai,tgl_taksasi,tinggal,cabang,no_ktp,ibu_kandung,jabatan,memo_appraisal,plafond_dimohon,nama_emergency,telp_emergency,alamat_kantor,hubungan,progress,sales,hp_sales,kjpp,status,tgl_update_app,tgl_update_los,tgl_update_asc,skim_pencairan,input_date,no_covernote,no_covernote_n,no_pengikatan_n,tgl_penyerahan_berkas,proses_pengikatan,jenis_sertifikat,jenis_proyek,kategori_proyek,total_unitdibangun,penguasaan_sertifikat,no_rek_escrow,cair_tahap_fondasi,tgl_cair_tahap_fondasi,ket_cair_tahap_fondasi,cair_tahap_topping,tgl_cair_tahap_topping,ket_cair_tahap_topping,cair_tahap_bast,tgl_cair_tahap_bast,ket_cair_tahap_bast,cair_tahap_dok,tgl_cair_tahap_dok,ket_cair_tahap_dok,proses_agunan,no_polis_ass_kerugian_n,berkas_asuransi_kerugian,no_polis_ass_jiwa_n,berkas_assuransi_jiwa,no_jaminan_fleksi,no_jaminan_fleksi_n,jns_jaminan_fleksi,srt_pernyataan_fleksi,no_bpkb_n,tgl_serah,pelunasan_penerima,pelunasan_keterangan,siup_n,tdp_n,no_pks,tgl_pengikatan,others_n,kjpp_flag,no_ajb_n,jml_jaminan_n,userupdate,insertfrom,no_trail) values(";
         for ($col = 1; $col <= 156; $col++) {
@@ -162,9 +182,10 @@ function insertDebiturTrail($data, $row) {
         }
         $sql = substr($sql, 0, strlen($sql) - 1);
         $sql.=")";
-        $pesan.=$db_function->exec($sql);
+        $pesan=$db_function->exec($sql);
         if ($pesan != "") {
-         //   echo $pesan;
+            $_SESSION['colateral']['message_loop'][]="[insrt debitur trail]no_rekg_pinjaman->".$data->val($row, 7).":".$pesan; 
+           
         }
     }
 }

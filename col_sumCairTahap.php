@@ -34,7 +34,7 @@ include 'collateral_script/control_sumCairTahap.php';
             <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="height: 100%">        
                 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
                     <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-1" aria-labelledby="ui-id-1" aria-selected="false" aria-expanded="false"><a href="col_sumPending.php" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Summary Pending</a></li>
-                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="col_sumCairTahap.php" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Legalitas</a></li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="col_sumLegalitas.php" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Legalitas</a></li>
                     <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab-3" tabindex="0" aria-controls="tabs-3" aria-labelledby="ui-id-3" aria-selected="true" aria-expanded="true"><a href="" class="ui-tabs-anchor" role="presentation" tabindex="-1" >Pencairan Bertahap</a></li>
                 </ul>
 
@@ -51,6 +51,14 @@ include 'collateral_script/control_sumCairTahap.php';
                             ?>
 
                             <?php
+                            
+                            $tgl = date("Y-m-d");
+                                    if ($_GET['jns_pencarian'] == "tgl") {
+                                        $tgl = balikTgl($_POST['frm']['tgl_update']);
+                                    }
+                                if (!$_GET['jns_pencarian'] != "point") {
+                                        unset($_SESSION['colateral']['summery_bertahap']);
+                                    }
                             if ($_GET['jns_pencarian'] == "tgl") {
                                 ?>
                                 <?= ht_input("tgl_update", "class='dateNormal dateMask' style='width:100px'") ?>
@@ -96,17 +104,25 @@ include 'collateral_script/control_sumCairTahap.php';
                                              intval($countBast[$lnc['singkatan']])+
                                              intval($countTahapDok[$lnc['singkatan']]);
                                 $persen= floatval($countSelesai[$lnc['singkatan']])/floatval($countDebitur[$lnc['singkatan']])*100;
-                                                
+                                 
+                                if (!$_GET['jns_pencarian'] != "point") {
+                                            $_SESSION['colateral']['summery_bertahap'][] = array("tanggal" => $tgl, "lnc" => $lnc['singkatan'], "jenis" => 'debitur', "jumlah" => $countDebitur[$lnc['singkatan']]);
+                                            $_SESSION['colateral']['summery_bertahap'][] = array("tanggal" => $tgl, "lnc" => $lnc['singkatan'], "jenis" => 'fondasi', "jumlah" => $countFondasi[$lnc['singkatan']]);
+                                            $_SESSION['colateral']['summery_bertahap'][] = array("tanggal" => $tgl, "lnc" => $lnc['singkatan'], "jenis" => 'topping', "jumlah" => $countTopping[$lnc['singkatan']]);
+                                            $_SESSION['colateral']['summery_bertahap'][] = array("tanggal" => $tgl, "lnc" => $lnc['singkatan'], "jenis" => 'bast', "jumlah" => $countBast);
+                                            $_SESSION['colateral']['summery_bertahap'][] = array("tanggal" => $tgl, "lnc" => $lnc['singkatan'], "jenis" => 'tahapdok', "jumlah" => $countTahapDok[$lnc['singkatan']]);
+                                            $_SESSION['colateral']['summery_bertahap'][] = array("tanggal" => $tgl, "lnc" => $lnc['singkatan'], "jenis" => 'selesai', "jumlah" => $countSelesai[$lnc['singkatan']]);
+                                        }
                             ?> 
                             <tr>
                                 <td  style="text-align: center"><?= $lnc['singkatan'] ?></td>                        
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=debitur&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countDebitur[$lnc['singkatan']])) ?></a></td> 
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=pondasi&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countFondasi[$lnc['singkatan']])) ?></a></td>
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=topping&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countTopping[$lnc['singkatan']])) ?></a></td>
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=bast&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countBast[$lnc['singkatan']])) ?></a></td>
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=dokumen&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countTahapDok[$lnc['singkatan']])) ?></a></td>
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=inprogress&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($inprogress)) ?></a></td>
-                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=selesai&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countSelesai[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=debitur&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countDebitur[$lnc['singkatan']])) ?></a></td> 
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=pondasi&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countFondasi[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=topping&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countTopping[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=bast&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countBast[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=dokumen&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countTahapDok[$lnc['singkatan']])) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=inprogress&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($inprogress)) ?></a></td>
+                                <td  style="text-align: center"><a href="col_sumDetCair.php?jns=selesai&tgl=<?=$setTgl?>&&lnc=<?= $lnc['singkatan'] ?>"><?= numsep(cleanNumber($countSelesai[$lnc['singkatan']])) ?></a></td>
                                 <td  style="text-align: center"><?=$persen?> %</td>
                                         
                             </tr>

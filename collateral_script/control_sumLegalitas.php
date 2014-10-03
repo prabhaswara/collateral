@@ -99,7 +99,8 @@ if(!empty($_POST)){
         if(isset($_GET['tgl_point'])){
             $tgl_point=$_GET['tgl_point'];
             $_POST['frm']['tgl_point']=$tgl_point;
-              
+            $setTgl=$tgl_point;
+            
             $dataCount=array();
             $data=$db_function->selectAllRows("select * from summery_legal where tanggal='".$tgl_point."'");
             if(!empty($data))

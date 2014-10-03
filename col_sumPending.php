@@ -141,7 +141,7 @@ include 'collateral_script/control_sumPending.php';
                                         <td  style="text-align: center"><a href="col_sumDet.php?jenis=Pending SHT&tgl=<?=$setTgl?>&lnc=<?= $lnc['singkatan'] ?>&jns=no_pengikatan"><?= numsep(cleanNumber($countSHT[$lnc['singkatan']])) ?></a></td>
                                         <td  style="text-align: center"><a href="col_sumDet.php?jenis=Pending Asuransi Jiwa&tgl=<?=$setTgl?>&lnc=<?= $lnc['singkatan'] ?>&jns=no_polis_ass_jiwa"><?= numsep(cleanNumber($countAssJiwa[$lnc['singkatan']])) ?></a></td>
                                         <td  style="text-align: center"><a href="col_sumDet.php?jenis=Pending Kerugian&tgl=<?=$setTgl?>&lnc=<?= $lnc['singkatan'] ?>&jns=no_polis_ass_kerugian"><?= numsep(cleanNumber($countKerugian[$lnc['singkatan']])) ?></a></td>
-                                        <td style="text-align: center"><?= numsep($total) ?></td>
+                                        <td style="text-align: center"><a href="col_sumDet.php?jenis=Pending Kerugian&tgl=<?=$setTgl?>&lnc=<?= $lnc['singkatan'] ?>&jns=total"><?= numsep($total) ?></a></td>
                                         <td style="text-align: center"><a href="col_sumDet.php?jenis=Total Debitur Aktif&tgl=<?=$setTgl?>&lnc=<?= $lnc['singkatan'] ?>&jns=status_rekg"><?= numsep(intval($countTotalDebitur[$lnc['singkatan']])) ?></a></td>
        
                                     </tr>

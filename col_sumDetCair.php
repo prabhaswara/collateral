@@ -22,7 +22,7 @@ include 'collateral_script/db_function.php';
                 }
                 
                          jQuery("#gridTbl").jqGrid({
-                url: 'col_json.php?mod=json_sumDetCair&lnc=<?=$_GET['lnc']?>&jns=<?=$_GET['jns']?>',
+                url: 'col_json.php?mod=json_sumDetCair&tgl=<?=$_GET['tgl']?>&lnc=<?=$_GET['lnc']?>&jns=<?=$_GET['jns']?>',
                 datatype: "json",
                 colNames: ['NO. APLIKASI', 'NAMA DEBITUR', 'NO. REK. PINJAMAN',
                     'TGL. PONDASI', 'TGL. TOPPING OFF','TGL. BAST','TGL. DOKUMEN',''
@@ -35,7 +35,7 @@ include 'collateral_script/db_function.php';
                 }, {
                     name: 'namadebitur',
                     index: 'namadebitur',
-                    width: 120, 
+                    width: 140, 
                     sortable: false
                 }, {
                     name: 'no_rekg_pinjaman',
@@ -45,26 +45,26 @@ include 'collateral_script/db_function.php';
                 }, {
                     name: 'tgl_cair_tahap_fondasi',
                     index: 'tgl_cair_tahap_fondasi',
-                    width: 150, 
+                    width: 145, 
                     sortable: false,
                     align:'center'
                 },{
                     name: 'tgl_cair_tahap_topping',
                     index: 'tgl_cair_tahap_topping',
-                    width: 150, 
+                    width: 145, 
                     sortable: false,
                     align:'center'
                 },{
                     name: 'tgl_cair_tahap_bast',
                     index: 'tgl_cair_tahap_bast',
-                    width: 150, 
+                    width: 145, 
                     sortable: false,
                     align:'center'
                     
                 },{
                     name: 'tgl_cair_tahap_dok',
                     index: 'tgl_cair_tahap_dok',
-                    width: 150,
+                    width: 145,
                    sortable: false,
                     align:'center'
                 },

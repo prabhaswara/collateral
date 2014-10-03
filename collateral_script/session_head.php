@@ -4,6 +4,7 @@ error_reporting(E_ERROR |E_PARSE |E_CORE_ERROR);
 //error_reporting(E_ALL);
 
 session_start();
+
 require 'jsonwrapper/jsonwrapper.php';
 
 if(

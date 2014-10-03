@@ -50,6 +50,7 @@ if(!empty($_POST)){
         $sqlPolisAssRugi= str_replace(":paramwhere:", "and no_polis_ass_kerugian='PENDING' ", $sql);
         $sqlTotalDebitur= str_replace(":paramwhere:", "and status_rekg='AKTIF' ", $sql);
                 
+       
         $countBPKB       =  pecahData($db_function->selectAllRows($sqlBPKB));
         $countAJB        =  pecahData($db_function->selectAllRows($sqlAJB));
         $countSHT        =  pecahData($db_function->selectAllRows($sqlSHT));
