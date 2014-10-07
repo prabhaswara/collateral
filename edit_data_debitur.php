@@ -498,7 +498,10 @@ if ($showForm) {
                                     </tr>
                                     <tr>
                                         <td >Permohonan SKDR</td>
-                                        <td><?= ht_select("skdr", $listAdaTidak); ?> </td>
+                                        <td><?= ht_select("skdr", $listAdaTidak); ?> 
+                                            <div><?= (in_array($skdrLama, $listAdaTidak)) ? "" : $skdrLama ?></div>  
+                                        </td>
+                                        
                                     </tr>     
                                     <tr>                         
                                 </table>
@@ -538,14 +541,21 @@ if ($showForm) {
                                     <table class="tbllayout">
                                         <tr>
                                             <td class='w180'>Status Agunan</td>
-                                            <td class="w300"><?= ht_select("jaminan", $listJnsJaminan) ?></td>
+                                            <td class="w300"><?= ht_select("jaminan", $listJnsJaminan) ?>
+                                                <div><?= (in_array($jaminanLama, $listJnsJaminan)) ? "" : $jaminanLama ?></div>
+                                            </td>
                                         </tr>
 
                                         <tr>
                                             <td>Proses Agunan</td>
-                                            <td> <?= ht_select("proses_agunan", $ListProsesAgunan) ?> </td>
+                                            <td> <?= ht_select("proses_agunan", $ListProsesAgunan) ?> 
+                                            <div><?= (in_array($proses_agunanLama, $ListProsesAgunan)) ? "" : $proses_agunanLama ?></div>
+                                            </td>
                                         </tr>
-                                        <tr><td>Jenis Jaminan </td><td><?= ht_select("jenis_surat_tanah", $ListJenisSuratTanah) ?></td></tr>
+                                        <tr><td>Jenis Jaminan </td><td><?= ht_select("jenis_surat_tanah", $ListJenisSuratTanah) ?>
+                                            <div><?= (in_array($jenis_surat_tanahLama, $ListJenisSuratTanah)) ? "" : $jenis_surat_tanahLama ?></div>
+                                            
+                                            </td></tr>
                                         <tr><td>Tanggal JTP Surat Tanah</td><td><?= ht_input("tgl_jt_surat_tanah", "class='dateNormal dateMask'") ?></td></tr>
 
                                     </table>
@@ -555,9 +565,13 @@ if ($showForm) {
                                         <tr><td class="tambahan w180">Covernote</td><td class="w300">
         <?= ht_select("no_covernote", $listAdaPending, "style='width:100px'", false) ?>
         <?= ht_input("no_covernote_n", "style='width:151px' class='covernoteshowhide'") ?>
+                                        <div><?= (in_array($no_covernoteLama, $listAdaPending)) ? "" : $no_covernoteLama ?></div>
+                                            
                                             </td></tr>
 
-                                        <tr class="covernoteshowhide"><td>Jangka Waktu Covernote(bln)</td><td><?= ht_select("jkw_covernote", $ListJkwCov) ?></td></tr>
+                                        <tr class="covernoteshowhide"><td>Jangka Waktu Covernote(bln)</td><td><?= ht_select("jkw_covernote", $ListJkwCov) ?>
+                                            <div><?= (in_array($jkw_covernoteLama, $ListJkwCov)) ? "" : $jkw_covernoteLama ?></div>
+                                            </td></tr>
                                         <tr class="covernoteshowhide"><td>Tgl Covernote</td><td><?= ht_input("tgl_covernote", "class='dateNormal dateMask'") ?></td></tr>
                                         <tr class="covernoteshowhide"><td>Tgl JTP Covernote</td><td><?= ht_input("tgl_jt_covernote", "class='dateNormal dateMask'") ?></td></tr>
 
@@ -582,16 +596,21 @@ if ($showForm) {
                                         <tr><td>Tanggal IMB</td><td><?= ht_input("tgl_imb", "class='dateNormal dateMask'") ?></td></tr>
                                         <tr><td >Nilai HT </td><td><?= ht_input("nilai_ht", "class='kendorupiah'") ?></td></tr>
 
-                                        <tr><td>Jenis Pengikatan</td><td><?= ht_select("jenis_pengikatan", $listJnsPengikatan) ?></td></tr>
+                                        <tr><td>Jenis Pengikatan</td><td><?= ht_select("jenis_pengikatan", $listJnsPengikatan) ?>
+                                        <div><?= (in_array($jenis_pengikatanLama, $listJnsPengikatan)) ? "" : $jenis_pengikatanLama ?></div>    
+                                            </td></tr>
                                         <tr><td class="tambahan">No Pengikatan </td><td> 
         <?= ht_select("no_pengikatan", $listAdaPending, "style='width:100px'") ?>
         <?= ht_input("no_pengikatan_n", "style='width:151px'") ?>
+<div><?= (in_array($no_pengikatanLama, $listAdaPending)) ? "" : $no_pengikatanLama ?></div>
                                             </td>
                                         </tr>
                                         <tr><td>Tanggal Pengikatan </td><td><?= ht_input("tgl_pengikatan", "class='dateNormal dateMask'") ?></td></tr>
 
                                         <tr><td class="tambahan">Tanggal Penyerahan Berkas Pengikatan </td><td><?= ht_input("tgl_penyerahan_berkas", "class='dateNormal dateMask'") ?></td></tr>
-                                        <tr><td class="tambahan">Proses Pengikatan </td><td><?= ht_select("proses_pengikatan", $ListJnsProsespengikatan) ?></td></tr>
+                                        <tr><td class="tambahan">Proses Pengikatan </td><td><?= ht_select("proses_pengikatan", $ListJnsProsespengikatan) ?>
+                                        <div><?= (in_array($proses_pengikatanLama, $ListJnsProsespengikatan)) ? "" : $proses_pengikatanLama ?></div>    
+                                            </td></tr>
 
                                         <tr class='ajbshowhide'><td>No AJB</td><td> <?= ht_select("no_ajb", $listAdaPending, "style='width:100px'") ?>
         <?= ht_input("no_ajb_n", "style='width:151px'") ?> </td></tr>	
@@ -621,8 +640,13 @@ if ($showForm) {
                                         <tr><td>NJOP Bangunan per m2  </td><td><?= ht_input("harga_bangunan_imb", "class='kendorupiah'") ?></td></tr>
                                         <tr><td>Tanggal Taksasi </td><td><?= ht_input("tgl_taksasi", "class='dateNormal dateMask'") ?></td></tr>
                                         <tr><td>Nama Penilai Taksasi </td><td><?= ht_input("penilai") ?></td></tr>
-                                        <tr><td class="w180">Nama Notaris </td><td><?= ht_select("notaris", $ListNotaris) ?></td></tr>
-                                        <tr><td>Nama Developer </td><td><?= ht_select("developer", $ListDeveloper) ?></td></tr>  
+                                        <tr><td class="w180">Nama Notaris </td><td><?= ht_select("notaris", $ListNotaris) ?>
+                                                <div><?= (in_array($notarisLama, $ListNotaris)) ? "" : $notarisLama ?></div>
+                                            
+                                            </td></tr>
+                                        <tr><td>Nama Developer </td><td><?= ht_select("developer", $ListDeveloper) ?>
+                                            <div><?= (in_array($developerLama, $ListDeveloper)) ? "" : $developerLama ?></div>
+                                            </td></tr>  
 
                                     </table>
                                 </td>
@@ -633,7 +657,9 @@ if ($showForm) {
                             <tr>
                                 <td>
                                     <table class="tbllayout">                                   
-                                        <tr><td class="tambahan w180">Skim Pencairan </td><td class="w300"><?= ht_select("skim_pencairan", $ListSkimPencairan, "", false) ?></td></tr>  
+                                        <tr><td class="tambahan w180">Skim Pencairan </td><td class="w300"><?= ht_select("skim_pencairan", $ListSkimPencairan, "", false) ?>
+                                            <div><?= (in_array($skim_pencairanLama, $ListSkimPencairan)) ? "" : $skim_pencairanLama ?></div>
+                                            </td></tr>  
                                         <tr class=''><td>SIUP </td><td>                             
         <?= ht_select("siup", $listAdaTidak, "style='width:100px'", false) ?>
         <?= ht_input("siup_n", "style='width:151px'") ?>

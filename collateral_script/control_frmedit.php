@@ -24,6 +24,34 @@ $produkLama="";
 $programLama="";
 $agamaLama="";
 $kelaminLama="";
+$skdrLama="";
+$jaminanLama="";
+$proses_agunanLama="";
+$jenis_surat_tanahLama="";
+$no_covernoteLama="";$jkw_covernoteLama="";
+$status_imbLama="";
+$jenis_pengikatanLama="";
+$no_pengikatanLama="";
+$proses_pengikatanLama="";
+$notarisLama="";
+$developerLama="";
+$skim_pencairanLama="";
+
+$siupLama="";
+$tdpLama="";
+$otherLama="";
+$no_polis_ass_kerugianLama="";
+$asuransi_kerugianLama="";
+$berkas_asuransi_kerugianLama="";
+$no_polis_ass_jiwaLama="";
+$kendalaLama="";
+
+
+$siupLama=$_POST["frm"]["siup"];
+$tdpLama=$_POST["frm"]["tdp"];
+$otherLama=$_POST["frm"]["otherLama"];
+$no_polis_ass_kerugianLama=$_POST["frm"]["no_polis_ass_kerugian"];
+$asuransi_kerugianLama=$_POST["frm"]["asuransi_kerugian"];
 
 
 if (empty($_POST)) {
@@ -37,7 +65,23 @@ if (empty($_POST)) {
     $produkLama=$_POST['frm']['produk'];
     $programLama=$_POST['frm']['program'];
     $agamaLama=$_POST['frm']['agama'];
-    $kelaminLama=$_POST['frm']['kelamin'];
+    $kelaminLama=$_POST['frm']['kelamin'];    
+    $skdrLama=$_POST['frm']['skdr'];
+    $jaminanLama=$_POST['frm']['jaminan'];
+    $proses_agunanLama=$_POST['frm']['proses_agunan'];
+    $jenis_surat_tanahLama=$_POST['frm']['jenis_surat_tanah'];
+    $no_covernoteLama=$_POST['frm']['no_covernote'];
+    $jkw_covernoteLama=$_POST['frm']['jkw_covernote'];
+    $jenis_pengikatanLama=$_POST['frm']['jenis_pengikatan'];
+    $no_pengikatanLama=$_POST['frm']['no_pengikatan'];
+    $proses_pengikatanLama=$_POST['frm']['proses_pengikatan'];
+    $notarisLama=$_POST["frm"]["notaris"];
+    $developerLama=$_POST["frm"]["developer"];
+    
+    
+    $skim_pencairanLama=$_POST["frm"]["skim_pencairan"];
+    
+   
     
     // print_r($_POST);exit;
 } else {
@@ -45,8 +89,11 @@ if (empty($_POST)) {
     $programLama=$_POST['programLama'];
     $agamaLama=$_POST['agamaLama'];
     $kelaminLama=$_POST['kelaminLama'];
+    
     $chekNoaplikasi = true;
     $noaplikasi = $_POST['frm']['noaplikasi'];
+    
+    
     if (strlen($noaplikasi) == 20) {
         $buf['tgl'] = substr($noaplikasi, 0, 8);
         $buf['program_kd'] = substr($noaplikasi, 8, 2);
