@@ -73,7 +73,8 @@
         }
         function selectLookup($type,$lnc="*"){
             $sql="select value from lookup where type='$type' and (lnc like'%*%' or lnc like'%".$lnc."%') order by value asc";
-           // echo $sql;exit;
+           
+          
             $listData= $this->selectAllRows($sql);
             $return=array();
             foreach($listData as $data){

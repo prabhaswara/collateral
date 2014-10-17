@@ -1,6 +1,9 @@
 <?php
 
-$lnc = "*";
+if(isset($_POST['frm']['lnc'])){
+    $lnc=$_POST['frm']['lnc'];
+}
+
 $listAgama = array(
     'ISLAM' => 'ISLAM', 'KRISTEN' => 'KRISTEN',
     'PROTESTAN' => 'PROTESTAN', 'HINDU' => 'HINDU',

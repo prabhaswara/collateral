@@ -380,7 +380,36 @@ if (isset($_SESSION['colateral']['message'])) {
     unset($_SESSION['colateral']['message']);
 }
 ?>
-
+<input type="hidden" name="produkLama" value="<?= $produkLama ?>" />
+<input type="hidden" name="programLama" value="<?= $produkLama ?>" /> 
+<input type="hidden" name="agamaLama" value="<?= $agamaLama ?>" />
+<input type="hidden" name="kelaminLama" value="<?= $kelaminLama ?>"        
+<input type="hidden" name="skdrLama" value="<?= $skdrLama ?>" 
+<input type="hidden" name="jaminanLama" value="<?= $jaminanLama ?>" 
+<input type="hidden" name="proses_agunanLama" value="<?= $proses_agunanLama ?>" 
+<input type="hidden" name="jenis_surat_tanahLama" value="<?= $jenis_surat_tanahLama ?>" 
+<input type="hidden" name="no_covernoteLama" value="<?= $no_covernoteLama ?>" 
+<input type="hidden" name="status_imbLama" value="<?= $status_imbLama ?>" 
+<input type="hidden" name="jenis_pengikatanLama" value="<?= $jenis_pengikatanLama ?>" 
+<input type="hidden" name="no_pengikatanLama" value="<?= $no_pengikatanLama ?>" 
+<input type="hidden" name="proses_pengikatanLama" value="<?= $proses_pengikatanLama ?>" 
+<input type="hidden" name="notarisLama" value="<?= $notarisLama ?>" 
+<input type="hidden" name="developerLama" value="<?= $developerLama ?>" 
+<input type="hidden" name="skim_pencairanLama" value="<?= $skim_pencairanLama ?>" 
+<input type="hidden" name="siupLama" value="<?= $siupLama ?>" 
+<input type="hidden" name="tdpLama" value="<?= $tdpLama ?>" 
+<input type="hidden" name="otherLama" value="<?= $otherLama ?>" 
+<input type="hidden" name="no_polis_ass_kerugianLama" value="<?= $no_polis_ass_kerugianLama ?>" 
+<input type="hidden" name="jenis_kendaraanLama" value="<?= $jenis_kendaraanLama ?>" 
+<input type="hidden" name="merkLama" value="<?= $merkLama ?>" 
+<input type="hidden" name="asuransi_jiwaLama" value="<?= $asuransi_jiwaLama ?>" 
+<input type="hidden" name="asuransi_kerugianLama" value="<?= $asuransi_kerugianLama ?>" 
+<input type="hidden" name="berkas_asuransi_kerugianLama" value="<?= $berkas_asuransi_kerugianLama ?>" 
+<input type="hidden" name="no_polis_ass_jiwaLama" value="<?= $no_polis_ass_jiwaLama ?>" 
+<input type="hidden" name="kendalaLama" value="<?= $kendalaLama ?>" 
+<input type="hidden" name="jenis_sertifikatLama" value="<?= $jenis_sertifikatLama ?>" 
+       
+                                            
                 <h1 class="judulfrm">Informasi Aplikasi</h1>
                 <table class="tbllayout">
                     <tr>
@@ -422,7 +451,7 @@ if ($showForm) {
                                         <td>Nama Produk</td><td>
     <?= ht_select("produk", $ListProduk); ?>
                                             <div><?= (in_array($produkLama, $ListProduk)) ? "" : $produkLama ?></div>  
-                                            <input type="hidden" name="produkLama" value="<?= $produkLama ?>" />
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -430,8 +459,8 @@ if ($showForm) {
 
     <?= ht_select("program", $ListProgram); ?>
 
-                                            <div><?= (in_array($programLama, $ListProgram)) ? "" : $programLama ?></div>  
-                                            <input type="hidden" name="programLama" value="<?= $produkLama ?>" />                                              
+                                            <div><?= (in_array($programLama, $ListProgram)) ? "" : $programLama ?></div> 
+                                                                                         
 
                                         </td>
                                     </tr>
@@ -479,13 +508,13 @@ if ($showForm) {
                                         <td>Agama</td><td>
     <?= ht_select("agama", $listAgama) ?> 
                                             <div><?= (in_array($agamaLama, $listAgama)) ? "" : $agamaLama ?></div>
-                                            <input type="hidden" name="agamaLama" value="<?= $agamaLama ?>" />
+                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Kelamin</td><td><?= ht_select("kelamin", $listJenkel) ?>  
                                             <div><?= (in_array($kelaminLama, $listJenkel)) ? "" : $kelaminLama ?></div> 
-                                            <input type="hidden" name="kelaminLama" value="<?= $kelaminLama ?>" />
+                                            
                                         </td>
                                     </tr>
 
@@ -590,7 +619,7 @@ if ($showForm) {
                                             <td> 
         <?= ht_select("status_imb", $listAdaPending, "style='width:100px'") ?>
         <?= ht_input("no_imb", "style='width:151px'") ?>
-
+        <div><?= (in_array($status_imbLama, $listAdaPending)) ? "" : $status_imbLama ?></div>                                        
                                             </td></tr>
 
                                         <tr><td>Tanggal IMB</td><td><?= ht_input("tgl_imb", "class='dateNormal dateMask'") ?></td></tr>
@@ -661,22 +690,28 @@ if ($showForm) {
                                             <div><?= (in_array($skim_pencairanLama, $ListSkimPencairan)) ? "" : $skim_pencairanLama ?></div>
                                             </td></tr>  
                                         <tr class=''><td>SIUP </td><td>                             
-        <?= ht_select("siup", $listAdaTidak, "style='width:100px'", false) ?>
+        <?= ht_select("siup", $listAdaTidak, "style='width:100px'", false) ?>                                            
         <?= ht_input("siup_n", "style='width:151px'") ?>
-
+         <div><?= (in_array($siupLama, $listAdaTidak)) ? "" : $siupLama ?></div>                                           
                                             </td></tr>  
                                         <tr class=''><td>Tanda Daftar Perusahaan </td><td>
                                                 <?= ht_select("tdp", $listAdaTidak, "style='width:100px'", false) ?>
         <?= ht_input("tdp_n", "style='width:151px'") ?>
+         <div><?= (in_array($tdpLama, $listAdaTidak)) ? "" : $tdpLama ?></div>                                           
+                                                
                                             </td></tr>
                                         <tr class=''><td>Others </td><td>
                                                 <?= ht_select("others", $listAdaTidak, "style='width:100px'", false) ?>
-                                                <?= ht_input("others_n", "style='width:151px'") ?></td></tr>
+                                                <?= ht_input("others_n", "style='width:151px'") ?>
+                                            <div><?= (in_array($otherLama, $listAdaTidak)) ? "" : $otherLama ?></div>    
+                                            </td></tr>
                                         <tr class=''><td>No NPWP </td><td><?= ht_input("npwp") ?></td></tr>
                                         <tr class=''><td>No. GS/SU </td><td><?= ht_input("jml_jaminan") ?></td></tr>                                            
                                         <tr class=''><td>No Sertifikat Tanah</td><td><?= ht_input("no_surat_tanah") ?></td></tr>
                                         <tr class=''><td>Tgl. Sertifikat </td><td><?= ht_input("nilai_taksasi", "class='dateNormal dateMask'") ?></td> </tr>
-                                        <tr class=''><td class="tambahan">Jenis Sertifikat </td><td><?= ht_select("jenis_sertifikat", $ListJenisSertifikat) ?></td></tr>
+                                        <tr class=''><td class="tambahan">Jenis Sertifikat </td><td><?= ht_select("jenis_sertifikat", $ListJenisSertifikat) ?>
+                                            <div><?= (in_array($jenis_sertifikatLama, $ListJenisSertifikat)) ? "" : $jenis_sertifikatLama ?></div>
+                                            </td></tr>
                                         <tr class='skimshowhide'><td>Skim PKS </td><td> <?= ht_select("skim_pks", $ListSkimPKSDev) ?></td></tr>
                                         <tr class='skimshowhide'><td>Nama Proyek </td><td><?= ht_input("nama_perumahan") ?></td></tr>
                                         <tr class='skimshowhide'><td class="tambahan">Jenis Proyek </td><td><?= ht_input("jenis_proyek") ?></td></tr>
@@ -718,10 +753,17 @@ if ($showForm) {
                                         <tr><td class="tambahan">Nomor Polis Asuransi Kerugian</td><td>                                                      
         <?= ht_select("no_polis_ass_kerugian", $listAdaPendingTidak, "style='width:100px'") ?>
         <?= ht_input("no_polis_ass_kerugian_n", "style='width:151px'") ?>
+        <div><?= (in_array($no_polis_ass_kerugianLama, $listAdaPendingTidak)) ? "" : $no_polis_ass_kerugianLama ?></div>                                        
                                             </td>
                                         </tr>
-                                        <tr><td class="w180">Asuransi Kerugian</td><td class="w300"><?= ht_select("asuransi_kerugian", $ListAsuransiKerugian) ?></td></tr>
-                                        <tr><td class="tambahan">Berkas Polis Asuransi Kerugian</td><td><?= ht_select("berkas_asuransi_kerugian", $listAdaTidak) ?></td></tr>
+                                        <tr><td class="w180">Asuransi Kerugian</td><td class="w300"><?= 
+                ht_select("asuransi_kerugian", $ListAsuransiKerugian) ?>
+                <div><?= (in_array($asuransi_kerugianLama, $ListAsuransiKerugian)) ? "" : $asuransi_kerugianLama ?></div>                                
+                                            </td></tr>
+                                        <tr><td class="tambahan">Berkas Polis Asuransi Kerugian</td><td>
+                <?= ht_select("berkas_asuransi_kerugian", $listAdaTidak) ?>
+                <div><?= (in_array($berkas_asuransi_kerugianLama, $listAdaTidak)) ? "" : $berkas_asuransi_kerugianLama ?></div>                                
+                                            </td></tr>
                                         <tr><td>Premi Asuransi Kerugian</td><td><?= ht_input("premi_kerugian", "class='kendorupiah'") ?></td></tr>
 
                                     </table>
@@ -749,9 +791,13 @@ if ($showForm) {
                                         <tr><td class="tambahan">Nomor Polis Asuransi Jiwa</td><td>
         <?= ht_select("no_polis_ass_jiwa", $listAdaPendingTidak, "style='width:100px'") ?>
         <?= ht_input("no_polis_ass_jiwa_n", "style='width:151px'") ?>
+        <div><?= (in_array($no_polis_ass_jiwaLama, $listAdaPendingTidak)) ? "" : $no_polis_ass_jiwaLama ?></div>                                        
                                             </td>
                                         </tr>
-                                        <tr><td class="w180">Asuransi Jiwa</td><td class="w300"><?= ht_select("asuransi_jiwa", $ListAsuransiJiwa) ?></td></tr>
+                                        <tr><td class="w180">Asuransi Jiwa</td><td class="w300">
+                <?= ht_select("asuransi_jiwa", $ListAsuransiJiwa) ?>
+                <div><?= (in_array($skim_pencairanLama, $ListAsuransiJiwa)) ? "" : $skim_pencairanLama ?></div>                                
+                                            </td></tr>
 
                                         <tr><td class="tambahan">Berkas Polis Asuransi Jiwa</td><td><?= ht_select("berkas_assuransi_jiwa", $listAdaTidak) ?></td></tr>
                                         <tr><td>Premi Asuransi Jiwa</td><td><?= ht_input("premi_jiwa", "class='kendorupiah'") ?></td></tr>
@@ -802,8 +848,12 @@ if ($showForm) {
         <?= ht_input("no_bpkb_n", "style='width:151px'") ?>                                                    
                                             </td>
                                         </tr>
-                                        <tr><td class="w180">Jenis Kendaraan</td><td class="w300"><?= ht_select("jenis_kendaraan", $ListJnsKendaraan) ?></td></tr>
-                                        <tr><td>Merk</td><td><?= ht_select("merk", $listMerkKendaraan) ?></td></tr>
+                                        <tr><td class="w180">Jenis Kendaraan</td><td class="w300"><?= ht_select("jenis_kendaraan", $ListJnsKendaraan) ?>
+                                            <div><?= (in_array($jenis_kendaraanLama, $ListJnsKendaraan)) ? "" : $jenis_kendaraanLama ?></div>
+                                            </td></tr>
+                                        <tr><td>Merk</td><td><?= ht_select("merk", $listMerkKendaraan) ?>
+                                            <div><?= (in_array($merkLama, $listMerkKendaraan)) ? "" : $merkLama ?></div>
+                                            </td></tr>
                                         <tr><td>No Polisi</td><td><?= ht_input("no_polisi") ?></td></tr>
 
 
@@ -951,7 +1001,7 @@ if ($showForm) {
         <?= ht_textarea("memo", 'style="width:90%;height:180px;margin: 10px"') ?>
                         <h1 class="judulfrm"> Kendala Pengikatan</h1>
         <?= ht_select("kendala", $ListKendala, "style='margin:10px'") ?>
-
+        <div><?= (in_array($kendalaLama, $ListKendala)) ? "" : $kendalaLama ?></div>                
                         <?php
                     }
                     ?>
