@@ -65,13 +65,13 @@ if ($action != "") {
         if (in_array($produk_kd, array("01", "03", "06"))) {
             $showInformasiJaminan = true;
         }
-        //cuma Griya/OTO/Multiguna/BWU yg bisa
-        if (in_array($produk_kd, array("01", "02", "03", "06"))) {
+         //cuma Griya/OTO/Multiguna/BWU/umg yg bisa
+        if (in_array($produk_kd, array("01", "02", "03", "06","07"))) {
             $showInformasiAsuransiKerugian = true;
         }
 
         //semua nya
-        $showInformasiAsuransiJiwa = true;
+        $showInformasiAsuransiJiwa = $produk_kd=="07"?false:true;//umg ngak muncul
         $showDtLunas = true;
         $showInformasiLain = true;
         $showEmergencyKon = true;
