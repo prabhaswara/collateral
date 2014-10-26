@@ -36,22 +36,22 @@ $proses_pengikatanLama="";
 $notarisLama="";
 $developerLama="";
 $skim_pencairanLama="";
-
 $siupLama="";
 $tdpLama="";
 $otherLama="";
 $no_polis_ass_kerugianLama="";
+$jenis_kendaraanLama="";
+$merkLama="";
+$asuransi_jiwaLama="";
 $asuransi_kerugianLama="";
 $berkas_asuransi_kerugianLama="";
 $no_polis_ass_jiwaLama="";
 $kendalaLama="";
+$jenis_sertifikatLama="";
 
 
-$siupLama=$_POST["frm"]["siup"];
-$tdpLama=$_POST["frm"]["tdp"];
-$otherLama=$_POST["frm"]["otherLama"];
-$no_polis_ass_kerugianLama=$_POST["frm"]["no_polis_ass_kerugian"];
-$asuransi_kerugianLama=$_POST["frm"]["asuransi_kerugian"];
+
+
 
 
 if (empty($_POST)) {
@@ -72,15 +72,25 @@ if (empty($_POST)) {
     $jenis_surat_tanahLama=$_POST['frm']['jenis_surat_tanah'];
     $no_covernoteLama=$_POST['frm']['no_covernote'];
     $jkw_covernoteLama=$_POST['frm']['jkw_covernote'];
+    $status_imbLama=$_POST['frm']['status_imb'];
     $jenis_pengikatanLama=$_POST['frm']['jenis_pengikatan'];
     $no_pengikatanLama=$_POST['frm']['no_pengikatan'];
     $proses_pengikatanLama=$_POST['frm']['proses_pengikatan'];
     $notarisLama=$_POST["frm"]["notaris"];
-    $developerLama=$_POST["frm"]["developer"];
-    
-    
+    $developerLama=$_POST["frm"]["developer"];    
     $skim_pencairanLama=$_POST["frm"]["skim_pencairan"];
-    
+    $siupLama=$_POST["frm"]["siup"];
+    $tdpLama=$_POST["frm"]["tdp"];
+    $otherLama=$_POST["frm"]["other"];
+    $no_polis_ass_kerugianLama=$_POST["frm"]["no_polis_ass_kerugian"];
+    $asuransi_kerugianLama=$_POST["frm"]["asuransi_kerugian"];
+    $asuransi_jiwaLama=$_POST["frm"]["asuransi_jiwa"];
+    $berkas_asuransi_kerugianLama=$_POST["frm"]["berkas_asuransi_kerugian"];
+    $jenis_kendaraanLama=$_POST["frm"]["jenis_kendaraan"];
+    $merkLama=$_POST["frm"]["merk"];
+    $no_polis_ass_jiwaLama=$_POST["frm"]["no_polis_ass_jiwa"];
+    $kendalaLama=$_POST["frm"]["kendalaLama"];
+    $jenis_sertifikatLama=$_POST["frm"]["jenis_sertifikat"];
    
     
     // print_r($_POST);exit;
@@ -89,6 +99,32 @@ if (empty($_POST)) {
     $programLama=$_POST['programLama'];
     $agamaLama=$_POST['agamaLama'];
     $kelaminLama=$_POST['kelaminLama'];
+    
+    $skdrLama=$_POST['frm']['skdrLama'];
+    $jaminanLama=$_POST['frm']['jaminanLama'];
+    $proses_agunanLama=$_POST['frm']['proses_agunanLama'];
+    $jenis_surat_tanahLama=$_POST['frm']['jenis_surat_tanahLama'];
+    $no_covernoteLama=$_POST['frm']['no_covernoteLama'];
+    $jkw_covernoteLama=$_POST['frm']['jkw_covernoteLama'];
+    $status_imbLama=$_POST['frm']['status_imbLama'];
+    $jenis_pengikatanLama=$_POST['frm']['jenis_pengikatanLama'];
+    $no_pengikatanLama=$_POST['frm']['no_pengikatanLama'];
+    $proses_pengikatanLama=$_POST['frm']['proses_pengikatanLama'];
+    $notarisLama=$_POST["frm"]["notarisLama"];
+    $developerLama=$_POST["frm"]["developerLama"];    
+    $skim_pencairanLama=$_POST["frm"]["skim_pencairanLama"];
+    $siupLama=$_POST["frm"]["siupLama"];
+    $tdpLama=$_POST["frm"]["tdpLama"];
+    $otherLama=$_POST["frm"]["otherLama"];
+    $no_polis_ass_kerugianLama=$_POST["frm"]["no_polis_ass_kerugianLama"];
+    $asuransi_kerugianLama=$_POST["frm"]["asuransi_kerugianLama"];
+    $asuransi_jiwaLama=$_POST["frm"]["asuransi_jiwaLama"];
+    $berkas_asuransi_kerugianLama=$_POST["frm"]["berkas_asuransi_kerugianLama"];
+    $jenis_kendaraanLama=$_POST["frm"]["jenis_kendaraanLama"];
+    $merkLama=$_POST["frm"]["merkLama"];
+    $no_polis_ass_jiwaLama=$_POST["frm"]["no_polis_ass_jiwaLama"];
+    $kendalaLama=$_POST["frm"]["kendalaLamaLama"];
+    $jenis_sertifikatLama=$_POST["frm"]["jenis_sertifikatLama"];
     
     $chekNoaplikasi = true;
     $noaplikasi = $_POST['frm']['noaplikasi'];
@@ -135,13 +171,13 @@ if (empty($_POST)) {
         if (in_array($produk_kd, array("01", "03", "06"))) {
             $showInformasiJaminan = true;
         }
-        //cuma Griya/OTO/Multiguna/BWU yg bisa
-        if (in_array($produk_kd, array("01", "02", "03", "06"))) {
+        //cuma Griya/OTO/Multiguna/BWU/umg yg bisa
+        if (in_array($produk_kd, array("01", "02", "03", "06","07"))) {
             $showInformasiAsuransiKerugian = true;
         }
 
         //semua nya
-        $showInformasiAsuransiJiwa = true;
+        $showInformasiAsuransiJiwa = $produk_kd=="07"?false:true;//umg ngak muncul
         $showDtLunas = true;
         $showInformasiLain = true;
         $showEmergencyKon = true;

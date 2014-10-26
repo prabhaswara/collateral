@@ -94,7 +94,8 @@ function insertDebitur($data, $row, $type = "system") {
        $sql = "delete from debitur where no_rekg_pinjaman='" . $data->val($row, 9) . "'";
         $pesan=$db_function->exec($sql);
         if ($pesan != "") {
-            $_SESSION['colateral']['message_loop'][]=="[del debitur]no_rekg_pinjaman->".$data->val($row, 9).":".$pesan; 
+            $countArray=  count($_SESSION['colateral']['message_loop'])+1;
+            $_SESSION['colateral']['message_loop'][$countArray]=="[del debitur]no_rekg_pinjaman->".$data->val($row, 9).":".$pesan; 
            
         }
         
