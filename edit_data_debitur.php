@@ -383,31 +383,31 @@ if (isset($_SESSION['colateral']['message'])) {
 <input type="hidden" name="produkLama" value="<?= $produkLama ?>" />
 <input type="hidden" name="programLama" value="<?= $produkLama ?>" /> 
 <input type="hidden" name="agamaLama" value="<?= $agamaLama ?>" />
-<input type="hidden" name="kelaminLama" value="<?= $kelaminLama ?>"        
-<input type="hidden" name="skdrLama" value="<?= $skdrLama ?>" 
-<input type="hidden" name="jaminanLama" value="<?= $jaminanLama ?>" 
-<input type="hidden" name="proses_agunanLama" value="<?= $proses_agunanLama ?>" 
-<input type="hidden" name="jenis_surat_tanahLama" value="<?= $jenis_surat_tanahLama ?>" 
-<input type="hidden" name="no_covernoteLama" value="<?= $no_covernoteLama ?>" 
-<input type="hidden" name="status_imbLama" value="<?= $status_imbLama ?>" 
-<input type="hidden" name="jenis_pengikatanLama" value="<?= $jenis_pengikatanLama ?>" 
-<input type="hidden" name="no_pengikatanLama" value="<?= $no_pengikatanLama ?>" 
-<input type="hidden" name="proses_pengikatanLama" value="<?= $proses_pengikatanLama ?>" 
-<input type="hidden" name="notarisLama" value="<?= $notarisLama ?>" 
-<input type="hidden" name="developerLama" value="<?= $developerLama ?>" 
-<input type="hidden" name="skim_pencairanLama" value="<?= $skim_pencairanLama ?>" 
-<input type="hidden" name="siupLama" value="<?= $siupLama ?>" 
-<input type="hidden" name="tdpLama" value="<?= $tdpLama ?>" 
-<input type="hidden" name="otherLama" value="<?= $otherLama ?>" 
-<input type="hidden" name="no_polis_ass_kerugianLama" value="<?= $no_polis_ass_kerugianLama ?>" 
-<input type="hidden" name="jenis_kendaraanLama" value="<?= $jenis_kendaraanLama ?>" 
-<input type="hidden" name="merkLama" value="<?= $merkLama ?>" 
-<input type="hidden" name="asuransi_jiwaLama" value="<?= $asuransi_jiwaLama ?>" 
-<input type="hidden" name="asuransi_kerugianLama" value="<?= $asuransi_kerugianLama ?>" 
-<input type="hidden" name="berkas_asuransi_kerugianLama" value="<?= $berkas_asuransi_kerugianLama ?>" 
-<input type="hidden" name="no_polis_ass_jiwaLama" value="<?= $no_polis_ass_jiwaLama ?>" 
-<input type="hidden" name="kendalaLama" value="<?= $kendalaLama ?>" 
-<input type="hidden" name="jenis_sertifikatLama" value="<?= $jenis_sertifikatLama ?>" 
+<input type="hidden" name="kelaminLama" value="<?= $kelaminLama ?>"    />     
+<input type="hidden" name="skdrLama" value="<?= $skdrLama ?>"  />
+<input type="hidden" name="jaminanLama" value="<?= $jaminanLama ?>"  />
+<input type="hidden" name="proses_agunanLama" value="<?= $proses_agunanLama ?>" /> 
+<input type="hidden" name="jenis_surat_tanahLama" value="<?= $jenis_surat_tanahLama ?>"  />
+<input type="hidden" name="no_covernoteLama" value="<?= $no_covernoteLama ?>"  />
+<input type="hidden" name="status_imbLama" value="<?= $status_imbLama ?>"  />
+<input type="hidden" name="jenis_pengikatanLama" value="<?= $jenis_pengikatanLama ?>"  />
+<input type="hidden" name="no_pengikatanLama" value="<?= $no_pengikatanLama ?>"  />
+<input type="hidden" name="proses_pengikatanLama" value="<?= $proses_pengikatanLama ?>"  />
+<input type="hidden" name="notarisLama" value="<?= $notarisLama ?>"  />
+<input type="hidden" name="developerLama" value="<?= $developerLama ?>"  />
+<input type="hidden" name="skim_pencairanLama" value="<?= $skim_pencairanLama ?>"  />
+<input type="hidden" name="siupLama" value="<?= $siupLama ?>"  />
+<input type="hidden" name="tdpLama" value="<?= $tdpLama ?>"  />
+<input type="hidden" name="otherLama" value="<?= $otherLama ?>"  />
+<input type="hidden" name="no_polis_ass_kerugianLama" value="<?= $no_polis_ass_kerugianLama ?>"  />
+<input type="hidden" name="jenis_kendaraanLama" value="<?= $jenis_kendaraanLama ?>"  />
+<input type="hidden" name="merkLama" value="<?= $merkLama ?>"  />
+<input type="hidden" name="asuransi_jiwaLama" value="<?= $asuransi_jiwaLama ?>"  />
+<input type="hidden" name="asuransi_kerugianLama" value="<?= $asuransi_kerugianLama ?>"  />
+<input type="hidden" name="berkas_asuransi_kerugianLama" value="<?= $berkas_asuransi_kerugianLama ?>"  />
+<input type="hidden" name="no_polis_ass_jiwaLama" value="<?= $no_polis_ass_jiwaLama ?>"  />
+<input type="hidden" name="kendalaLama" value="<?= $kendalaLama ?>"  />
+<input type="hidden" name="jenis_sertifikatLama" value="<?= $jenis_sertifikatLama ?>" />
        
                                             
                 <h1 class="judulfrm">Informasi Aplikasi</h1>
