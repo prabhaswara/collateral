@@ -9,18 +9,22 @@
 
 <div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_ajb.php>
-  <p class="style2">&nbsp;</p>
-  <p class="style2"><span class="style10">Nama LNC</span> : <span class="style2">
-    <?=selectLNC("LNC") ?>
     
-  </span></p>
-  <p class="style11">
+    <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC") ?></td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
+    <p class="style11">
     <INPUT type=radio name=pilih value=no_ajb checked>
   Monitoring Penyelesaian Akta Jual Beli <br>
   </p>
-  <p class="style2">
-    <input type=submit name=oke value=Cari>
-  </p>
+     <input type=submit name=oke value=Cari>
 </form>
     
 <div align="center">
@@ -77,8 +81,15 @@ elseif($pilih == "no_ajb")
 {
 $a = "MONITORING PENYELESAIAN AKTA JUAL BELI";
 }
+$sqlHariProsses="";
 
-$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." 
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
+
+$tampil=mysql_query("SELECT LNC,NOAPLIKASI,NAMADEBITUR,no_rekg_pinjaman,produk,notaris,tgl_pk,no_rekg_pinjaman,DATEDIFF(now(),tgl_pk) selisih FROM debitur WHERE $pilih='PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." 
+                    $sqlHariProsses
                     ORDER BY debitur.tgl_pk ASC");
 
 
@@ -160,7 +171,7 @@ Echo "
 <td align='center'>$r[notaris]</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$selisih</td>
-<td align='center'><BLINK>$bbb</td>
+<td align='center' style='color:red'>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -169,7 +180,7 @@ Echo "
 else {
 Echo "
 
-<tr >
+<tr  bgcolor=$warna>
 <td>$no</td>
 <td align='center'>$r[LNC]</td>
 <td align='center'>$r[NOAPLIKASI]</td>

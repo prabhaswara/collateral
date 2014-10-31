@@ -91,7 +91,7 @@ if (empty($_POST)) {
     $no_polis_ass_jiwaLama=$_POST["frm"]["no_polis_ass_jiwa"];
     $kendalaLama=$_POST["frm"]["kendalaLama"];
     $jenis_sertifikatLama=$_POST["frm"]["jenis_sertifikat"];
-   
+   $noaplikasi = $_POST['frm']['noaplikasi'];
     
     // print_r($_POST);exit;
 } else {
@@ -128,8 +128,8 @@ if (empty($_POST)) {
     
     $chekNoaplikasi = true;
     $noaplikasi = $_POST['frm']['noaplikasi'];
-    
-    
+}
+   
     if (strlen($noaplikasi) == 20) {
         $buf['tgl'] = substr($noaplikasi, 0, 8);
         $buf['program_kd'] = substr($noaplikasi, 8, 2);
@@ -194,7 +194,7 @@ if (empty($_POST)) {
         $chekNoaplikasi = false;
     }
 
-   
+ if(!empty($_POST)){   
     if ($_POST['action'] == "simpan") {
         
         $pesanError=  array_merge($pesanError,validasi_form($_POST['frm']));       
@@ -275,6 +275,7 @@ if (empty($_POST)) {
       
         
     }
+    
     $messageBox = showMessage($pesanError);
 }
 $ListProduk=array();
