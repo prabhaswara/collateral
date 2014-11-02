@@ -201,7 +201,7 @@ echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")."");
+$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'").$sqlHariProsses);
 $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $jmldata	= number_format($jmldata,0,',','.');

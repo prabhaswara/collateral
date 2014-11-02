@@ -6,15 +6,17 @@ function inputnya($name, $atribut = "", $type = "text"){
   
     return "<input type='$type' id='$name' name='$name' $atribut value='$value' />";
 }
-function selectnya($name,$options){
+function selectnya($name,$options,$jenis="a"){
     
-    $value = cleanstr($_POST[$name]);    
+  
     $value = in_array($value, array(null,""))?$_GET[$name]:$value;
     
     $return = "<select id='$name' name='$name' $atribut>";    
    
+    if($jenis=="a")
     $return.="<option value='all'>- All -</option>";
-
+    else
+    $return.="<option value=''>- All -</option>";
     if (!empty($options))
         foreach ($options as $optVal => $optName) {
             $selected = ($optVal == $value) ? "selected='selected'" : "";

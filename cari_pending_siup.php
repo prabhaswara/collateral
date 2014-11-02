@@ -5,14 +5,23 @@
 <TITLE>MONITORING SIUP</TITLE>
 <div style="margin:0px 50px;text-align: left;">
 <form method=get action=cari_pending_siup.php>
-  <p class="style2">&nbsp;</p>
-  <p class="style2"><span class="style10">Nama LNC</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="style2">
-    <?=selectLNC("LNC") ?>
-  </span></p>
+    
+    <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC") ?></td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
   <p class="style11">
     <INPUT type=radio name=pilih value=siup checked>
   Monitoring SIUP Belum Dipenuhi <br>
   </p>
+    
+  
   <p class="style2">
     <input type=submit name=oke value=Cari>
   </p>
@@ -73,9 +82,13 @@ elseif($pilih == "no_ajb")
 {
 $a = "MONITORING AKTA JUAL BELI";
 }
-
+$sqlHariProsses="";
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
 $tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='BELUM ADA'".(($lnc=="all")?"":"AND LNC='$lnc'")."
-                    ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
+                    $sqlHariProsses ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -161,7 +174,7 @@ Echo "
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$slsh</td>
 <td align='center'><blink>$bbb</td>
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
       $no++;
@@ -180,7 +193,7 @@ Echo "
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$slsh</td>
 <td align='center'>$bbb</td>
-<td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
+<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
       $no++;
@@ -190,7 +203,7 @@ echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'BELUM ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ASC");
+$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'BELUM ADA' ".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses ORDER BY debitur.tgl_pk ASC");
 $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $file       = "cari_pending_siup.php";

@@ -19,21 +19,16 @@
    <TD>
    <TR>
    <TD></p>
-     <table width="100%" height="35" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-       <tr>
-         <td width="14%" style="border-style: none; border-width: medium" height="33"> <input type=radio name=xxx checked>
-           <span class="style14"> Nama LNC</span></td>
-         <td width="86%" style="border-style: none; border-width: medium" height="33"> <font face="Arial">
-           <?=selectLNC("LNC") ?>
-         </font></td>
-       </tr>
-     </table>
-     <table width="100%" height="35" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-       <tr>
-         <td width="14%" style="border-style: none; border-width: medium" height="33"><input type=radio name=pilih value=produk checked>
-           <span class="style14"> Nama Produk </span> <font face="Arial">&nbsp;</font> </td>
-         <td width="86%" style="border-style: none; border-width: medium" height="33"> <font face="Arial">
-           <?php
+       
+       <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC") ?></td>
+        </tr>
+        <tr>
+            <td>Nama Produk</td>
+            <td>
+            <?php
            $db_function=new db_function();
            $options=array();
             $data = $db_function->selectAllRows("select produk_nm from master_produk");
@@ -42,15 +37,17 @@
             }
             echo selectnya("cari", $options);
            ?>
-          
-</font></td>
-       </tr>
-     </table>     <p>&nbsp;</p></TD>
-   </TR>
-   <p class="style2">  
-  <p class="style2">
+            </td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
+       <p class="style2">
     <input type=submit name=oke value=Cari>
   </p>
+  <input type="hidden" name="pilih" value="produk"/>
 </form> 
     
 <div align="center">
@@ -81,8 +78,16 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
+
+$sqlHariProsses="";
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
+
+
 $sql="SELECT * FROM debitur WHERE debitur.no_pengikatan = 'PENDING' ".(($cari=="all")?"":"and $pilih = '$cari'")." 
-".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ";
+".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses ORDER BY debitur.tgl_pk ";
 
 $tampil= mysql_query($sql);
 $jumlah= mysql_num_rows($tampil);
@@ -173,7 +178,7 @@ echo "
 <td align='center'>$r[notaris]</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$slsh</td>
-<td align='center'><BLINK>$bbb</td>
+<td align='center' style='color:red'>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -207,7 +212,7 @@ echo "</table>";
 
 //Langkah 3
 $tampil2    = "SELECT * FROM debitur WHERE debitur.no_pengikatan = 'PENDING' ".(($cari=="all")?"":"and $pilih = '$cari'")."
-".(($lnc=="all")?"":"AND LNC='$lnc'")."";
+".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);

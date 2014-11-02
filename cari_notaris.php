@@ -2,20 +2,34 @@
 <?php include 'collateral_script/head.php'; ?> 
 <?php include 'collateral_script/db_function.php';?> 
 <?php include 'collateral_script/function.php';?> 
+<?php include 'collateral_script/list_dropdown.php';?> 
+
 <TITLE>MONITORING NOTARIS</TITLE>
 <div style="margin:0px 50px;text-align: left;">
+  
 <form method=get action=cari_notaris.php>
-  <p class="style2"><span class="style10">Nama LNC</span> :
-    <?=selectLNC("LNC") ?>
-</p>
-  <p class="style10">
-    <input type=radio name=pilih value=notaris checked>
-    
-    <span class="style2">Nama Notaris</span><br>
-    <?=inputnya("cari") ?>
+    <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC") ?></td>
+        </tr>
+        <tr>
+            <td>Nama Notaris</td>
+            <td>
+            <?php echo selectnya("cari",$ListNotaris,"b") ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
+    <p class="style11">
+    <input type=hidden name=pilih value=notaris checked>
+  Monitoring Penyelesaian SHT Per Notaris <br>
   </p>
-  <p class="style2">
-  <p class="style2">
+  
+   
     <input type=submit name=oke value=Cari>
   </p>
 </form> 
@@ -48,8 +62,15 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
+$sqlHariProsses="";
+
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
+
 $tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' 
-".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ");
+".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses ORDER BY debitur.tgl_pk ");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -141,7 +162,7 @@ echo "
 <td align='center'>$r[developer]</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$slsh</td>
-<td align='center'><BLINK>$bbb</td>
+<td align='center' style='color:red'>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -176,7 +197,7 @@ echo "</table>";
 
 //Langkah 3
 $tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_pengikatan = 'PENDING' 
-".(($lnc=="all")?"":"AND LNC='$lnc'")." ";
+".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses";
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);

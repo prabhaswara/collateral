@@ -1,21 +1,36 @@
 <?php include 'collateral_script/session_head.php'; ?>
+<?php include 'collateral_script/head.php'; ?> 
 <?php include 'collateral_script/db_function.php';?> 
 <?php include 'collateral_script/function.php';?> 
+<?php include 'collateral_script/list_dropdown.php';?> 
+
 <TITLE> PENDING POLIS ASS. JIWA </TITLE>
 <?php include 'collateral_script/head.php'; ?> 
 <div style="margin:0px 50px;text-align: left;">
     
 <form method=get action=cari_ass_jiwa.php>
-  <p class="style1">&nbsp;</p>
-  <p class="style1">Nama LNC :
-     <?=selectLNC("LNC") ?>
-  </p>
+    
+    <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC") ?></td>
+        </tr>
+        <tr>
+            <td>Nama AsuransiJiwa</td>
+            <td>
+            <?php echo selectnya("cari",$ListAsuransiJiwa,"b") ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
   <p class="style1">
     <input type=radio name=pilih value=asuransi_jiwa checked>
-   Nama Perusahaan Asuransi Jiwa<br>
-   <?=inputnya("cari") ?>
+   Monitoring Penyelesaian Polis Asuransi Jiwa
+  
   </p>
-  <p class="style2">
   
   <p class="style1">
     <input type=submit name=oke value=Cari>
@@ -50,7 +65,13 @@ $pilih =$_GET['pilih'];
 $cari  =$_GET['cari'];
 $lnc=$_GET['LNC'];
 
-$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
+$sqlHariProsses="";
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
+
+$tampil= mysql_query("SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses ORDER BY debitur.tgl_pk ASC LIMIT $posisi,$batas");
 $jumlah= mysql_num_rows($tampil);
 
 if ($jumlah > 0) {
@@ -115,7 +136,7 @@ $rupiah=number_format($max,0,',','.');
 $rupiah1=number_format($nht,0,',','.');
 $slsh=number_format($selisih,0,',','.');
 
-$allx  = "(SELECT sum(maksimum_kredit) FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'").")";
+$allx  = "(SELECT sum(maksimum_kredit) FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses)";
 
 if ($bbb==1){
     $bbb=$count;
@@ -139,7 +160,7 @@ echo "
 <td align='right'>$rupiah1</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$slsh</td>
-<td align='center'><blink>$bbb</td>
+<td align='center' style='color:red'>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";
@@ -169,7 +190,9 @@ echo "
 echo "</table>";
 
 //Langkah 3
-$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' AND debitur.LNC LIKE '%$lnc%' ORDER BY debitur.tgl_pk ASC";
+$tampil2    = "SELECT * FROM debitur WHERE $pilih LIKE '%$cari%' AND debitur.no_polis_ass_jiwa = 'PENDING' ".(($lnc=="all")?"":"AND LNC='$lnc'")." $sqlHariProsses ORDER BY debitur.tgl_pk ASC";
+
+
 $hasil2     = mysql_query($tampil2);
 $jmldata    = mysql_num_rows($hasil2);
 $jmlhalaman = ceil($jmldata/$batas);

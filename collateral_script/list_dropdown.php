@@ -2,6 +2,11 @@
 
 if(isset($_POST['frm']['lnc'])){
     $lnc=$_POST['frm']['lnc'];
+}else if(isset($_POST['lnc'])){
+    $lnc=$_POST['lnc'];
+}
+if(!isset($db_function)){
+    $db_function=new db_function();
 }
 
 $listAgama = array(
