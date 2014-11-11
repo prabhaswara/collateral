@@ -381,7 +381,7 @@ if (isset($_SESSION['colateral']['message'])) {
 }
 ?>
 <input type="hidden" name="produkLama" value="<?= $produkLama ?>" />
-<input type="hidden" name="programLama" value="<?= $produkLama ?>" /> 
+<input type="hidden" name="programLama" value="<?= $programLama ?>" /> 
 <input type="hidden" name="agamaLama" value="<?= $agamaLama ?>" />
 <input type="hidden" name="kelaminLama" value="<?= $kelaminLama ?>"    />     
 <input type="hidden" name="skdrLama" value="<?= $skdrLama ?>"  />

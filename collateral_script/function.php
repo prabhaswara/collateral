@@ -29,7 +29,7 @@ function selectnya($name,$options,$jenis="a"){
 
     return $return;
 }
-function selectLNC($name){
+function selectLNC($name,$atribut=""){
     $db_function=new db_function();
     
     $options=array();

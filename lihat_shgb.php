@@ -10,32 +10,23 @@
     <INPUT type=radio name=pilih value=status_rekg checked>
   SHGB JATUH TEMPO PER PERIODE<br>
   </p>
-  <table width="100%" height="31" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td width="14%" style="border-style: none; border-width: medium" height="29"> <font face="Arial" size="2">Nama LNC</font></td>
-      <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <?=selectLNC("LNC") ?>
-      </span></span>
-      </font></td>
-    </tr>
-  </table>
-  <table width="100%" height="31" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td width="14%" style="border-style: none; border-width: medium" height="29"> <font size="2" face="Arial">Tgl. Awal </font></td>
-      <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-                  <?=inputnya("tgl_awal",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
-       
-</span></span> </font></td>
-    </tr>
-  </table>
-  <table width="100%" height="31" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td width="14%" style="border-style: none; border-width: medium" height="29"> <font size="2" face="Arial">Tgl. Akhir</font></td>
-      <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-      <?=inputnya("tgl_akhir",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_akhir);return false;"') ?>
-</span></span> </font></td>
-    </tr>
-  </table>
+  <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC","style='width:100px'") ?></td>
+        </tr>
+        <tr>
+            <td>Tgl Jth Tempo SHGB</td>
+            <td> <?=inputnya("tgl_awal",'style="width:100px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
+                s/d  <?=inputnya("tgl_akhir",'style="width:100px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
+  
   <p class="style11">
     <input type=submit name=oke value=Cari>
   </p>
@@ -107,8 +98,13 @@ elseif($pilih == "no_ajb")
 {
 $a = "MONITORING AKTA JUAL BELI";
 }
+$sqlHariProsses="";
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
 
-$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_surat_tanah between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY produk ASC");
+$tampil=mysql_query("SELECT NOAPLIKASI,NAMADEBITUR,no_rekg_pinjaman,produk,tgl_pk,tgl_jt_pk,tgl_jt_surat_tanah,no_rekg_pinjaman,DATEDIFF(now(),tgl_pk) hari_proses FROM debitur WHERE $pilih='AKTIF' $sqlHariProsses ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_surat_tanah between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY produk ASC");
 $jumlah= mysql_num_rows($tampil);
 
 
@@ -124,6 +120,7 @@ echo "<br><p class=style11><b>$a $_GET[tgl_awal] S/D $_GET[tgl_akhir] LNC $lnc</
 <th>JENIS PRODUK</th>
 <th>MAKSIMUM KREDIT</th>
 <th width=65>TGL. PK</th>
+<th width=65>HARI PROSES</th>
 <th width=65>TGL. JATUH TEMPO PK</th>
 <th width=65>TGL. JATUH TEMPO SHGB</th>
 <th width=10>ACTION</th></th>
@@ -137,62 +134,6 @@ if($warna == $warna1){
 else{
   $warna = $warna1;
 }
-//ngitung jumlah pada tabel
-$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_surat_tanah between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($allx) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$xxx = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah BWU pada tabel
-$all1  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='BWU' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all1) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$bwu = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah GRIYA pada tabel
-$all2  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='GRIYA' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all2) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$griya = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah GRIYA MULTIGUNA pada tabel
-$all3  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='GRIYA MULTIGUNA' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all3) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$griyam = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah MULTIGUNA pada tabel
-$all4  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='MULTIGUNA' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all4) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$multi = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah OTO pada tabel
-$all5  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='OTO' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all5) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$oto = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah FLEKSI pada tabel
-$all6  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='FLEKSI' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all6) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$fleksi = number_format($t['total_max'],0,',','.');
-
-//ngitung jumlah PINJAMAN PEGAWAI pada tabel
-$all7  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE debitur.produk='PINJAMAN PEGAWAI' AND $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_pk DESC ";
-  $result = mysql_query($all7) or die 
-  (mysql_error());
-  $t      = mysql_fetch_array($result);
-$pp = number_format($t['total_max'],0,',','.');
-
 
 //ngitung selisih tgl 
 $tgl2=$r['tgl_jt_pk'];
@@ -239,7 +180,7 @@ else {
     $bbb = $ab;
 }
 	
-if ($bbb=='JATUH TEMPO'){	
+	
 Echo "
 <tr bgcolor=$warna>
 <td><b>$no</td>
@@ -249,50 +190,19 @@ Echo "
 <td align='center'><b>$r[produk]</td>
 <td align='right'><b>$rupiah</td>
 <td align='center'><b>$r[tgl_pk]</td>
+<td align='center'><b>$r[hari_proses]</td>    
 <td align='center'><b>$r[tgl_jt_pk]</td>
 <td align='center'><blink><b>$r[tgl_jt_surat_tanah]</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </tr>";
       $no++;
-}
-elseif ($bbb=='AKAN JATUH TEMPO'){
-Echo "
-<tr bgcolor=$warna>
-<td><b>$no</td>
-<td align='center'><b>$r[NOAPLIKASI]</td>
-<td><b>$r[NAMADEBITUR]</td>
-<td align='right'><b>$r[no_rekg_pinjaman]</td>
-<td align='center'><b>$r[produk]</td>
-<td align='right'><b>$rupiah</td>
-<td align='center'><b>$r[tgl_pk]</td>
-<td align='center'><b>$r[tgl_jt_pk]</td>
-<td align='center'><blink><b>$r[tgl_jt_surat_tanah]</td>
-<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
-</tr>";
-      $no++;
-}
-else {	
-Echo "
-<tr bgcolor=$warna>
-<td><b>$no</td>
-<td align='center'><b>$r[NOAPLIKASI]</td>
-<td><b>$r[NAMADEBITUR]</td>
-<td align='right'><b>$r[no_rekg_pinjaman]</td>
-<td align='center'><b>$r[produk]</td>
-<td align='right'><b>$rupiah</td>
-<td align='center'><b>$r[tgl_pk]</td>
-<td align='center'><b>$r[tgl_jt_pk]</td>
-<td align='center'><blink><b>$r[tgl_jt_surat_tanah]</td>
-<td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
-
-</tr>";
-      $no++;
-}  
+ 
 }
 echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
+/*
 $tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'AKTIF' AND LNC LIKE '$lnc' AND debitur.tgl_pk between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_pk DESC ");
 $jmldata    = mysql_num_rows($tampil2);
 $file       = "lihat_booking.php";
@@ -332,12 +242,12 @@ $tampil9    = mysql_query("SELECT * FROM debitur WHERE debitur.produk='PINJAMAN 
 $jmldata7   = mysql_num_rows($tampil9);
 $file7      = "lihat_booking.php";
 $jmldata7	= number_format($jmldata7,0,',','.');
-
+*/
 
 //echo "<p>TOTAL DATA <b>$a dari LNC $lnc</b> : <b>$jmldata</b> DEBITUR </p>";
 }
 else{
-echo "<br><p class=style11><b>Maaf, data <b>$a $_GET[tgl_awal] S/D $_GET[tgl_akhir] dari LNC $lnc</b> yang anda cari tidak ada pada database !!!</b></p>";
+// echo "<br><p class=style11><b>Maaf, data <b>$a $_GET[tgl_awal] S/D $_GET[tgl_akhir] dari LNC $lnc</b> yang anda cari tidak ada pada database !!!</b></p>";
 }
 }
 ?>
