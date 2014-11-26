@@ -26,11 +26,17 @@ if (!empty($_POST)) {
         xlsWriteLabel($row, $col, $data);
     }
     $row++;
+   $test=0;
     foreach ($dataArray as $data) {
+     if($test>0&&$test<5)
         foreach ($judulArray as $col => $judul) {
+            $data[$col]=clean($data[$col]);
+//            if($data[$col]!="")
+//            echo  $data[$col]."<br>";
             xlsWriteLabel($row, $col, $data[$col]);
         }
         $row++;
+        $test++;
     }
     
     //insert trail
@@ -57,7 +63,11 @@ if (!empty($_POST)) {
     xlsEOF();
     exit();
 }
+function clean($string) {
+   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
 function xlsBOF() {
     echo pack("ssssss", 0x809, 0x8, 0x0, 0x10, 0x0, 0x0);
     return;

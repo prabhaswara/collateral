@@ -63,6 +63,7 @@ if (empty($_POST)) {
             $_POST['frm'][strtolower($key)] = isDateDB($val) ? balikTgl($val) : $val;
         }
     }
+    $_POST['frm']['produk']=  strtoupper($_POST['frm']['produk']);
     $produkLama = $_POST['frm']['produk'];
     $programLama = $_POST['frm']['program'];
     $agamaLama = $_POST['frm']['agama'];
@@ -266,26 +267,27 @@ if (in_array($produk_nm, array("BNI GRIYA", "BNI OTO", "BNI GRIYA MULTIGUNA", "B
 // kalau pilihan nya ada didatabase baru pakek kondisi   
 //cuma Griya/Multiguna/BWU yg bisa
   
-    if (in_array($produk_kd, array("01", "03", "06"))) {
+    if (in_array($produk_nm, array("BNI GRIYA", "BNI GRIYA MULTIGUNA", "BNI WIRAUSAHA"))) {
      
         $showInformasiJaminan = true;
     }
     //cuma Griya/OTO/Multiguna/BWU/umg yg bisa
-    if (in_array($produk_kd, array("01", "02", "03", "06", "07"))) {
+
+    if (in_array($produk_nm, array("BNI GRIYA", "BNI OTO", "BNI GRIYA MULTIGUNA", "BNI WIRAUSAHA", "UMG"))) {
         $showInformasiAsuransiKerugian = true;
     }
 
     //semua nya
-    $showInformasiAsuransiJiwa = $produk_kd == "07" ? false : true; //umg ngak muncul
+    $showInformasiAsuransiJiwa = ($produk_nm == "UMG" ? false : true); //umg ngak muncul
     $showDtLunas = true;
     $showInformasiLain = true;
     $showEmergencyKon = true;
     //cuma fleksi
-    if (in_array($produk_kd, array("04"))) {
+    if (in_array($produk_nm, array("BNI FLEKSI"))) {
         $showInformasiFleksi = true;
 
         //cuma oto
-        if (in_array($produk_kd, array("02"))) {
+        if (in_array($produk_nm, array("BNI OTO"))) {
             $showInformasiOto = true;
         }
     }
