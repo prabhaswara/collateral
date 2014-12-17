@@ -23,18 +23,33 @@ if ($action != "") {
 
 
     $chekNoaplikasi = true;
+    $error_format="";
     $noaplikasi = $_POST['frm']['noaplikasi'];
     if (strlen($noaplikasi) >= 18 && strlen($noaplikasi) <= 24) {
         $buf['tgl'] = substr($noaplikasi, 0, 8);
         $buf['program_kd'] = substr($noaplikasi, 8, 2);
         $buf['cab_kd'] = substr($noaplikasi, 10, 5);
 
+        $day=substr($buf['tgl'], 0, 2);
+        $month=intval(substr($buf['tgl'], 2, 2));
+        $year=intval(substr($buf['tgl'], 4, 4));
+        
+        if(!checkdate($month, $day, $year)){
+           $chekNoaplikasi=false;
+           $error_format="Nomor Aplikasi format tanggal salah";
+        }
+        
         $program_kd = $buf['program_kd'];
         $cab_kd = $buf['cab_kd'];
 
         $_POST['frm']['input_date'] = substr($buf['tgl'], 0, 2) . "-" . substr($buf['tgl'], 2, 2) . "-" . substr($buf['tgl'], 4, 4);
         $_POST['frm']['lnc'] = cleanstr($db_function->selectOnefield("select singkatan from master_cab where cab_kd='" . $buf['cab_kd'] . "'"));
         $lnc = $_POST['frm']['lnc'];
+        
+        if($lnc==""){
+           $chekNoaplikasi=false;
+           $error_format="Nomor Aplikasi LNC salah";
+        }
 
         $buf = $db_function->selectOneRows(
                 "select prog.program_nm,prod.produk_kd,prod.produk_nm from master_program prog 
@@ -50,7 +65,15 @@ if ($action != "") {
         } else {
             $_POST['frm']['produk'] = "";
             $_POST['frm']['program'] = "";
+            $chekNoaplikasi=false;
+            $error_format="Nomor Aplikasi tidak di temukan produk & program";
         }
+        // . "-" . substr($buf['tgl'], 2, 2) . "-" . substr($buf['tgl'], 4, 4)
+        
+        
+        
+        
+        
         /*
           01 BNI GRIYA
           02 BNI OTO
@@ -86,10 +109,11 @@ if ($action != "") {
         }
     } else {
         $chekNoaplikasi = false;
+        $error_format="Panjang No Aplikasi salah";
     }
 
     if (!$chekNoaplikasi) {
-        array_push($pesanError, "Format nomor aplikasi salah");
+        array_push($pesanError, $error_format);
         $_POST['frm']['lnc'] = "";
         $_POST['frm']['produk'] = "";
         $_POST['frm']['program'] = "";
