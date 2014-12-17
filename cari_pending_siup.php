@@ -173,7 +173,7 @@ Echo "
 <td align='center'>$r[no_pk]</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='right'>$slsh</td>
-<td align='center'><blink>$bbb</td>
+<td align='center' style='color:red'>$bbb</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[no_rekg_pinjaman]>Edit
 </td>
 </tr>";

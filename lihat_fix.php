@@ -8,31 +8,22 @@
     <INPUT type=radio name=pilih value=status_rekg checked>
   MONITORING BUNGA & JATUH TEMPO FIX RATE PER PERIODE<br>
   </p>
-  <table width="100%" height="31" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td width="14%" style="border-style: none; border-width: medium" height="29"> <span class="style15"><font face="Arial">Nama LNC</font></span></td>
-      <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <?=selectLNC("LNC") ?>
-      </span></span>
-      </font></td>
-    </tr>
-  </table>
-  <table width="100%" height="31" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td width="14%" style="border-style: none; border-width: medium" height="29"> <span class="style15"><font face="Arial">Tgl. Awal </font></span></td>
-      <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-        <?=inputnya("tgl_awal",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
-</span></span> </font></td>
-    </tr>
-  </table>
-  <table width="100%" height="31" border="1" cellpadding="0" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td width="14%" style="border-style: none; border-width: medium" height="29"> <span class="style15"><font face="Arial">Tgl. Akhir</font></span></td>
-      <td width="86%" style="border-style: none; border-width: medium" height="29"> <font face="Arial"><span class="style11"><span class="style2">
-      <?=inputnya("tgl_akhir",'style="width:80px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_akhir);return false;"') ?>
-</span></span> </font></td>
-    </tr>
-  </table>
+  <table>
+        <tr>
+            <td>Nama LNC</td>
+            <td><?=selectLNC("LNC","style='width:100px'") ?></td>
+        </tr>
+        <tr>
+            <td>Tgl Jth Tempo SHGB</td>
+            <td> <?=inputnya("tgl_awal",'style="width:100px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
+                s/d  <?=inputnya("tgl_akhir",'style="width:100px" onClick="if(self.gfPop)gfPop.fPopCalendar(document.biodata.tgl_awal);return false;"') ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Hari Proses</td>
+            <td><?=  inputnya("hariproses1","style='width:100px'")." s/d ".inputnya("hariproses2","style='width:100px'") ?> </td>
+        </tr>
+    </table>
   <p class="style11">
     <input type=submit name=oke value=Cari>
   </p>
@@ -104,8 +95,13 @@ elseif($pilih == "no_ajb")
 {
 $a = "MONITORING AKTA JUAL BELI";
 }
+$sqlHariProsses="";
+if(intval($_GET['hariproses1'])&&intval($_GET['hariproses2']))
+{
+    $sqlHariProsses=" and DATEDIFF(now(),tgl_pk) >= ".$_GET['hariproses1']." and DATEDIFF(now(),tgl_pk) <= ".$_GET['hariproses2'];
+}
 
-$tampil=mysql_query("SELECT * FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_fixed_rate between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_jt_fixed_rate ASC");
+$tampil=mysql_query("SELECT NOAPLIKASI,NAMADEBITUR,no_rekg_pinjaman,produk,program,tgl_pk,bunga,fixed_rate,tgl_jt_fixed_rate,no_rekg_pinjaman,DATEDIFF(now(),tgl_pk)hari_proses FROM debitur WHERE $pilih='AKTIF' $sqlHariProsses ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_fixed_rate between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_jt_fixed_rate ASC");
 $jumlah= mysql_num_rows($tampil);
 
 
@@ -123,6 +119,7 @@ echo "<br><p class=style11><b>$a $_GET[tgl_awal] S/D $_GET[tgl_akhir] LNC $lnc</
 <th>PROGRAM</th>
 <th>MAKSIMUM KREDIT</th>
 <th width=65>TGL. PK</th>
+<th width=65>Hari Proses</th>
 <th>BUNGA</th>
 <th width=65>MASA FIX RATE</th>
 <th width=65>TGL. JATUH TEMPO FIX RATE</th>
@@ -138,7 +135,7 @@ else{
   $warna = $warna1;
 }
 //ngitung jumlah pada tabel
-$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih='AKTIF' ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_fixed_rate between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_jt_fixed_rate DESC ";
+$allx  = "SELECT SUM(maksimum_kredit) AS total_max FROM debitur WHERE $pilih='AKTIF' $sqlHariProsses ".(($lnc=="all")?"":"AND LNC='$lnc'")." AND debitur.tgl_jt_fixed_rate between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY debitur.tgl_jt_fixed_rate DESC ";
   $result = mysql_query($allx) or die 
   (mysql_error());
   $t      = mysql_fetch_array($result);
@@ -200,6 +197,7 @@ Echo "
 <td align='center'>$r[program]</td>
 <td align='right'>$rupiah</td>
 <td align='center'>$r[tgl_pk]</td>
+<td align='center'>$r[hari_proses]</td>
 <td align='center'>$r[bunga]</td>
 <td align='center'>$r[fixed_rate]</td>
 <td align='center'><blink><b>$r[tgl_jt_fixed_rate]</td>
@@ -218,6 +216,7 @@ Echo "
 <td align='center'><font color='blue'><b>$r[program]</td>
 <td align='right'><font color='blue'><b>$rupiah</td>
 <td align='center'><font color='blue'><b>$r[tgl_pk]</td>
+    <td align='center'><b>$r[hari_proses]</td>
 <td align='center'><font color='blue'><b>$r[bunga]</td>
 <td align='center'><font color='blue'><b>$r[fixed_rate]</td>
 <td align='center'><font color='blue'><b>$r[tgl_jt_fixed_rate]</td>
@@ -236,6 +235,7 @@ Echo "
 <td align='right'><b>$r[program]</td>
 <td align='right'><b>$rupiah</td>
 <td align='center'><b>$r[tgl_pk]</td>
+<td align='center'><b>$r[hari_proses]</td>
 <td align='right'><b>$r[bunga]</td>
 <td align='center'><b>$r[fixed_rate]</td>
 <td align='center'><b>$r[tgl_jt_fixed_rate]</td>
@@ -249,7 +249,7 @@ echo "</table>";
 
 
 //Langkah 3 : Hitung total data dan halaman serta link 1,2,3
-$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'AKTIF' AND LNC LIKE '$lnc' AND debitur.tgl_jt_fixed_rate between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' ORDER BY tgl_jt_fixed_rate DESC ");
+$tampil2    = mysql_query("SELECT * FROM debitur WHERE $pilih LIKE 'AKTIF' AND LNC LIKE '$lnc' AND debitur.tgl_jt_fixed_rate between '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]' $sqlHariProsses ORDER BY tgl_jt_fixed_rate DESC ");
 $jmldata    = mysql_num_rows($tampil2);
 $jmlhalaman = ceil($jmldata/$batas);
 $file       = "lihat_fix.php";

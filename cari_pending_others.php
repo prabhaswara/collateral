@@ -172,7 +172,7 @@ Echo "
 <td align='center'>$r[no_pk]</td>
 <td align='center'>$r[tgl_pk]</td>
 <td align='center'>$slsh</td>
-<td align='center'><blink>$bbb</td>
+<td align='center' style='color:red'>$bbb</td>
 <td align='center'>$r[memo]</td>
 <td align='center'><a href=edit_data_debitur.php?id=$r[NOAPLIKASI]>Edit
 </td>
