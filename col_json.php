@@ -66,7 +66,7 @@ $db_function = new db_function();
     $sql = "select noaplikasi,namadebitur,no_rekg_pinjaman,produk,tgl_pk,no_bpkb,
         no_pengikatan,no_polis_ass_jiwa,no_polis_ass_kerugian,tgl_update,no_trail  
         from debitur_trail where :whereInput: and userupdate='$npp' and lnc='$lnc' and
-        tgl_update>'" . balikTgl($tgl1) . "' and tgl_update<'" . balikTgl($tgl2) . "'
+        tgl_update>'" . balikTgl($tgl1) . "' and tgl_update<'" . balikTgl($tgl2) . "  23:59:59'
         ";
    
 

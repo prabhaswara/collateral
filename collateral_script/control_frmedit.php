@@ -63,6 +63,7 @@ if (empty($_POST)) {
             $_POST['frm'][strtolower($key)] = isDateDB($val) ? balikTgl($val) : $val;
         }
     }
+    
     $_POST['frm']['produk']=  strtoupper($_POST['frm']['produk']);
     $produkLama = $_POST['frm']['produk'];
     $programLama = $_POST['frm']['program'];
@@ -215,9 +216,18 @@ if (!empty($_POST)) {
 
     $messageBox = showMessage($pesanError);
 }
+
 ///////////////
 $noaplikasi = $_POST['frm']['noaplikasi'];
-    if (strlen($noaplikasi) >= 18 && strlen($noaplikasi) <= 24) {
+
+//
+$prog = $db_function->selectOneRows(
+                "select prog.program_nm,prod.produk_kd,prod.produk_nm from master_program prog 
+                    left join master_produk  prod on prog.produk_kd=prod.produk_kd
+                    where prog.program_kd='" . substr($noaplikasi, 8, 2) . "'
+                    ");
+//
+    if (!empty($prog)) {
         $buf['tgl'] = substr($noaplikasi, 0, 8);
         $buf['program_kd'] = substr($noaplikasi, 8, 2);
         $buf['cab_kd'] = substr($noaplikasi, 10, 5);
@@ -241,8 +251,8 @@ $noaplikasi = $_POST['frm']['noaplikasi'];
             $_POST['frm']['program'] = $buf['program_nm'];
             $produk_kd = $buf['produk_kd'];
         } else {
-            $_POST['frm']['produk'] = "";
-            $_POST['frm']['program'] = "";
+//            $_POST['frm']['produk'] = "";
+//            $_POST['frm']['program'] = "";
         }
         
     }

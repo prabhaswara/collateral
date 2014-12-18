@@ -149,6 +149,7 @@ include 'collateral_script/control_sumPending.php';
                                 ?> 
                             </tbody>
                             <?php
+							/*
                             $sumBPKB+=$countBPKB[$lnc['singkatan']];
                             $sumAJB+=$countAJB[$lnc['singkatan']];
                             $sumSHT+=$countSHT[$lnc['singkatan']];
@@ -156,6 +157,7 @@ include 'collateral_script/control_sumPending.php';
                             $sumRUGI+=$countKerugian[$lnc['singkatan']];
                             $sumTOTAL+=$total;
                             $sumDEBITUR+=$countTotalDebitur[$lnc['singkatan']];
+							*/
                             ?>
                             <thead>
                                 <tr>

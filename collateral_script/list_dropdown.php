@@ -11,7 +11,7 @@ if(!isset($db_function)){
 
 $listAgama = array(
     'ISLAM' => 'ISLAM', 'KRISTEN' => 'KRISTEN',
-    'PROTESTAN' => 'PROTESTAN', 'HINDU' => 'HINDU',
+    'PROTESTAN' => 'PROTESTAN', 'BUDDHA' => 'BUDDHA', 'HINDU' => 'HINDU',
     'KONG HU CHU' => 'KONG HU CHU', 'KEPERCAYAAN LAINNYA' => 'KEPERCAYAAN LAINNYA');
 $listJenkel = array('LAKI-LAKI' => 'LAKI-LAKI', 'PEREMPUAN' => 'PEREMPUAN');
 $listJnsJaminan = array("INDUK" => "INDUK", "SATUAN" => "SATUAN", "GIRIK" => "GIRIK");

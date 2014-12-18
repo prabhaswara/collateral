@@ -136,6 +136,9 @@ if ($prod == "BNI GRIYA" || $prod == "BNI GRIYA MULTIGUNA") {
                     if ($('#jenis_pengikatan').val() == 'SHT') {
                         $('#no_pengikatan').html("<option value=''>--pilih--</option><option value='ADA'>ADA</option><option value='PENDING'>PENDING</option>");
 
+                    }else if ($('#jenis_pengikatan').val() == '') {
+                        $('#no_pengikatan').html("<option value=''>--pilih--</option>");
+
                     } else {
                         $('#no_pengikatan').html("<option value='PENDING'>PENDING</option>");
                     }
@@ -796,7 +799,7 @@ if ($showForm) {
                                         </tr>
                                         <tr><td class="w180">Asuransi Jiwa</td><td class="w300">
                 <?= ht_select("asuransi_jiwa", $ListAsuransiJiwa) ?>
-                <div><?= (in_array($skim_pencairanLama, $ListAsuransiJiwa)) ? "" : $skim_pencairanLama ?></div>                                
+                <div><?= (in_array($asuransi_jiwaLama, $ListAsuransiJiwa)) ? "" : $asuransi_jiwaLama ?></div>                                
                                             </td></tr>
 
                                         <tr><td class="tambahan">Berkas Polis Asuransi Jiwa</td><td><?= ht_select("berkas_assuransi_jiwa", $listAdaTidak) ?></td></tr>
