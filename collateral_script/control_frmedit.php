@@ -141,6 +141,10 @@ if (!empty($_POST)) {
 
         $pesanError = array_merge($pesanError, validasi_form($_POST['frm']));
         if (empty($pesanError)) {
+           
+           
+           
+    
             $datenow = date(Ymd);
             $userCreate = $_SESSION['colateral']['npp'];
             // unset skim_pencairan bila sekaligus
@@ -168,9 +172,28 @@ if (!empty($_POST)) {
                 }
                 $query.="$key='$val',";
             }
+            
+            
+             
+            //cari kolom debitur
+            $kolomDebitur=array();
+            $buf = $db_function->selectAllRows("SHOW COLUMNS FROM debitur ");
+            $queryLower=  strtolower($query);
+            foreach ($buf as $val) {
+              //tgl_update=now(),userupdate='$userCreate',no_rekg_pinjaman
+                $kolom=strtolower($val[0]);
+               
+                if (!strpos($queryLower,$kolom) &&$kolom!="no_rekg_pinjaman" ){
+                    $query.=strtolower($val[0])."='',";
+                }
+            }
+            
+            
             $query = substr_replace($query, "", -1);
             $query.=" where no_rekg_pinjaman='" . $_POST['frm']['no_rekg_pinjaman'] . "'";
-
+           
+       
+            
             $buf = cleanstr($db_function->exec($query));
             if ($buf == "") {
                 //insert trail

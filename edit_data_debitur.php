@@ -363,7 +363,7 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
     </head>
     <body>           
 
-        <form method="POST">
+        <form method="POST" name="myform">
             <div style="margin:0px 50px;text-align: left;">
 
                 <h1>Edit Data Debitur</h1>
@@ -422,7 +422,7 @@ if (isset($_SESSION['colateral']['message'])) {
                                     <td class="w180">Nomor Aplikasi <span class="red">*)</span></td><td class="w300"> 
 
 <?= ht_input("noaplikasi", "style='width:200px'") ?>
-                                        <button id='searchNoApp' name="action" value="search"><span class="ui-icon ui-icon-search"></span>
+                                        <button name="action" value="search" onclick="document.myform.submit();"><span class="ui-icon ui-icon-search"></span>
                                         </button>
 
                                     </td>

@@ -12,6 +12,9 @@ include 'collateral_script/list_dropdown.php';
         <?php include 'collateral_script/head.php'; ?>  
 
         <script>
+<?php
+    if($chekNoaplikasi){
+        ?>
 
             $(document).ready(function() {
 
@@ -309,10 +312,16 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                 }
 
             });
+            
+ <?php
+    }
+?>
         </script>
+        
+        
     </head>
     <body>            
-        <form method="POST">
+        <form method="POST" name="myform">
 
             <div style="margin:0px 50px;text-align: left;">
 <?= $messageBox ?>
@@ -330,7 +339,9 @@ if (strtolower(cleanstr($_POST['frm']['no_covernote'])) == "pending") {
                             <table class="tbllayout">
                                 <tr>
                                     <td class="w180">Nomor Aplikasi <span class="red">*)</span></td><td class="w300"> <?= ht_input("noaplikasi", "style='width:200px'") ?>
-                                        <button name="action" value="search"><span class="ui-icon ui-icon-search"></span>
+                                     
+                                        
+                                        <button name="action" value="search" onclick="document.myform.submit();"><span class="ui-icon ui-icon-search"></span>
                                         </button>
                                     </td>
 
